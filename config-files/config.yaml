@@ -38,29 +38,29 @@ input_settings:
               
         - name: "PIDC"
           params: 
-              should_run: [True]
+              should_run: [False]
 
 
         - name: "GRNVBEM"
           params: 
-              should_run: [True]
+              should_run: [False]
 
               
 
         - name: "GENIE3"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
         - name: "PPCOR"
           params: 
-              should_run: [True]
+              should_run: [False]
               # p-value cutoff
               # Used in parsing output
               pVal: [0.01]
@@ -80,20 +80,20 @@ input_settings:
               
         - name: "SINCERITIES"
           params: 
-              should_run: [True]
+              should_run: [False]
               nBins: [10]
               
               
         - name: "LEAP"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Default maxLag value is 0.33
               maxLag: [0.33]
              
               
         - name: "GRISLI"
           params: 
-              should_run: [True]
+              should_run: [False]
               L: [10]
               R: [3000]
               alphaMin: [0.0]
@@ -101,7 +101,7 @@ input_settings:
 
         - name: "SINGE"
           params: 
-              should_run: [True]
+              should_run: [False]
               lambda: [0.01]
               dT: [15]
               num_lags: [5]
@@ -114,7 +114,7 @@ input_settings:
 
         - name: "SCRIBE"
           params: 
-              should_run: [True]
+              should_run: [False]
               ### required parameters
               # a list of delay values
               delay: ["5"]

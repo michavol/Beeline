@@ -19,8 +19,8 @@ import matplotlib.font_manager as font_manager
 ## After downloading the .ttf file, it can be configured to
 ## be used in this script by uncommenting the following lines
 
-# path = '/path/to/Proxima Nova Reg.ttf'
-# prop = font_manager.FontProperties(fname=path)
+path = 'BLPlot/ProximaNovaRegular.ttf'
+prop = font_manager.FontProperties(fname=path)
 
 def plot(inputDF, height = 7, randValues = [], shape = [], 
             palettes = [], text = [], levels = [], rotation = []):
@@ -107,8 +107,9 @@ def plot(inputDF, height = 7, randValues = [], shape = [],
                         bbox=dict(boxstyle="round",
                         ec=(1,1,1), fc=(1,1,1)))
         
+        print(inputDF[levels[levlIdx]])
         colNames = inputDF[levels[levlIdx]].columns
-
+        #colNames = inputDF[levels].columns
         for colIdx in range(len(colNames)):
                 colCnt += 1
 
@@ -119,125 +120,127 @@ def plot(inputDF, height = 7, randValues = [], shape = [],
                          ec=(1,1,1,0),
                          fc=(1,1,1,0)))
 
-                for rowIdx in range(len(rowNames)):
+    #             for rowIdx in range(len(rowNames)):
 
-                    value  =  inputDF.loc[rowNames[rowIdx],levls[levlIdx]][colNames[colIdx]]
-                    if text[levlIdx]:
-                        fSize = 23
+    #                 value  =  inputDF.loc[rowNames[rowIdx],levls[levlIdx]][colNames[colIdx]]
+    #                 if text[levlIdx]:
+    #                     fSize = 23
 
-                        if value == 'Y':
-                            txt = '\u2713'
-                            col = '#4CAF50'
-                        elif value == 'N':
-                            txt = '\u2717'
-                            col = '#E53935'
-                        else:
-                            valList = ['\u2B24','\u25EF','\u25B0','\u25B1','\u25AE','\u25AF','\u2593','\u2591']
+    #                     if value == 'Y':
+    #                         txt = '\u2713'
+    #                         col = '#4CAF50'
+    #                     elif value == 'N':
+    #                         txt = '\u2717'
+    #                         col = '#E53935'
+    #                     else:
+    #                         valList = ['\u2B24','\u25EF','\u25B0','\u25B1','\u25AE','\u25AF','\u2593','\u2591']
                             
-                            if value < 1:
-                                txt = valList[1]+valList[1]+valList[1]
-                            elif value < 2:
-                                txt = valList[0]+valList[1]+valList[1]
-                            elif value < 3:
-                                txt = valList[0]+valList[0]+valList[1]
-                            else:
-                                txt = valList[0]+valList[0]+valList[0]
+    #                         if value < 1:
+    #                             txt = valList[1]+valList[1]+valList[1]
+    #                         elif value < 2:
+    #                             txt = valList[0]+valList[1]+valList[1]
+    #                         elif value < 3:
+    #                             txt = valList[0]+valList[0]+valList[1]
+    #                         else:
+    #                             txt = valList[0]+valList[0]+valList[0]
 
-                            col = '#2E4053'
-                            fSize = 9
-                        plt.text(colStart+colIdx+1, rowIdx+1, 
-                            txt, fontsize= fSize, rotation=0,
-                            ha="center", va="center", color = col,
-                            bbox=dict(boxstyle="round", 
-                            ec=(1,1,1,0), fc=(1,1,1,0)))
+    #                         col = '#2E4053'
+    #                         fSize = 9
+    #                     plt.text(colStart+colIdx+1, rowIdx+1, 
+    #                         txt, fontsize= fSize, rotation=0,
+    #                         ha="center", va="center", color = col,
+    #                         bbox=dict(boxstyle="round", 
+    #                         ec=(1,1,1,0), fc=(1,1,1,0)))
                     
-                    if shape[levlIdx] != 'text':
-                        #randValue = inputDF.loc['dummy',levls[levlIdx]][colNames[colIdx]]
-                        Oldvalue = 1
-                        if value < randValue:
-                            col = '#2E4053'
-                        elif value >= 1:
-                            Oldvalue = value
+    #                 if shape[levlIdx] != 'text':
+    #                     randValue = inputDF.loc['dummy',levls[levlIdx]][colNames[colIdx]]
+    #                     Oldvalue = 1
+    #                     if value < randValue:
+    #                         col = '#2E4053'
+    #                     elif value >= 1:
+    #                         Oldvalue = value
 
-                            value = min(value,5)
-                            col = palettes[levlIdx][int(np.floor((value/5)*10))]
+    #                         value = min(value,5)
+    #                         col = palettes[levlIdx][int(np.floor((value/5)*10))]
 
-                            value = 1
+    #                         value = 1
 
 
                                 
-                        elif np.isnan(value):
-                            value = 0
-                        else:
-                            col = palettes[levlIdx][int(np.floor((value)*10))]
+    #                     elif np.isnan(value):
+    #                         value = 0
+    #                     else:
+    #                         col = palettes[levlIdx][int(np.floor((value)*10))]
 
 
-                        if shape[levlIdx] == 'c':
-                            circle1=patches.Circle((colStart+colIdx+1,rowIdx+1),
-                                               radius = np.sqrt(value)/2.5,
-                                               #height = value,    
-                                               facecolor=col,
-                                               edgecolor = 'k',)
+    #                     if shape[levlIdx] == 'c':
+    #                         circle1=patches.Circle((colStart+colIdx+1,rowIdx+1),
+    #                                            radius = np.sqrt(value)/2.5,
+    #                                            #height = value,    
+    #                                            facecolor=col,
+    #                                            edgecolor = 'k',)
 
-                        elif shape[levlIdx] == 's':
-                            value = value*0.8
-                            circle1=patches.Rectangle((colStart+colIdx+1-(value/2),rowIdx+1-(value)/2),
-                                       width = value,
-                                       height = value,    
-                                       facecolor=col,
-                                       edgecolor = 'k',)
+    #                     elif shape[levlIdx] == 's':
+    #                         value = value*0.8
+    #                         circle1=patches.Rectangle((colStart+colIdx+1-(value/2),rowIdx+1-(value)/2),
+    #                                    width = value,
+    #                                    height = value,    
+    #                                    facecolor=col,
+    #                                    edgecolor = 'k',)
 
-                        elif shape[levlIdx] == 'rs':
-                            value = value*0.8
-                            if value <= 0.15:
-                                value = 0.15
-                            boxPad = 0.075
-                            newVal = value - boxPad*2
-                            circle1=patches.FancyBboxPatch((colStart+colIdx+1-(newVal/2),rowIdx+1-(newVal)/2),
-                                       width = newVal,
-                                       height = newVal,    
-                                       facecolor=col,
-                                       edgecolor = 'k',
-                                       boxstyle=patches.BoxStyle("Round", pad=boxPad))
-                                        #patches.BoxStyle("Round4", pad=0.05))
+    #                     elif shape[levlIdx] == 'rs':
+    #                         value = value*0.8
+    #                         if value <= 0.15:
+    #                             value = 0.15
+    #                         boxPad = 0.075
+    #                         newVal = value - boxPad*2
+    #                         circle1=patches.FancyBboxPatch((colStart+colIdx+1-(newVal/2),rowIdx+1-(newVal)/2),
+    #                                    width = newVal,
+    #                                    height = newVal,    
+    #                                    facecolor=col,
+    #                                    edgecolor = 'k',
+    #                                    boxstyle=patches.BoxStyle("Round", pad=boxPad))
+    #                                     #patches.BoxStyle("Round4", pad=0.05))
                                 
-                        elif shape[levlIdx] == 'w':
-                            circle1=patches.Wedge((colStart+colIdx+1,rowIdx+1),
-                                       r = 0.4,
-                                       theta1 = 0,
-                                       theta2 = round(value*360,2),    
-                                       facecolor = col,
-                                       edgecolor = 'k',)
-                        elif shape[levlIdx] == 'b':
-                            circle1=patches.Rectangle((colStart+colIdx+0.6,rowIdx+0.65),
-                                       width = 0.75,
-                                       height = value,    
-                                       facecolor=col,
-                                       edgecolor = 'k',)
+    #                     elif shape[levlIdx] == 'w':
+    #                         circle1=patches.Wedge((colStart+colIdx+1,rowIdx+1),
+    #                                    r = 0.4,
+    #                                    theta1 = 0,
+    #                                    theta2 = round(value*360,2),    
+    #                                    facecolor = col,
+    #                                    edgecolor = 'k',)
+    #                     elif shape[levlIdx] == 'b':
+    #                         circle1=patches.Rectangle((colStart+colIdx+0.6,rowIdx+0.65),
+    #                                    width = 0.75,
+    #                                    height = value,    
+    #                                    facecolor=col,
+    #                                    edgecolor = 'k',)
                             
-                        elif shape[levlIdx] == 'f':
-                            # flat color
-                            circle1=patches.Rectangle((colStart+colIdx+1,rowIdx+0.6),
-                                       width = 1,
-                                       height = 1,    
-                                       facecolor = col,
-                                       edgecolor = col,)
+    #                     elif shape[levlIdx] == 'f':
+    #                         # flat color
+    #                         circle1=patches.Rectangle((colStart+colIdx+1,rowIdx+0.6),
+    #                                    width = 1,
+    #                                    height = 1,    
+    #                                    facecolor = col,
+    #                                    edgecolor = col,)
 
                             
 
-                        ax.add_artist(circle1)
-                        if Oldvalue > 1:
-                            plt.text(colStart+colIdx+1, rowIdx+1, 
-                            round(Oldvalue,1), fontsize= 10, rotation=0,
-                            ha="center", va="center", color = 'white',
-                            bbox=dict(boxstyle="round", 
-                            ec=(1,1,1,0), fc=(1,1,1,0)))
+    #                     ax.add_artist(circle1)
+    #                     if Oldvalue > 1:
+    #                         plt.text(colStart+colIdx+1, rowIdx+1, 
+    #                         round(Oldvalue,1), fontsize= 10, rotation=0,
+    #                         ha="center", va="center", color = 'white',
+    #                         bbox=dict(boxstyle="round", 
+    #                         ec=(1,1,1,0), fc=(1,1,1,0)))
                             
 
     ax.yaxis.set_ticks_position('none') 
     ax.xaxis.set_ticks_position('none') 
     ax.set_xticklabels([])
-
+    plt.savefig("plot")
     #plt.grid()
+
+
 #PTData = pd.read_csv("outputs/dyn-BF/dyn-BF-AUROCscores.csv", header = 0, index_col = 0)
 
