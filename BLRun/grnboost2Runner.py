@@ -15,10 +15,10 @@ def generateInputs(RunnerObj):
         
     if not RunnerObj.inputDir.joinpath("GRNBOOST2/ExpressionData.csv").exists():
         ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
-                                     header = 0, index_col = 0)
+                                     sep = '\t', header = 0)
 
         # Write .csv file
-        ExpressionData.T.to_csv(RunnerObj.inputDir.joinpath("GRNBOOST2/ExpressionData.csv"),
+        ExpressionData.to_csv(RunnerObj.inputDir.joinpath("GRNBOOST2/ExpressionData.csv"),
                              sep = '\t', header  = True, index = True)
     
 def run(RunnerObj):
@@ -34,7 +34,7 @@ def run(RunnerObj):
     
     outPath = "data/" +  str(outDir) + 'outFile.txt'
     cmdToRun = ' '.join(['docker run --rm -v', str(Path.cwd())+':/data/ --expose=41269', 
-                         'grnbeeline/arboreto:base /bin/sh -c \"time -v -o', "data/" + str(outDir) + 'time.txt', 
+                         '18881888/arboreto:base /bin/sh -c \"time -v -o', "data/" + str(outDir) + 'time.txt', 
                          'python runArboreto.py --algo=GRNBoost2',
                          '--inFile='+inputPath, '--outFile='+outPath, '\"'])
     print(cmdToRun)

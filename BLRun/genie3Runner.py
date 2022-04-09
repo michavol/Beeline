@@ -16,13 +16,21 @@ def generateInputs(RunnerObj):
         RunnerObj.inputDir.joinpath("GENIE3").mkdir(exist_ok = False)
         
     if not RunnerObj.inputDir.joinpath("GENIE3/ExpressionData.csv").exists():
+        # # input data
+        # ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
+        #                              header = 0, index_col = 0)
+
+        # # Write .csv file
+        # ExpressionData.T.to_csv(RunnerObj.inputDir.joinpath("GENIE3/ExpressionData.csv"),
+        #                      sep = '\t', header  = True, index = True)
+
         # input data
         ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
-                                     header = 0, index_col = 0)
+                                     sep = '\t', header = 0)
 
         # Write .csv file
-        ExpressionData.T.to_csv(RunnerObj.inputDir.joinpath("GENIE3/ExpressionData.csv"),
-                             sep = '\t', header  = True, index = True)
+        ExpressionData.to_csv(RunnerObj.inputDir.joinpath("GENIE3/ExpressionData.csv"),
+                             sep = '\t', header = True, index = True)
     
 def run(RunnerObj):
     '''

@@ -6,7 +6,8 @@ input_settings:
     input_dir : "inputs"
 
     # Subdirectory of inputs that datasets are placed in
-    dataset_dir: "example"
+    dataset_dir: "DREAM4" #example
+    #dataset_dir: "example" 
 
     # Denotes a list of datasets, each with the following parameters:
     #   name: Name of the dataset. May be used in logging or other
@@ -19,8 +20,9 @@ input_settings:
     #   trueEdges: Name of the refrence network file in the
     #              edge list format. Needed for evaluation.
     datasets:
-        - name: "GSD"
-          exprData: "ExpressionData.csv"
+        - name: "size10_multifactorial"
+        #- name: "GSD" 
+          exprData: "ExpressionData.csv"  
           cellData: "PseudoTime.csv"
           trueEdges: "refNetwork.csv"
 
@@ -49,13 +51,13 @@ input_settings:
 
         - name: "GENIE3"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "PPCOR"
@@ -140,4 +142,4 @@ output_settings:
 
     # Base output directory
     output_dir: "outputs"
-    output_prefix: "GSD"
+    output_prefix: "DREAM4"
