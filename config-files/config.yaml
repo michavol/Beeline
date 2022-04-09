@@ -49,7 +49,7 @@ input_settings:
 
         - name: "GENIE3"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
               
@@ -68,7 +68,7 @@ input_settings:
                
         - name: "SCODE"
           params:
-              should_run: [True]
+              should_run: [False]
               z: [10]
               nIter: [1000]
               nRep: [6]
