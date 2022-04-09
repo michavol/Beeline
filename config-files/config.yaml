@@ -43,6 +43,13 @@ input_settings:
               should_run: [False]
 
 
+
+        - name: "MCMC"
+          params: 
+              should_run: [True]
+
+
+
         - name: "GRNVBEM"
           params: 
               should_run: [False]
@@ -57,7 +64,7 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
         - name: "PPCOR"

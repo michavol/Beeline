@@ -11,12 +11,14 @@ import BLRun.ppcorRunner as PPCOR
 import BLRun.grisliRunner as GRISLI
 import BLRun.singeRunner as SINGE
 import BLRun.scribeRunner as SCRIBE
+import BLRun.mcmcRunner as MCMC
 
 from pathlib import Path
 
 
 InputMapper = {'SCODE':SCODE.generateInputs,
                'SINCERITIES':SINCERITIES.generateInputs,
+               'SCNS':SCNS.generateInputs,
                'SCNS':SCNS.generateInputs,
                'PIDC':PIDC.generateInputs,
                'GRNVBEM':GRNVBEM.generateInputs,
@@ -27,7 +29,8 @@ InputMapper = {'SCODE':SCODE.generateInputs,
                'PPCOR':PPCOR.generateInputs,
                'GRISLI':GRISLI.generateInputs,
                'SINGE':SINGE.generateInputs,
-               'SCRIBE':SCRIBE.generateInputs}
+               'SCRIBE':SCRIBE.generateInputs,
+               'MCMC':MCMC.generateInputs}
 
 
 
@@ -45,7 +48,8 @@ AlgorithmMapper = {'SCODE':SCODE.run,
             'PPCOR':PPCOR.run,
             'GRISLI':GRISLI.run,
             'SINGE':SINGE.run,
-            'SCRIBE':SCRIBE.run}
+            'SCRIBE':SCRIBE.run,
+            'MCMC':MCMC.run}
 
 
 
@@ -62,7 +66,8 @@ OutputParser = {'SCODE':SCODE.parseOutput,
             'PPCOR':PPCOR.parseOutput,
             'GRISLI':GRISLI.parseOutput,
             'SINGE':SINGE.parseOutput,
-            'SCRIBE':SCRIBE.parseOutput}
+            'SCRIBE':SCRIBE.parseOutput,
+            'MCMC':MCMC.parseOutput}
 
 
 
