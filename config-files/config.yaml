@@ -46,8 +46,13 @@ input_settings:
 
         - name: "MCMC"
           params: 
-              should_run: [True]
+              should_run: [False]
 
+
+        - name: "TEST"
+          params: 
+              should_run: [True]
+              pVal: [0.01]
 
 
         - name: "GRNVBEM"

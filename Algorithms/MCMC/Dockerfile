@@ -4,6 +4,8 @@ LABEL maintainer = "Michael Vollenweider <michavol@ethz.ch>"
 
 USER root
 
+RUN apt-get update
+
 WORKDIR /
 
 RUN R -e "install.packages('https://cran.r-project.org/src/contrib/BiDAG_2.0.4.tar.gz', type = 'source')"
@@ -12,5 +14,4 @@ RUN R -e "install.packages('https://cran.r-project.org/src/contrib/reshape2_1.4.
 COPY runOrderMCMC.R /
 
 RUN mkdir data/
-
-RUN apt-get update && apt-get install time
+# && apt-get install time
