@@ -54,12 +54,10 @@ def main():
     opts = parse_arguments()
     config_file = opts.config
 
-
     with open(config_file, 'r') as conf:
         evaluation = br.ConfigParser.parse(conf)
     print(evaluation)
     print('Evaluation started')
-
 
     for idx in range(len(evaluation.runners)):
         evaluation.runners[idx].generateInputs()
@@ -69,8 +67,6 @@ def main():
 
     for idx in range(len(evaluation.runners)):
         evaluation.runners[idx].parseOutput()
-
-    print('Evaluation complete')
 
 
 if __name__ == '__main__':

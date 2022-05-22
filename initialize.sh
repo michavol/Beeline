@@ -5,10 +5,10 @@ echo "This may take a while..."
 
 BASEDIR=$(pwd)
 
-# # You may remove the -q flag if you want to see the docker build status
-# cd $BASEDIR/Algorithms/ARBORETO
-# docker build -q -t 18881888/arboreto:base .
-# echo "Docker container for ARBORETO is built and tagged as arboreto:base"
+# You may remove the -q flag if you want to see the docker build status
+cd $BASEDIR/Algorithms/ARBORETO
+docker build -q -t 18881888/arboreto:base .
+echo "Docker container for ARBORETO is built and tagged as arboreto:base"
 
 # cd $BASEDIR/Algorithms/MCMC/
 # docker build -q -t 18881888/mcmc:base .

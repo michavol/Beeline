@@ -38,6 +38,8 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False):
                       dataset['name'] + '/' +\
                       dataset['trueEdges'], sep = ',',
                       header = 0, index_col = None)
+        #trueEdgesDF.columns = ["Gene1","Gene2","Type"]
+        
         trueEdgesDF = trueEdgesDF.loc[(trueEdgesDF['Gene1'] != trueEdgesDF['Gene2'])]
         trueEdgesDF.drop_duplicates(keep = 'first', inplace=True)
         trueEdgesDF.reset_index(drop=True, inplace=True)
