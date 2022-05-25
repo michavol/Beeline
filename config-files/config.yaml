@@ -146,8 +146,8 @@ input_settings:
 
         - name: "TEST"
           params: 
-              should_run: [False]
-              pVal: [0.01]
+              should_run: [True]
+          
 
 
         - name: "GRNVBEM"
@@ -158,7 +158,7 @@ input_settings:
 
         - name: "GENIE3"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
               

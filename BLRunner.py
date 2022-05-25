@@ -59,8 +59,8 @@ def main():
     print(evaluation)
     print('Evaluation started')
 
-    for idx in range(len(evaluation.runners)):
-        evaluation.runners[idx].generateInputs()
+    # for idx in range(len(evaluation.runners)):
+    #     evaluation.runners[idx].generateInputs()
 
     for idx in range(len(evaluation.runners)):
         evaluation.runners[idx].run()

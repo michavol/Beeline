@@ -1,25 +1,41 @@
-library(ppcor)
-args <- commandArgs(trailingOnly = T)
-inFile <- args[1]
-outFile <-  args[2]
+### Load libraries
+library(reshape2)
+# library(BiDAG)
 
-# input expression data
-### Load data
-inputExpr <- read.csv(inFile, header = TRUE, sep = "\t")
+# ### Parse Arguments
+# args <- commandArgs(trailingOnly = T)
+# inFile <- args[1]
+# outFile <- args[2]
 
-# inputExpr <- read.table(inFile, sep=",", header = 1, row.names = 1)
-geneNames <- rownames(inputExpr)
-rownames(inputExpr) <- c(geneNames)
+# ### Load data
+# df <- read.csv(inFile, header = TRUE, sep = "\t")
 
-#Run pcor using spearman's correlation as mentioned in the PNI paper 
-#Link to paper: https://www.pnas.org/content/114/23/5822
+# ### Load library and initialize parameters
+# bge_score <- scoreparameters("bge", df)
 
-pcorResults=  pcor(x= t(as.matrix(inputExpr)), method = "spearman")
+# ### Learn Bayesian network using MCMC and get edge weights by bootstrapping
+# set.seed(2022)
+# dags_adj <- matrix(0, nrow=ncol(df), ncol=ncol(df))
+# nIter = 10
 
-# Write output to a file
-# https://stackoverflow.com/questions/38664241/ranking-and-counting-matrix-elements-in-r
-DF = data.frame(Gene1 = geneNames[c(row(pcorResults$estimate))], Gene2 = geneNames[c(col(pcorResults$estimate))]
-                , corVal = c(pcorResults$estimate), pValue =  c(pcorResults$p.value))
-outDF <- DF[order(DF$corVal, decreasing=TRUE), ]
+# for (i in 1:nIter) {
+#   smp_size <- floor(0.8 * nrow(df))
+#   smp <- sample(seq_len(nrow(df)), size = smp_size)
+  
+#   bge_score <- scoreparameters("bge", df[smp,])
+#   orderMAPfit <- orderMCMC(bge_score)
+#   dags_adj = dags_adj + orderMAPfit$DAG
+# }
 
-write.table(outDF, outFile, sep = "\t", quote = FALSE, row.names = FALSE)
+# dags_adj = dags_adj/nIter
+
+
+# ### Convert to format that is expected by BEELINE framework
+# dags_edge_list <- melt(dags_adj)
+# dags_edge_list <- subset(dags_edge_list, Var1 != Var2)  #Remove self-cycles
+# dags_edge_list <- dags_edge_list[order(-dags_edge_list$value), ]#Order by edge weight
+
+
+# ### Store as csv
+# colnames(dags_edge_list) = c("Gene1", "Gene2", "EdgeWeight")
+# write.table(dags_edge_list, file=outFile, sep = "\t", row.names = FALSE)
