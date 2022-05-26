@@ -28,3 +28,8 @@ The input datasets used in BEELINE are available at: [https://doi.org/10.5281/ze
 Twitter thread link: https://twitter.com/t_m_murali/status/1215302095601119234?s=20
 
 The Docker images of 12 algorithms tested in BEELINE are available at [https://hub.docker.com/u/grnbeeline](https://hub.docker.com/u/grnbeeline). Alternatievly, to build the docker containers from scratch (instead of using pre-built versions) for each of the algorithms run `. initialize.sh` (this step will take a while).
+
+
+Instructions for DREAM set-up:
+
+- Make sure that file input and output shapes are parsed correctly

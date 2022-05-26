@@ -31,25 +31,39 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
     '''
     
     # Read file for trueEdges
+    # trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ dataDict['name'] +
+    #                             '/' +dataDict['trueEdges'],
+    #                             sep = ',', 
+    #                             header = 0)#, index_col = None)
+
+    headerList = ['Gene1', 'Gene2', 'Type']
+    
     trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ dataDict['name'] +
                                 '/' +dataDict['trueEdges'],
-                                sep = ',', 
+                                sep = '\t', 
                                 header = 0, index_col = None)
-            
+    
+    trueEdgesDF.columns = headerList
+
+    trueEdgesDF = trueEdgesDF[trueEdgesDF["Type"] != 0]
+   
     # Initialize data dictionaries
+
     precisionDict = {}
     recallDict = {}
     FPRDict = {}
     TPRDict = {}
     AUPRC = {}
     AUROC = {}
-    
+
     # set-up outDir that stores output directory name
     outDir = "outputs/"+str(inputSettings.datadir).split("inputs/")[1]+ '/' +dataDict['name']
     
     if directed:
-        for algo in tqdm(inputSettings.algorithms, 
-                         total = len(inputSettings.algorithms), unit = " Algorithms"):
+        # for algo in tqdm(inputSettings.algorithms, 
+        #                 total = len(inputSettings.algorithms), unit = " Algorithms"):
+
+        for algo in inputSettings.algorithms:
 
             # check if the output rankedEdges file exists
             if Path(outDir + '/' +algo[0]+'/rankedEdges.csv').exists():
@@ -66,8 +80,10 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
             PRName = '/PRplot'
             ROCName = '/ROCplot'
     else:
-        for algo in tqdm(inputSettings.algorithms, 
-                         total = len(inputSettings.algorithms), unit = " Algorithms"):
+        # for algo in tqdm(inputSettings.algorithms, 
+        #                  total = len(inputSettings.algorithms), unit = " Algorithms"):
+        for algo in inputSettings.algorithms:
+                       
 
             # check if the output rankedEdges file exists
             if Path(outDir + '/' +algo[0]+'/rankedEdges.csv').exists():
@@ -207,8 +223,7 @@ def computeScores(trueEdgesDF, predEdgeDF,
                                (predEdgeDF['Gene1'] == key.split('|')[1]))]
             if len(subDF)>0:
                 PredEdgeDict[key] = max(np.abs(subDF.EdgeWeight.values))
-
-                
+    
                 
     # Combine into one dataframe
     # to pass it to sklearn

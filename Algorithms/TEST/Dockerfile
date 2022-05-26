@@ -63,6 +63,6 @@ RUN R -e "install.packages('reshape2')"
 #RUN R -e "install.packages('BiDAG', repos='http://cran.rstudio.com/')" 
 #dependencies=TRUE
 
-COPY test.R /
+COPY runTEST.R /
 
 RUN mkdir data/

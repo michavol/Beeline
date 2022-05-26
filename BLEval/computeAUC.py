@@ -28,12 +28,23 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
             - AUROC: A dictionary containing AUROC values for each algorithm
     '''
     
-    # Read file for trueEdges
+    #Original Version
     trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ dataDict['name'] +
                                 '/' +dataDict['trueEdges'],
                                 sep = ',', 
                                 header = 0, index_col = None)
-            
+    
+    # #Read file for trueEdges
+    # headerList = ['Gene1', 'Gene2', 'Type']
+    
+    # trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ dataDict['name'] +
+    #                             '/' +dataDict['trueEdges'],
+    #                             sep = '\t', 
+    #                             header = 0, index_col = None)
+    
+    # trueEdgesDF.columns = headerList
+    # print(trueEdgesDF)
+
     # Initialize data dictionaries
     precisionDict = {}
     recallDict = {}
@@ -79,7 +90,7 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
             else:
                 print(outDir + '/' +algo[0]+'/rankedEdges.csv', \
                   ' does not exist. Skipping...')
-            
+           
             PRName = '/uPRplot'
             ROCName = '/uROCplot'
     if (plotFlag):

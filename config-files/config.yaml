@@ -20,10 +20,10 @@ input_settings:
     #   trueEdges: Name of the refrence network file in the
     #              edge list format. Needed for evaluation.
     datasets:
-        - name: "size10_multifactorial/net1"
-          exprData: "insilico_size10_1_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_1_goldstandard.tsv"
+        # - name: "size10_multifactorial/net1"
+        #   exprData: "insilico_size10_1_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
 
         # - name: "size10_multifactorial/net2"
         #   exprData: "insilico_size10_2_multifactorial.tsv"  
@@ -70,30 +70,30 @@ input_settings:
         #   cellData: "PseudoTime.csv"
         #   trueEdges: "insilico_size100_multifactorial_5_goldstandard.tsv"
 
-        # - name: "size10_wildtype/net1"
-        #   exprData: "insilico_size10_1_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+        - name: "size10_wildtype/net1"
+          exprData: "insilico_size10_1_wildtype.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size10_1_goldstandard.tsv"
 
-        # - name: "size10_wildtype/net2"
-        #   exprData: "insilico_size10_2_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+        - name: "size10_wildtype/net2"
+          exprData: "insilico_size10_2_wildtype.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size10_2_goldstandard.tsv"
 
-        # - name: "size10_wildtype/net3"
-        #   exprData: "insilico_size10_3_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+        - name: "size10_wildtype/net3"
+          exprData: "insilico_size10_3_wildtype.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size10_3_goldstandard.tsv"
 
-        # - name: "size10_wildtype/net4"
-        #   exprData: "insilico_size10_4_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+        - name: "size10_wildtype/net4"
+          exprData: "insilico_size10_4_wildtype.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size10_4_goldstandard.tsv"
 
-        # - name: "size10_wildtype/net5"
-        #   exprData: "insilico_size10_5_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+        - name: "size10_wildtype/net5"
+          exprData: "insilico_size10_5_wildtype.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size10_5_goldstandard.tsv"
 
         # - name: "size100_wildtype/net1"
         #   exprData: "insilico_size100_1_wildtype.tsv"  
@@ -132,116 +132,118 @@ input_settings:
     #
     algorithms:
 
-              
-        - name: "PIDC"
-          params: 
-              should_run: [False]
-
 
 
         - name: "MCMC"
           params: 
-              should_run: [False]
-
-
-        - name: "TEST"
-          params: 
               should_run: [True]
+
+
+
+        # - name: "TEST"
+        #   params: 
+        #       should_run: [False]
+
+
+              
+        # - name: "PIDC"
+        #   params: 
+        #       should_run: [False]
           
 
 
-        - name: "GRNVBEM"
-          params: 
-              should_run: [False]
+        # - name: "GRNVBEM"
+        #   params: 
+        #       should_run: [False]
 
               
 
-        - name: "GENIE3"
-          params: 
-              should_run: [False]
+        # - name: "GENIE3"
+        #   params: 
+        #       should_run: [False]
               
               
               
-        - name: "GRNBOOST2"
-          params: 
-              should_run: [False]
+        # - name: "GRNBOOST2"
+        #   params: 
+        #       should_run: [False]
               
               
-        - name: "PPCOR"
-          params: 
-              should_run: [False]
-              # p-value cutoff
-              # Used in parsing output
-              pVal: [0.01]
+        # - name: "PPCOR"
+        #   params: 
+        #       should_run: [False]
+        #       # p-value cutoff
+        #       # Used in parsing output
+        #       pVal: [0.01]
               
                
-        - name: "SCODE"
-          params:
-              should_run: [False]
-              z: [10]
-              nIter: [1000]
-              nRep: [6]
+        # - name: "SCODE"
+        #   params:
+        #       should_run: [False]
+        #       z: [10]
+        #       nIter: [1000]
+        #       nRep: [6]
 
-        - name: "SCNS"
-          params: 
-              should_run: [False]
+        # - name: "SCNS"
+        #   params: 
+        #       should_run: [False]
               
               
-        - name: "SINCERITIES"
-          params: 
-              should_run: [False]
-              nBins: [10]
+        # - name: "SINCERITIES"
+        #   params: 
+        #       should_run: [False]
+        #       nBins: [10]
               
               
-        - name: "LEAP"
-          params: 
-              should_run: [False]
-              # Default maxLag value is 0.33
-              maxLag: [0.33]
+        # - name: "LEAP"
+        #   params: 
+        #       should_run: [False]
+        #       # Default maxLag value is 0.33
+        #       maxLag: [0.33]
              
               
-        - name: "GRISLI"
-          params: 
-              should_run: [False]
-              L: [10]
-              R: [3000]
-              alphaMin: [0.0]
+        # - name: "GRISLI"
+        #   params: 
+        #       should_run: [False]
+        #       L: [10]
+        #       R: [3000]
+        #       alphaMin: [0.0]
 
 
-        - name: "SINGE"
-          params: 
-              should_run: [False]
-              lambda: [0.01]
-              dT: [15]
-              num_lags: [5]
-              kernel_width: [0.5]
-              prob_zero_removal: [0]
-              prob_remove_samples: [0.0]
-              family: ["gaussian"]
-              num_replicates: [6]
+        # - name: "SINGE"
+        #   params: 
+        #       should_run: [False]
+        #       lambda: [0.01]
+        #       dT: [15]
+        #       num_lags: [5]
+        #       kernel_width: [0.5]
+        #       prob_zero_removal: [0]
+        #       prob_remove_samples: [0.0]
+        #       family: ["gaussian"]
+        #       num_replicates: [6]
 
 
-        - name: "SCRIBE"
-          params: 
-              should_run: [False]
-              ### required parameters
-              # a list of delay values
-              delay: ["5"]
-              # any of 'RDI', 'uRDI', 'cRDI', or 'ucRDI'
-              method: ['ucRDI']
-              # lower detection limit (expression below this 
-              # will be treated as zero.
-              lowerDetectionLimit: [0]
-              # expressionFamily: for synthetic data use uninormal
-              #  for mRNA count data use negbinomial.size()
-              expressionFamily: ['uninormal']
-              ### optional but recommended parameters
-              # log transform expression values or not
-              log: [False]
-              # ignore pseudotime values (and use experimental
-              # time points instead), recommended True for synthetic data
-              # False for real mRNA data
-              ignorePT: [True]
+        # - name: "SCRIBE"
+        #   params: 
+        #       should_run: [False]
+        #       ### required parameters
+        #       # a list of delay values
+        #       delay: ["5"]
+        #       # any of 'RDI', 'uRDI', 'cRDI', or 'ucRDI'
+        #       method: ['ucRDI']
+        #       # lower detection limit (expression below this 
+        #       # will be treated as zero.
+        #       lowerDetectionLimit: [0]
+        #       # expressionFamily: for synthetic data use uninormal
+        #       #  for mRNA count data use negbinomial.size()
+        #       expressionFamily: ['uninormal']
+        #       ### optional but recommended parameters
+        #       # log transform expression values or not
+        #       log: [False]
+        #       # ignore pseudotime values (and use experimental
+        #       # time points instead), recommended True for synthetic data
+        #       # False for real mRNA data
+        #       ignorePT: [True]
 
 
 # Output Settings: initialize base output folder names

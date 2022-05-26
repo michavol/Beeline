@@ -48,6 +48,8 @@ def getTime(evalObject, dataset):
     for algo in algos:
         # Check if single time.txt file
         path = outDir+algo[0]+"/time.txt"
+
+        print("This is the path: " + path)
         if Path(path).exists():
             # If so, parse the time.txt file
             # to obtain CPU time taken to run the

@@ -1,5 +1,5 @@
 #!/bin/bash
-./initialize.sh
+cd ..
 
 python BLRunner.py --config config-files/config.yaml
 #python BLRunner.py --config config-files/config_example.yaml

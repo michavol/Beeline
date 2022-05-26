@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd ..
 # Set-up Anaconda virtual environment
 echo "Setting up Anaconda Python virtual environment..."
 

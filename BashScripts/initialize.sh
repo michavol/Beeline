@@ -1,22 +1,22 @@
 #!/bin/bash
-
+cd ..
 # Building docker for the different algorithms 
 echo "This may take a while..."
 
 BASEDIR=$(pwd)
-
+USER=18881888
 # You may remove the -q flag if you want to see the docker build status
 # cd $BASEDIR/Algorithms/ARBORETO
 # docker build -q -t 18881888/arboreto:base .
 # echo "Docker container for ARBORETO is built and tagged as arboreto:base"
 
-# cd $BASEDIR/Algorithms/MCMC/
-# docker build -q -t 18881888/mcmc:base .
-# echo "Docker container for MCMC is built and tagged as mcmc:base"
+cd $BASEDIR/Algorithms/MCMC/
+docker build -q -t $USER/mcmc:base .
+echo "Docker container for MCMC is built and tagged as mcmc:base"
 
 cd $BASEDIR/Algorithms/TEST/
-docker build -q -t 18881888/test:base .
-echo "Docker container for TEST is built and tagged as 18881888/test:base"
+docker build -q -t $USER/test:base .
+echo "Docker container for TEST is built and tagged as test:base"
 
 # cd $BASEDIR/Algorithms/GRISLI/
 # docker build -q -t 18881888/grisli:base .

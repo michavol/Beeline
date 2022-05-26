@@ -119,13 +119,12 @@ class BLEval(object):
         AUPRCDict = {}
         AUROCDict = {}
 
-       
-
-        for dataset in tqdm(self.input_settings.datasets, 
-                            total = len(self.input_settings.datasets), unit = " Datasets"):
+        # for dataset in tqdm(self.input_settings.datasets, 
+        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
+        for dataset in self.input_settings.datasets:
 
             AUPRC, AUROC = PRROC(dataset, self.input_settings, 
-                                    directed = directed, selfEdges = False, plotFlag = False)
+                                    directed = directed, selfEdges = False, plotFlag = True)
             AUPRCDict[dataset['name']] = AUPRC
             AUROCDict[dataset['name']] = AUROC
         AUPRC = pd.DataFrame(AUPRCDict)
@@ -143,8 +142,10 @@ class BLEval(object):
         """
         TimeDict = dict()
 
-        for dataset in tqdm(self.input_settings.datasets, 
-                            total = len(self.input_settings.datasets), unit = " Datasets"):
+        # for dataset in tqdm(self.input_settings.datasets, 
+        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
+        for dataset in self.input_settings.datasets:
+                
             timevals  = getTime(self, dataset)
             TimeDict[dataset["name"]] = timevals
 
@@ -166,7 +167,8 @@ class BLEval(object):
         JaccDF['Jaccard MAD'] = {}
         outDir = str(self.output_settings.base_dir) + \
                  str(self.input_settings.datadir).split("inputs")[1] + "/"
-        for algo in tqdm(self.input_settings.algorithms, unit = " Algorithms"):
+        # for algo in tqdm(self.input_settings.algorithms, unit = " Algorithms"):
+        for algo in self.input_settings.algorithms:
             if algo[1]['should_run'] == True:
                 JaccDF['Jaccard Median'][algo[0]], JaccDF['Jaccard MAD'][algo[0]] = Jaccard(self, algo[0])
             
