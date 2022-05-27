@@ -34,11 +34,21 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False):
     '''
     rankDict = {}
     for dataset in tqdm(evalObject.input_settings.datasets):
-        trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
-                      dataset['name'] + '/' +\
-                      dataset['trueEdges'], sep = ',',
-                      header = 0, index_col = None)
+        # trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
+        #               dataset['name'] + '/' +\
+        #               dataset['trueEdges'], sep = ',',
+        #               header = 0, index_col = None)
         #trueEdgesDF.columns = ["Gene1","Gene2","Type"]
+        headerList = ['Gene1', 'Gene2', 'Type']
+    
+        trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ dataset['name'] +
+                                    '/' +dataset['trueEdges'],
+                                    sep = '\t', 
+                                    header = 0, index_col = None)
+        
+        trueEdgesDF.columns = headerList
+
+        trueEdgesDF = trueEdgesDF[trueEdgesDF["Type"] != 0]
         
         trueEdgesDF = trueEdgesDF.loc[(trueEdgesDF['Gene1'] != trueEdgesDF['Gene2'])]
         trueEdgesDF.drop_duplicates(keep = 'first', inplace=True)

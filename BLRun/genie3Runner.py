@@ -26,7 +26,7 @@ def generateInputs(RunnerObj):
 
         # input data
         ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
-                                     sep = '\t', header = 0)
+                                     sep = '\t', header = 0, index_col = 0)
 
         # Write .csv file
         ExpressionData.to_csv(RunnerObj.inputDir.joinpath("GENIE3/ExpressionData.csv"),
@@ -51,7 +51,6 @@ def run(RunnerObj):
 
     print(cmdToRun)
     os.system(cmdToRun)
-
 
 
 def parseOutput(RunnerObj):

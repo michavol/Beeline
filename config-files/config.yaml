@@ -20,10 +20,10 @@ input_settings:
     #   trueEdges: Name of the refrence network file in the
     #              edge list format. Needed for evaluation.
     datasets:
-        # - name: "size10_multifactorial/net1"
-        #   exprData: "insilico_size10_1_multifactorial.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+        - name: "size10_multifactorial/net1"
+          exprData: "insilico_size10_1_multifactorial.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size10_1_goldstandard.tsv"
 
         # - name: "size10_multifactorial/net2"
         #   exprData: "insilico_size10_2_multifactorial.tsv"  
@@ -70,30 +70,30 @@ input_settings:
         #   cellData: "PseudoTime.csv"
         #   trueEdges: "insilico_size100_multifactorial_5_goldstandard.tsv"
 
-        - name: "size10_wildtype/net1"
-          exprData: "insilico_size10_1_wildtype.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_1_goldstandard.tsv"
+        # - name: "size10_wildtype/net1"
+        #   exprData: "insilico_size10_1_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
 
-        - name: "size10_wildtype/net2"
-          exprData: "insilico_size10_2_wildtype.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_2_goldstandard.tsv"
+        # - name: "size10_wildtype/net2"
+        #   exprData: "insilico_size10_2_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_2_goldstandard.tsv"
 
-        - name: "size10_wildtype/net3"
-          exprData: "insilico_size10_3_wildtype.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_3_goldstandard.tsv"
+        # - name: "size10_wildtype/net3"
+        #   exprData: "insilico_size10_3_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_3_goldstandard.tsv"
 
-        - name: "size10_wildtype/net4"
-          exprData: "insilico_size10_4_wildtype.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_4_goldstandard.tsv"
+        # - name: "size10_wildtype/net4"
+        #   exprData: "insilico_size10_4_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_4_goldstandard.tsv"
 
-        - name: "size10_wildtype/net5"
-          exprData: "insilico_size10_5_wildtype.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_5_goldstandard.tsv"
+        # - name: "size10_wildtype/net5"
+        #   exprData: "insilico_size10_5_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_5_goldstandard.tsv"
 
         # - name: "size100_wildtype/net1"
         #   exprData: "insilico_size100_1_wildtype.tsv"  
@@ -136,7 +136,7 @@ input_settings:
 
         - name: "MCMC"
           params: 
-              should_run: [True]
+              should_run: [False]
 
 
 
@@ -148,7 +148,7 @@ input_settings:
               
         # - name: "PIDC"
         #   params: 
-        #       should_run: [False]
+        #       should_run: [True]
           
 
 
@@ -158,23 +158,23 @@ input_settings:
 
               
 
-        # - name: "GENIE3"
-        #   params: 
-        #       should_run: [False]
+        - name: "GENIE3"
+          params: 
+              should_run: [False]
               
               
               
-        # - name: "GRNBOOST2"
-        #   params: 
-        #       should_run: [False]
+        - name: "GRNBOOST2"
+          params: 
+              should_run: [False]
               
               
-        # - name: "PPCOR"
-        #   params: 
-        #       should_run: [False]
-        #       # p-value cutoff
-        #       # Used in parsing output
-        #       pVal: [0.01]
+        - name: "PPCOR"
+          params: 
+              should_run: [True]
+              # p-value cutoff
+              # Used in parsing output
+              pVal: [0.01]
               
                
         # - name: "SCODE"

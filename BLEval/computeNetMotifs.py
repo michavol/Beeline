@@ -33,10 +33,21 @@ def Motifs(datasetDict, inputSettings):
     '''
     
     # Read file for trueEdges
+    # trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ datasetDict['name'] +
+    #                             '/' +datasetDict['trueEdges'],
+    #                             sep = ',', 
+    #                             header = 0, index_col = None)
+
+    headerList = ['Gene1', 'Gene2', 'Type']
+    
     trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ datasetDict['name'] +
                                 '/' +datasetDict['trueEdges'],
-                                sep = ',', 
+                                sep = '\t', 
                                 header = 0, index_col = None)
+    
+    trueEdgesDF.columns = headerList
+
+    trueEdgesDF = trueEdgesDF[trueEdgesDF["Type"] != 0]
             
     possibleEdges = list(permutations(np.unique(trueEdgesDF.loc[:,['Gene1','Gene2']]),
                                  r = 2))        

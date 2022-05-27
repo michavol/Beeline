@@ -14,10 +14,18 @@ def generateInputs(RunnerObj):
         RunnerObj.inputDir.joinpath("PIDC").mkdir(exist_ok = False)
         
     if not RunnerObj.inputDir.joinpath("PIDC/ExpressionData.csv").exists():
+        # ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
+        #                              header = 0, index_col = 0)
+         # input data
         ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
-                                     header = 0, index_col = 0)
-        ExpressionData.to_csv(RunnerObj.inputDir.joinpath("PIDC/ExpressionData.csv"),
-                             sep = '\t', header  = True, index = True)
+                                     sep = '\t', header = 0, index_col = 0)
+        ExpressionData_T = ExpressionData.transpose()
+        ExpressionData_T.to_csv(RunnerObj.inputDir.joinpath("PIDC/ExpressionData.csv"),
+                             sep = '\t', header  = False, index = True)
+
+       
+
+     
     
 def run(RunnerObj):
     '''
@@ -54,6 +62,6 @@ def parseOutput(RunnerObj):
     outFile.write('Gene1'+'\t'+'Gene2'+'\t'+'EdgeWeight'+'\n')
 
     for idx, row in OutDF.iterrows():
-        outFile.write('\t'.join([row[0],row[1],str(row[2])])+'\n')
+        outFile.write('\t'.join([str(row[0]),str(row[1]),str(row[2])])+'\n')
     outFile.close()
     

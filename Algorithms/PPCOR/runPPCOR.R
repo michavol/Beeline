@@ -4,7 +4,7 @@ inFile <- args[1]
 outFile <-  args[2]
 
 # input expression data
-inputExpr <- read.table(inFile, sep=",", header = 1, row.names = 1)
+inputExpr <- read.table(inFile, sep=",", header = FALSE, row.names = 1)
 geneNames <- rownames(inputExpr)
 rownames(inputExpr) <- c(geneNames)
 

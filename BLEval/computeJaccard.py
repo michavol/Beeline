@@ -36,10 +36,21 @@ def Jaccard(evalObject, algorithmName):
     rankDict = {}
     sim_names = []
     for dataset in tqdm(evalObject.input_settings.datasets):
-        trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
-                      dataset['name'] + '/' +\
-                      dataset['trueEdges'], sep = ',',
-                      header = 0, index_col = None)
+        # trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
+        #               dataset['name'] + '/' +\
+        #               dataset['trueEdges'], sep = ',',
+        #               header = 0, index_col = None)
+
+        headerList = ['Gene1', 'Gene2', 'Type']
+    
+        trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ dataset['name'] +
+                                    '/' +dataset['trueEdges'],
+                                    sep = '\t', 
+                                    header = 0, index_col = None)
+        
+        trueEdgesDF.columns = headerList
+
+        trueEdgesDF = trueEdgesDF[trueEdgesDF["Type"] != 0]
 
         possibleEdges = list(permutations(np.unique(trueEdgesDF.loc[:,['Gene1','Gene2']]),
                                      r = 2))

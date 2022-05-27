@@ -14,14 +14,17 @@ def generateInputs(RunnerObj):
         RunnerObj.inputDir.joinpath("PPCOR").mkdir(exist_ok = False)
         
     if not RunnerObj.inputDir.joinpath("PPCOR/ExpressionData.csv").exists():
+        # ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
+        #                              header = 0, index_col = 0)
+          # input data
         ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
-                                     header = 0, index_col = 0)
+                                     sep = '\t', header = 0, index_col = 0)
         
-        newExpressionData = ExpressionData.copy()
+        newExpressionData = ExpressionData.T.copy()
         
         # Write .csv file
         newExpressionData.to_csv(RunnerObj.inputDir.joinpath("PPCOR/ExpressionData.csv"),
-                             sep = ',', header  = True, index = True)
+                             sep = ',', header  = False, index = True)
     
 def run(RunnerObj):
     '''
@@ -64,9 +67,9 @@ def parseOutput(RunnerObj):
     outFile.write('Gene1'+'\t'+'Gene2'+'\t'+'EdgeWeight'+'\n')
 
     for idx, row in part1.sort_values('absCorVal', ascending = False).iterrows():
-        outFile.write('\t'.join([row['Gene1'],row['Gene2'],str(row['corVal'])])+'\n')
+        outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(row['corVal'])])+'\n')
     
     for idx, row in part2.iterrows():
-        outFile.write('\t'.join([row['Gene1'],row['Gene2'],str(0)])+'\n')
+        outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(0)])+'\n')
     outFile.close()
     

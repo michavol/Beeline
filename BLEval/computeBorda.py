@@ -47,7 +47,17 @@ def Borda(evalObject, selectedAlgorithms=None, aggregationMethod="average"):
                 continue
             try:
                 df = pd.read_csv(rank_path, sep="\t", header=0, index_col=None)
-                refNetwork = pd.read_csv(refNetwork_path, header=0, index_col=None)
+                #refNetwork = pd.read_csv(refNetwork_path, header=0, index_col=None)
+                headerList = ['Gene1', 'Gene2', 'Type']
+            
+                refNetwork = pd.read_csv(refNetwork_path,
+                                            sep = '\t', 
+                                            header = 0, index_col = None)
+                
+                refNetwork.columns = headerList
+
+                refNetwork = refNetwork[refNetwork["Type"] != 0]
+
                 refNetwork['edge'] = refNetwork.apply(lambda x: '%s-%s' % (x.Gene1, x.Gene2), axis=1)
                 refNetwork = refNetwork[refNetwork.Gene1!=refNetwork.Gene2]
                 refNetwork['isReferenceEdge'] = 1

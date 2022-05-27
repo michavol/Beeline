@@ -15,7 +15,7 @@ def generateInputs(RunnerObj):
         
     if not RunnerObj.inputDir.joinpath("GRNBOOST2/ExpressionData.csv").exists():
         ExpressionData = pd.read_csv(RunnerObj.inputDir.joinpath(RunnerObj.exprData),
-                                     sep = '\t', header = 0)
+                                     sep = '\t', header = 0, index_col = 0)
 
         # Write .csv file
         ExpressionData.to_csv(RunnerObj.inputDir.joinpath("GRNBOOST2/ExpressionData.csv"),
