@@ -18,4 +18,6 @@ pcorResults=  pcor(x= t(as.matrix(inputExpr)), method = "spearman")
 DF = data.frame(Gene1 = geneNames[c(row(pcorResults$estimate))], Gene2 = geneNames[c(col(pcorResults$estimate))]
                 , corVal = c(pcorResults$estimate), pValue =  c(pcorResults$p.value))
 outDF <- DF[order(DF$corVal, decreasing=TRUE), ]
+outDF <- outDF[outDF$Gene1 != outDF$Gene2, ]
+
 write.table(outDF, outFile, sep = "\t", quote = FALSE, row.names = FALSE)

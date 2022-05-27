@@ -14,9 +14,9 @@ USER=18881888
 # docker build -q -t $USER/mcmc:base .
 # echo "Docker container for MCMC is built and tagged as mcmc:base"
 
-# cd $BASEDIR/Algorithms/TEST/
-# docker build -q -t $USER/test:base .
-# echo "Docker container for TEST is built and tagged as test:base"
+cd $BASEDIR/Algorithms/TEST/
+docker build -q -t $USER/test:base .
+echo "Docker container for TEST is built and tagged as test:base"
 
 # cd $BASEDIR/Algorithms/GRISLI/
 # docker build -q -t 18881888/grisli:base .
