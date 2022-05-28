@@ -96,7 +96,7 @@ def main():
     if (opts.auc):
         print('\n\nComputing areas under ROC and PR curves...')
 
-        AUPRC, AUROC = evalSummarizer.computeAUC()
+        AUPRC, AUROC = evalSummarizer.computeAUC(directed=True)
         AUPRC.to_csv(outDir+'AUPRC.csv')
         AUROC.to_csv(outDir+'AUROC.csv')
     

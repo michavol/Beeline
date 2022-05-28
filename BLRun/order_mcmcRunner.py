@@ -3,8 +3,8 @@ import pandas as pd
 from pathlib import Path
 
 
-ALGORITHM_UPPER = "MCMC"
-ALGORITHM_LOWER = "mcmc"
+ALGORITHM_UPPER = "ORDER_MCMC"
+ALGORITHM_LOWER = "order_mcmc"
 USER = "18881888"
 
 def generateInputs(RunnerObj):
@@ -37,9 +37,10 @@ def run(RunnerObj):
     outDir = "outputs/"+str(RunnerObj.inputDir).split("inputs/")[1]+ "/" + ALGORITHM_UPPER + "/"
     os.makedirs(outDir, exist_ok = True)
     
+    nIter = RunnerObj.params['nIter']
     outPath = "data/" +  str(outDir) + 'outFile.txt'
     cmdToRun = ' '.join(['docker run --rm -v', str(Path.cwd())+':/data/ '+ USER + '/' + ALGORITHM_LOWER + ':base /bin/sh -c \"time -v -o', "data/" + str(outDir) + 'time.txt', 'Rscript run' + ALGORITHM_UPPER + '.R',
-                         inputPath, outPath, '\"'])
+                         inputPath, outPath, str(nIter), '\"'])
     print(cmdToRun)
     os.system(cmdToRun)
 

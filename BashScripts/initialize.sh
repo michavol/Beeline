@@ -10,13 +10,17 @@ USER=18881888
 # docker build -q -t $USER/arboreto:base .
 # echo "Docker container for ARBORETO is built and tagged as arboreto:base"
 
-# cd $BASEDIR/Algorithms/MCMC/
-# docker build -q -t $USER/mcmc:base .
-# echo "Docker container for MCMC is built and tagged as mcmc:base"
+# cd $BASEDIR/Algorithms/ORDER_MCMC/
+# docker build -q -t $USER/order_mcmc:base .
+# echo "Docker container for ORDER_MCMC is built and tagged as order_mcmc:base"
 
-cd $BASEDIR/Algorithms/TEST/
-docker build -q -t $USER/test:base .
-echo "Docker container for TEST is built and tagged as test:base"
+cd $BASEDIR/Algorithms/PARTITION_MCMC/
+docker build -q -t $USER/partition_mcmc:base .
+echo "Docker container for PARTITION_MCMC is built and tagged as partition_mcmc:base"
+
+# cd $BASEDIR/Algorithms/TEST/
+# docker build -q -t $USER/test:base .
+# echo "Docker container for TEST is built and tagged as test:base"
 
 # cd $BASEDIR/Algorithms/GRISLI/
 # docker build -q -t 18881888/grisli:base .
@@ -43,9 +47,9 @@ echo "Docker container for TEST is built and tagged as test:base"
 # docker build -q -t 18881888/pni:base .
 # echo "Docker container for PNI is built and tagged as pni:base"
 
-cd $BASEDIR/Algorithms/PPCOR/
-docker build -q -t $USER/ppcor:base .
-echo "Docker container for PPCOR is built and tagged as ppcor:base"
+# cd $BASEDIR/Algorithms/PPCOR/
+# docker build -q -t $USER/ppcor:base .
+# echo "Docker container for PPCOR is built and tagged as ppcor:base"
 
 # cd $BASEDIR/Algorithms/SINGE/
 # docker build -q -t 18881888/singe:base .

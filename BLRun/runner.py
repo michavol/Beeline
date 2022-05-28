@@ -11,7 +11,8 @@ import BLRun.ppcorRunner as PPCOR
 import BLRun.grisliRunner as GRISLI
 import BLRun.singeRunner as SINGE
 import BLRun.scribeRunner as SCRIBE
-import BLRun.mcmcRunner as MCMC
+import BLRun.order_mcmcRunner as ORDER_MCMC
+import BLRun.partition_mcmcRunner as PARTITION_MCMC
 import BLRun.testRunner as TEST
 
 from pathlib import Path
@@ -31,7 +32,8 @@ InputMapper = {'SCODE':SCODE.generateInputs,
                'GRISLI':GRISLI.generateInputs,
                'SINGE':SINGE.generateInputs,
                'SCRIBE':SCRIBE.generateInputs,
-               'MCMC':MCMC.generateInputs,
+               'ORDER_MCMC':ORDER_MCMC.generateInputs,
+               'PARTITION_MCMC':PARTITION_MCMC.generateInputs,
                'TEST':TEST.generateInputs}
 
 
@@ -51,7 +53,8 @@ AlgorithmMapper = {'SCODE':SCODE.run,
             'GRISLI':GRISLI.run,
             'SINGE':SINGE.run,
             'SCRIBE':SCRIBE.run,
-            'MCMC':MCMC.run,
+            'ORDER_MCMC':ORDER_MCMC.run,
+            'PARTITION_MCMC':PARTITION_MCMC.run,
             'TEST':TEST.run}
 
 
@@ -70,7 +73,8 @@ OutputParser = {'SCODE':SCODE.parseOutput,
             'GRISLI':GRISLI.parseOutput,
             'SINGE':SINGE.parseOutput,
             'SCRIBE':SCRIBE.parseOutput,
-            'MCMC':MCMC.parseOutput,
+            'ORDER_MCMC':ORDER_MCMC.parseOutput,
+            'PARTITION_MCMC':PARTITION_MCMC.parseOutput,
             'TEST':TEST.parseOutput}
 
 

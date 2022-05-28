@@ -18,7 +18,7 @@ RUN R -e "BiocManager::install('Rgraphviz')"
 RUN R -e "install.packages('BiDAG')"
 RUN R -e "install.packages('reshape2')"
 
-COPY runMCMC.R /
+COPY runORDER_MCMC.R /
 
 RUN mkdir data/
 

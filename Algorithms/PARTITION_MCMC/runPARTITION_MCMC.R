@@ -6,6 +6,7 @@ library(BiDAG)
 args <- commandArgs(trailingOnly = T)
 inFile <- args[1]
 outFile <- args[2]
+nIter <- as.numeric(args[3])
 
 ### Load data
 df <- read.csv(inFile, header = TRUE, sep = "\t")
@@ -22,7 +23,7 @@ bge_score <- scoreparameters("bge", df)
 ### Learn Bayesian network using MCMC and get edge weights by bootstrapping
 set.seed(2022)
 dags_adj <- matrix(0, nrow=ncol(df), ncol=ncol(df))
-nIter = 10
+#nIter = 10
 
 for (i in 1:nIter) {
   if (nrows == 1)
@@ -37,7 +38,7 @@ for (i in 1:nIter) {
     bge_score <- scoreparameters("bge", df[smp,])
   }
   
-  orderMAPfit <- orderMCMC(bge_score)
+  orderMAPfit <- partitionMCMC(bge_score)
   dags_adj = dags_adj + orderMAPfit$DAG
 }
 
