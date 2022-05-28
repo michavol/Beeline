@@ -45,10 +45,10 @@ input_settings:
         #   cellData: "PseudoTime.csv"
         #   trueEdges: "insilico_size10_5_goldstandard.tsv"
 
-        # - name: "size100_multifactorial/net1"
-        #   exprData: "insilico_size100_1_multifactorial.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_1_goldstandard.tsv"
+        - name: "size100_multifactorial/net1"
+          exprData: "insilico_size100_1_multifactorial.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size100_multifactorial_1_goldstandard.tsv"
 
         # - name: "size100_multifactorial/net2"
         #   exprData: "insilico_size100_2_multifactorial.tsv"  
@@ -134,7 +134,7 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [9]
 
@@ -187,6 +187,18 @@ input_settings:
               # p-value cutoff
               # Used in parsing output
               pVal: [0.1]
+
+        - name: "GENENET"
+          params: 
+              should_run: [True]
+              # Number of strongest edges that will be chosen
+              num_edges: [30]
+
+              # Directed or undirected
+              directed: [0]
+
+              # Verbosity
+              verbose: [0]
 
             
       # - name: "PIDC"
