@@ -17,7 +17,6 @@ InputMapper = {
                 'PARTITION_MCMC':PARTITION_MCMC.generateInputs,
             }
 
-
 AlgorithmMapper = {  
                 'PIDC':PIDC.run,
                 'GENIE3':GENIE3.run,
@@ -26,7 +25,6 @@ AlgorithmMapper = {
                 'ORDER_MCMC':ORDER_MCMC.run,
                 'PARTITION_MCMC':PARTITION_MCMC.run,
             }
-
 
 OutputParser = {  
                 'PIDC':PIDC.parseOutput,
@@ -53,10 +51,8 @@ class Runner(object):
     def generateInputs(self):
         InputMapper[self.name](self)
         
-        
     def run(self):
         AlgorithmMapper[self.name](self)
-
 
     def parseOutput(self):
         OutputParser[self.name](self)
