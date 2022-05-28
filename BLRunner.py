@@ -64,13 +64,14 @@ def main():
         evaluation.runners[idx].generateInputs()
 
     for idx in range(len(evaluation.runners)):
-        print("\n" + str(idx+1), "/", len(evaluation.runners))
+        print("\nProgress: " + str(idx+1) + "/" + str(len(evaluation.runners)))
         print("================================================================================================")
-        print("Algorithm:\t", evaluation.input_settings.algorithms[idx][0])
-        print("Parameters:\t", evaluation.input_settings.algorithms[idx][1])
-        
-        
+        print("Algorithm:\t", evaluation.runners[idx].name)
+        print("Parameters:\t", evaluation.runners[idx].params)
+        print("Dataset:\t", evaluation.runners[idx].inputDir, "\n")
+
         evaluation.runners[idx].run()
+        print("================================================================================================")
 
     for idx in range(len(evaluation.runners)):
         evaluation.runners[idx].parseOutput()

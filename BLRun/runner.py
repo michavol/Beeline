@@ -55,9 +55,7 @@ class Runner(object):
         
         
     def run(self):
-        print("Dataset:\t", self.inputDir, "\n")
         AlgorithmMapper[self.name](self)
-        print("================================================================================================")
 
 
     def parseOutput(self):
