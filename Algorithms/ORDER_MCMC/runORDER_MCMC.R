@@ -7,6 +7,7 @@ args <- commandArgs(trailingOnly = T)
 inFile <- args[1]
 outFile <- args[2]
 nIter <- as.numeric(args[3])
+sample_size <- as.numeric(args[4])
 
 ### Load data
 df <- read.csv(inFile, header = TRUE, sep = "\t")
@@ -32,7 +33,7 @@ for (i in 1:nIter) {
   }
   else
   {
-    smp_size <- floor(0.8 * nrow(df))
+    smp_size <- floor(sample_size * nrow(df))
     smp <- sample(seq_len(nrow(df)), size = smp_size)
  
     bge_score <- scoreparameters("bge", df[smp,])

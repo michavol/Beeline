@@ -60,10 +60,10 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
     outDir = "outputs/"+str(inputSettings.datadir).split("inputs/")[1]+ '/' +dataDict['name']
     
     if directed:
-        # for algo in tqdm(inputSettings.algorithms, 
-        #                 total = len(inputSettings.algorithms), unit = " Algorithms"):
+        for algo in tqdm(inputSettings.algorithms, 
+                        total = len(inputSettings.algorithms), unit = " Algorithms"):
 
-        for algo in inputSettings.algorithms:
+        # for algo in inputSettings.algorithms:
 
             # check if the output rankedEdges file exists
             if Path(outDir + '/' +algo[0]+'/rankedEdges.csv').exists():
@@ -80,11 +80,11 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
             PRName = '/PRplot'
             ROCName = '/ROCplot'
     else:
-        # for algo in tqdm(inputSettings.algorithms, 
-        #                  total = len(inputSettings.algorithms), unit = " Algorithms"):
-        for algo in inputSettings.algorithms:
-                       
+        for algo in tqdm(inputSettings.algorithms, 
+                         total = len(inputSettings.algorithms), unit = " Algorithms"):
 
+        # for algo in inputSettings.algorithms:
+                       
             # check if the output rankedEdges file exists
             if Path(outDir + '/' +algo[0]+'/rankedEdges.csv').exists():
                  # Initialize Precsion

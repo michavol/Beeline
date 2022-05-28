@@ -25,10 +25,10 @@ input_settings:
           cellData: "PseudoTime.csv"
           trueEdges: "insilico_size10_1_goldstandard.tsv"
 
-        - name: "size10_multifactorial/net2"
-          exprData: "insilico_size10_2_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_2_goldstandard.tsv"
+        # - name: "size10_multifactorial/net2"
+        #   exprData: "insilico_size10_2_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_2_goldstandard.tsv"
 
         # - name: "size10_multifactorial/net3"
         #   exprData: "insilico_size10_3_multifactorial.tsv"  
@@ -134,16 +134,41 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
-              nIter: [6]
+              nIter: [9]
+
+              # Percentage of data for each iteration
+              sample_size: [0.8]
 
 
         - name: "PARTITION_MCMC"
           params: 
               should_run: [False]
               # Number of iterations for finding edge weights
-              nIter: [2]
+              nIter: [3]
+
+              # Percentage of data for each iteration
+              sample_size: [0.7]
+
+
+        - name: "PC"
+          params: 
+              should_run: [False]
+              # Number of iterations for finding edge weights
+              nIter: [300]
+
+              # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
+              partially_directed: [1]
+
+              # Conditional testing threshold
+              alpha: [0.01]
+
+              # Verbosity of pc.fit function
+              verbose: [0]
+
+              # Percentage of data for each iteration
+              sample_size: [0.7]
 
 
         - name: "GENIE3"
@@ -151,17 +176,17 @@ input_settings:
               should_run: [False]
               
               
-        - name: "GRNBOOST2"
-          params: 
-              should_run: [True]
+        # - name: "GRNBOOST2"
+        #   params: 
+        #       should_run: [False]
               
               
         - name: "PPCOR"
           params: 
-              should_run: [True]
+              should_run: [False]
               # p-value cutoff
               # Used in parsing output
-              pVal: [0.03]
+              pVal: [0.1]
 
             
       # - name: "PIDC"

@@ -119,9 +119,9 @@ class BLEval(object):
         AUPRCDict = {}
         AUROCDict = {}
 
-        # for dataset in tqdm(self.input_settings.datasets, 
-        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
-        for dataset in self.input_settings.datasets:
+        for dataset in tqdm(self.input_settings.datasets, 
+                            total = len(self.input_settings.datasets), unit = " Datasets"):
+        # for dataset in self.input_settings.datasets:
 
             AUPRC, AUROC = PRROC(dataset, self.input_settings, 
                                     directed = directed, selfEdges = False, plotFlag = True)
@@ -167,8 +167,8 @@ class BLEval(object):
         JaccDF['Jaccard MAD'] = {}
         outDir = str(self.output_settings.base_dir) + \
                  str(self.input_settings.datadir).split("inputs")[1] + "/"
-        # for algo in tqdm(self.input_settings.algorithms, unit = " Algorithms"):
-        for algo in self.input_settings.algorithms:
+        for algo in tqdm(self.input_settings.algorithms, unit = " Algorithms"):
+        # for algo in self.input_settings.algorithms:
             if algo[1]['should_run'] == True:
                 JaccDF['Jaccard Median'][algo[0]], JaccDF['Jaccard MAD'][algo[0]] = Jaccard(self, algo[0])
             
@@ -336,7 +336,7 @@ class ConfigParser(object):
             An object of class :class:`BLEval.BLEval`.
 
         '''
-        config_map = yaml.load(config_file_handle)
+        config_map = yaml.load(config_file_handle, Loader=yaml.FullLoader)
         return BLEval(
             ConfigParser.__parse_input_settings(
                 config_map['input_settings']),

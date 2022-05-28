@@ -4,6 +4,7 @@ import BLRun.grnboost2Runner as GRNBOOST2
 import BLRun.ppcorRunner as PPCOR
 import BLRun.order_mcmcRunner as ORDER_MCMC
 import BLRun.partition_mcmcRunner as PARTITION_MCMC
+import BLRun.pcRunner as PC
 
 from pathlib import Path
 
@@ -15,6 +16,7 @@ InputMapper = {
                 'PPCOR':PPCOR.generateInputs,
                 'ORDER_MCMC':ORDER_MCMC.generateInputs,
                 'PARTITION_MCMC':PARTITION_MCMC.generateInputs,
+                'PC':PC.generateInputs
             }
 
 AlgorithmMapper = {  
@@ -24,6 +26,7 @@ AlgorithmMapper = {
                 'PPCOR':PPCOR.run,
                 'ORDER_MCMC':ORDER_MCMC.run,
                 'PARTITION_MCMC':PARTITION_MCMC.run,
+                'PC':PC.run
             }
 
 OutputParser = {  
@@ -33,6 +36,7 @@ OutputParser = {
                 'PPCOR':PPCOR.parseOutput,
                 'ORDER_MCMC':ORDER_MCMC.parseOutput,
                 'PARTITION_MCMC':PARTITION_MCMC.parseOutput,
+                'PC':PC.parseOutput
             }
 
 

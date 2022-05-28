@@ -85,7 +85,7 @@ def main():
     with open(config_file, 'r') as conf:
         evalConfig = ev.ConfigParser.parse(conf)
         
-    print('\nPost-run evaluation started...')
+    print('\nPost-Run Evaluation:\n')
     evalSummarizer = ev.BLEval(evalConfig.input_settings, evalConfig.output_settings)
     
     outDir = str(evalSummarizer.output_settings.base_dir) + \
@@ -94,42 +94,54 @@ def main():
     
     # Compute and plot ROC, PRC and report median AUROC, AUPRC    
     if (opts.auc):
-        print('\n\nComputing areas under ROC and PR curves...')
-
+        print("==="*30)
+        print('Computing areas under ROC and PR curves...')
+        print("==="*30)
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=True)
         AUPRC.to_csv(outDir+'AUPRC.csv')
         AUROC.to_csv(outDir+'AUROC.csv')
     
+    
     # Compute Jaccard index    
     if (opts.jaccard):
-        print('\n\nComputing Jaccard index...')
+        print("\n\n" + "==="*30)
+        print('Computing Jaccard index...')
+        print("==="*30)
 
         jaccDict = evalSummarizer.computeJaccard()
         jaccDict.to_csv(outDir + "Jaccard.csv")
         
     # Compute Spearman correlation scores
     if (opts.spearman):
-        print('\n\nComputing Spearman\'s correlation...')
-
+        print("\n\n" + "==="*30)
+        print('Computing Spearman\'s correlation...')
+        print("==="*30)
         corrDict = evalSummarizer.computeSpearman()
         corrDict.to_csv(outDir + "Spearman.csv")
+      
         
     # Compute median time taken
     if (opts.time):
-        print('\n\nComputing time taken...')
+        print("\n\n" + "==="*30)
+        print('Computing time taken...')
+        print("==="*30)
 
         TimeDict = evalSummarizer.parseTime()
         pd.DataFrame(TimeDict).to_csv(outDir+'Times.csv')
     
     # Compute early precision
     if (opts.epr):
-        print('\n\nComputing early precision values...')
+        print("\n" + "==="*30)
+        print('Computing early precision values...')
+        print("==="*30)
         ePRDF = evalSummarizer.computeEarlyPrec()
         ePRDF.to_csv(outDir + "EPr.csv")
                         
     # Compute early precision for activation and inhibitory edges
     if (opts.sepr):
-        print('\n\nComputing early precision values for activation and inhibitory edges...')
+        print("\n\n" + "==="*30)
+        print('Computing early precision values for activation and inhibitory edges...')
+        print("==="*30)
         
         actDF, inhDF = evalSummarizer.computeSignedEPrec()
         actDF.to_csv(outDir + "EPr-Activation.csv")
@@ -137,7 +149,9 @@ def main():
 
     # Compute median time taken
     if (opts.motifs):
-        print('\n\nComputing network motifs...')
+        print("\n\n" + "==="*30)
+        print('Computing network motifs...')
+        print("==="*30)
 
         FBL, FFL, MI = evalSummarizer.computeNetMotifs()
         FBL.to_csv(outDir+'NetworkMotifs-FBL.csv')

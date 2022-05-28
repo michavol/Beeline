@@ -3,8 +3,8 @@ import pandas as pd
 from pathlib import Path
 
 
-ALGORITHM_UPPER = "PARTITION_MCMC"
-ALGORITHM_LOWER = "partition_mcmc"
+ALGORITHM_UPPER = "PC"
+ALGORITHM_LOWER = "pc"
 USER = "18881888"
 
 def generateInputs(RunnerObj):
@@ -37,12 +37,16 @@ def run(RunnerObj):
     outDir = "outputs/"+str(RunnerObj.inputDir).split("inputs/")[1]+ "/" + ALGORITHM_UPPER + "/"
     os.makedirs(outDir, exist_ok = True)
     
+    # Parameters
     nIter = RunnerObj.params['nIter']
+    partially_directed = RunnerObj.params['partially_directed']
+    alpha = RunnerObj.params['alpha']
+    verbose = RunnerObj.params['verbose']
     sample_size = RunnerObj.params['sample_size']
 
     outPath = "data/" +  str(outDir) + 'outFile.txt'
     cmdToRun = ' '.join(['docker run --rm -v', str(Path.cwd())+':/data/ '+ USER + '/' + ALGORITHM_LOWER + ':base /bin/sh -c \"time -v -o', "data/" + str(outDir) + 'time.txt', 'Rscript run' + ALGORITHM_UPPER + '.R',
-                         inputPath, outPath, str(nIter), str(sample_size), '\"'])
+                         inputPath, outPath, str(nIter), str(partially_directed), str(alpha), str(verbose), str(sample_size), '\"'])
     print(cmdToRun)
     os.system(cmdToRun)
 
