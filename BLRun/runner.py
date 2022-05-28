@@ -1,82 +1,41 @@
-import BLRun.scodeRunner as SCODE
-import BLRun.scnsRunner as SCNS
-import BLRun.sinceritiesRunner as SINCERITIES
 import BLRun.pidcRunner as PIDC
-import BLRun.grnvbemRunner as GRNVBEM
 import BLRun.genie3Runner as GENIE3
 import BLRun.grnboost2Runner as GRNBOOST2
-import BLRun.leapRunner as LEAP
-import BLRun.jump3Runner as JUMP3
 import BLRun.ppcorRunner as PPCOR
-import BLRun.grisliRunner as GRISLI
-import BLRun.singeRunner as SINGE
-import BLRun.scribeRunner as SCRIBE
 import BLRun.order_mcmcRunner as ORDER_MCMC
 import BLRun.partition_mcmcRunner as PARTITION_MCMC
-import BLRun.testRunner as TEST
 
 from pathlib import Path
 
 
-InputMapper = {'SCODE':SCODE.generateInputs,
-               'SINCERITIES':SINCERITIES.generateInputs,
-               'SCNS':SCNS.generateInputs,
-               'SCNS':SCNS.generateInputs,
-               'PIDC':PIDC.generateInputs,
-               'GRNVBEM':GRNVBEM.generateInputs,
-               'GENIE3':GENIE3.generateInputs,
-               'GRNBOOST2':GRNBOOST2.generateInputs,
-               'LEAP':LEAP.generateInputs,
-               'JUMP3':JUMP3.generateInputs,
-               'PPCOR':PPCOR.generateInputs,
-               'GRISLI':GRISLI.generateInputs,
-               'SINGE':SINGE.generateInputs,
-               'SCRIBE':SCRIBE.generateInputs,
-               'ORDER_MCMC':ORDER_MCMC.generateInputs,
-               'PARTITION_MCMC':PARTITION_MCMC.generateInputs,
-               'TEST':TEST.generateInputs}
+InputMapper = {  
+                'PIDC':PIDC.generateInputs,
+                'GENIE3':GENIE3.generateInputs,
+                'GRNBOOST2':GRNBOOST2.generateInputs,
+                'PPCOR':PPCOR.generateInputs,
+                'ORDER_MCMC':ORDER_MCMC.generateInputs,
+                'PARTITION_MCMC':PARTITION_MCMC.generateInputs,
+            }
 
 
+AlgorithmMapper = {  
+                'PIDC':PIDC.run,
+                'GENIE3':GENIE3.run,
+                'GRNBOOST2':GRNBOOST2.run,
+                'PPCOR':PPCOR.run,
+                'ORDER_MCMC':ORDER_MCMC.run,
+                'PARTITION_MCMC':PARTITION_MCMC.run,
+            }
 
 
-
-AlgorithmMapper = {'SCODE':SCODE.run,
-            'SINCERITIES':SINCERITIES.run,
-            'SCNS':SCNS.run,
-            'PIDC':PIDC.run,
-            'GRNVBEM':GRNVBEM.run,
-            'GENIE3':GENIE3.run,
-            'GRNBOOST2':GRNBOOST2.run,
-            'LEAP':LEAP.run,
-            'JUMP3':JUMP3.run,
-            'PPCOR':PPCOR.run,
-            'GRISLI':GRISLI.run,
-            'SINGE':SINGE.run,
-            'SCRIBE':SCRIBE.run,
-            'ORDER_MCMC':ORDER_MCMC.run,
-            'PARTITION_MCMC':PARTITION_MCMC.run,
-            'TEST':TEST.run}
-
-
-
-
-OutputParser = {'SCODE':SCODE.parseOutput, 
-            'SINCERITIES':SINCERITIES.parseOutput,
-            'SCNS':SCNS.parseOutput,
-            'PIDC':PIDC.parseOutput,
-            'GRNVBEM':GRNVBEM.parseOutput,
-            'GENIE3':GENIE3.parseOutput,
-            'GRNBOOST2':GRNBOOST2.parseOutput,
-            'LEAP': LEAP.parseOutput,
-            'JUMP3': JUMP3.parseOutput,
-            'PPCOR':PPCOR.parseOutput,
-            'GRISLI':GRISLI.parseOutput,
-            'SINGE':SINGE.parseOutput,
-            'SCRIBE':SCRIBE.parseOutput,
-            'ORDER_MCMC':ORDER_MCMC.parseOutput,
-            'PARTITION_MCMC':PARTITION_MCMC.parseOutput,
-            'TEST':TEST.parseOutput}
-
+OutputParser = {  
+                'PIDC':PIDC.parseOutput,
+                'GENIE3':GENIE3.parseOutput,
+                'GRNBOOST2':GRNBOOST2.parseOutput,
+                'PPCOR':PPCOR.parseOutput,
+                'ORDER_MCMC':ORDER_MCMC.parseOutput,
+                'PARTITION_MCMC':PARTITION_MCMC.parseOutput,
+            }
 
 
 class Runner(object):
@@ -96,7 +55,9 @@ class Runner(object):
         
         
     def run(self):
+        print("Dataset:\t", self.inputDir, "\n")
         AlgorithmMapper[self.name](self)
+        print("================================================================================================")
 
 
     def parseOutput(self):

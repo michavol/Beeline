@@ -1,0 +1,177 @@
+# Input Settings: initialize base input folder names,
+# dataset collections, and algorithms to run over
+input_settings:
+
+    # Base input directory
+    input_dir : "inputs"
+
+    # Subdirectory of inputs that datasets are placed in
+    dataset_dir: "DREAM4" #example
+    #dataset_dir: "example" 
+
+    # Denotes a list of datasets, each with the following parameters:
+    #   name: Name of the dataset. May be used in logging or other
+    #       messages written during execution
+    #
+    #   exprData: scRNA-Seq expression data file. Cells are along the
+    #            columns and genes are along the rows.
+    #   cellData: a file containing pseudotime ordering, or any other 
+    #             information about cells.
+    #   trueEdges: Name of the refrence network file in the
+    #              edge list format. Needed for evaluation.
+    datasets:
+        - name: "size10_multifactorial/net1"
+          exprData: "insilico_size10_1_multifactorial.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size10_1_goldstandard.tsv"
+
+        # - name: "size10_multifactorial/net2"
+        #   exprData: "insilico_size10_2_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_2_goldstandard.tsv"
+
+        # - name: "size10_multifactorial/net3"
+        #   exprData: "insilico_size10_3_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_3_goldstandard.tsv"
+
+        # - name: "size10_multifactorial/net4"
+        #   exprData: "insilico_size10_4_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_4_goldstandard.tsv"
+
+        # - name: "size10_multifactorial/net5"
+        #   exprData: "insilico_size10_5_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_5_goldstandard.tsv"
+
+        # - name: "size100_multifactorial/net1"
+        #   exprData: "insilico_size100_1_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_multifactorial_1_goldstandard.tsv"
+
+        # - name: "size100_multifactorial/net2"
+        #   exprData: "insilico_size100_2_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_multifactorial_2_goldstandard.tsv"
+
+        # - name: "size100_multifactorial/net3"
+        #   exprData: "insilico_size100_3_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_multifactorial_3_goldstandard.tsv"
+
+        # - name: "size100_multifactorial/net4"
+        #   exprData: "insilico_size100_4_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_multifactorial_4_goldstandard.tsv"
+
+        # - name: "size100_multifactorial/net5"
+        #   exprData: "insilico_size100_5_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_multifactorial_5_goldstandard.tsv"
+
+        # - name: "size10_wildtype/net1"
+        #   exprData: "insilico_size10_1_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+
+        # - name: "size10_wildtype/net2"
+        #   exprData: "insilico_size10_2_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_2_goldstandard.tsv"
+
+        # - name: "size10_wildtype/net3"
+        #   exprData: "insilico_size10_3_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_3_goldstandard.tsv"
+
+        # - name: "size10_wildtype/net4"
+        #   exprData: "insilico_size10_4_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_4_goldstandard.tsv"
+
+        # - name: "size10_wildtype/net5"
+        #   exprData: "insilico_size10_5_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_5_goldstandard.tsv"
+
+        # - name: "size100_wildtype/net1"
+        #   exprData: "insilico_size100_1_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_1_goldstandard.tsv"
+
+        # - name: "size100_wildtype/net2"
+        #   exprData: "insilico_size100_2_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_2_goldstandard.tsv"
+
+        # - name: "size100_wildtype/net3"
+        #   exprData: "insilico_size100_3_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_3_goldstandard.tsv"
+
+        # - name: "size100_wildtype/net4"
+        #   exprData: "insilico_size100_4_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_4_goldstandard.tsv"
+
+        # - name: "size100_wildtype/net5"
+        #   exprData: "insilico_size100_5_wildtype.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size100_5_goldstandard.tsv"
+
+
+    # Denotes a list of algorithms to run. Each has the following parameters:
+    #   name: Name of the algorithm. Must be recognized by the pipeline, see
+    #       code for acceptable values
+    #
+    #   should_run: whether or not to run the algorithm
+    #
+    #   params: any additional, algorithm-specific parameters
+    #       should be specified in the params map for a given algorithm
+    #
+    algorithms:
+
+        - name: "ORDER_MCMC"
+          params: 
+              should_run: [True]
+              # Number of iterations for finding edge weights
+              nIter: [6]
+
+
+        - name: "PARTITION_MCMC"
+          params: 
+              should_run: [True]
+              # Number of iterations for finding edge weights
+              nIter: [2]
+
+
+        - name: "GENIE3"
+          params: 
+              should_run: [True]
+              
+              
+        - name: "GRNBOOST2"
+          params: 
+              should_run: [True]
+              
+              
+        - name: "PPCOR"
+          params: 
+              should_run: [True]
+              # p-value cutoff
+              # Used in parsing output
+              pVal: [0.03]
+
+            
+      # - name: "PIDC"
+      #   params: 
+      #       should_run: [False]
+
+
+# Output Settings: initialize base output folder names
+output_settings:
+
+    # Base output directory
+    output_dir: "outputs"
+    output_prefix: "DREAM4"

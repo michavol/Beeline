@@ -7,8 +7,8 @@ import seaborn as sns
 
 if __name__ == "__main__":
     #PTData = pd.read_csv("outputs/dyn-BF/dyn-BF-AUROCscores.csv", header = 0, index_col = 0)
-    AUPRC = pd.read_csv("outputs/example/MOESM13_ESM.csv", header = 0, index_col = 0)
-    AURRC.reset_index()
+    AUPRC = pd.read_csv("outputs/DREAM4/DREAM4-AUPRC.csv", header = 0, index_col = 0)
+    AUPRC.reset_index()
     print(AUPRC)
     CO.plot(AUPRC, 
             randValues=[1,1],

@@ -56,13 +56,20 @@ def main():
 
     with open(config_file, 'r') as conf:
         evaluation = br.ConfigParser.parse(conf)
-    print(evaluation)
-    print('Evaluation started')
+    #print(evaluation)
+    print('Inference started')
 
+  
     for idx in range(len(evaluation.runners)):
         evaluation.runners[idx].generateInputs()
 
     for idx in range(len(evaluation.runners)):
+        print("\n" + str(idx+1), "/", len(evaluation.runners))
+        print("================================================================================================")
+        print("Algorithm:\t", evaluation.input_settings.algorithms[idx][0])
+        print("Parameters:\t", evaluation.input_settings.algorithms[idx][1])
+        
+        
         evaluation.runners[idx].run()
 
     for idx in range(len(evaluation.runners)):
