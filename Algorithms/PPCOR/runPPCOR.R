@@ -20,4 +20,8 @@ DF = data.frame(Gene1 = geneNames[c(row(pcorResults$estimate))], Gene2 = geneNam
 outDF <- DF[order(DF$corVal, decreasing=TRUE), ]
 outDF <- outDF[outDF$Gene1 != outDF$Gene2, ]
 
+# Represent undirected edges as one entry
+Nth.delete<-function(dataframe, n)dataframe[-(seq(n,to=nrow(dataframe),by=n)),]
+outDF <- Nth.delete(outDF,2)
+
 write.table(outDF, outFile, sep = "\t", quote = FALSE, row.names = FALSE)

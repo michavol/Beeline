@@ -34,7 +34,10 @@ def get_parser() -> argparse.ArgumentParser:
               "algorithms and output specifications.\n")
     
     parser.add_argument('-a', '--auc', action="store_true", default=False,
-        help="Compute median of areas under Precision-Recall and ROC curves.\n")
+        help="Compute median of areas under Precision-Recall and ROC curves. Plot curves.\n")
+
+    parser.add_argument('-u', '--auc_undirected', action="store_true", default=False,
+        help="Compute median of areas under Precision-Recall and ROC curves for undirected inference. Plot curves\n")
     
     parser.add_argument('-j', '--jaccard', action="store_true", default=False,
       help="Compute median Jaccard index of predicted top-k networks "
@@ -95,11 +98,21 @@ def main():
     # Compute and plot ROC, PRC and report median AUROC, AUPRC    
     if (opts.auc):
         print("==="*30)
-        print('Computing areas under ROC and PR curves...')
+        print('Computing areas under ROC and PR curves (directed)...')
         print("==="*30)
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=True)
-        AUPRC.to_csv(outDir+'AUPRC.csv')
-        AUROC.to_csv(outDir+'AUROC.csv')
+        AUPRC.to_csv(outDir+'AUPRC_directed.csv')
+        AUROC.to_csv(outDir+'AUROC_directed.csv')
+
+
+    # Compute and plot ROC, PRC and report median AUROC, AUPRC for undirected inference  
+    if (opts.auc_undirected):
+        print("==="*30)
+        print('Computing areas under ROC and PR curves (undirected)...')
+        print("==="*30)
+        AUPRC, AUROC = evalSummarizer.computeAUC(directed=False)
+        AUPRC.to_csv(outDir+'AUPRC_undirected.csv')
+        AUROC.to_csv(outDir+'AUROC_undirected.csv')
     
     
     # Compute Jaccard index    

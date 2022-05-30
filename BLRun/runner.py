@@ -6,6 +6,7 @@ import BLRun.order_mcmcRunner as ORDER_MCMC
 import BLRun.partition_mcmcRunner as PARTITION_MCMC
 import BLRun.pcRunner as PC
 import BLRun.genenetRunner as GENENET
+import BLRun.glassoRunner as GLASSO
 
 from pathlib import Path
 
@@ -18,7 +19,8 @@ InputMapper = {
                 'ORDER_MCMC':ORDER_MCMC.generateInputs,
                 'PARTITION_MCMC':PARTITION_MCMC.generateInputs,
                 'PC':PC.generateInputs,
-                'GENENET':GENENET.generateInputs
+                'GENENET':GENENET.generateInputs,
+                'GLASSO':GLASSO.generateInputs
             }
 
 AlgorithmMapper = {  
@@ -29,7 +31,8 @@ AlgorithmMapper = {
                 'ORDER_MCMC':ORDER_MCMC.run,
                 'PARTITION_MCMC':PARTITION_MCMC.run,
                 'PC':PC.run,
-                'GENENET':GENENET.run
+                'GENENET':GENENET.run,
+                'GLASSO':GLASSO.run
             }
 
 OutputParser = {  
@@ -40,7 +43,8 @@ OutputParser = {
                 'ORDER_MCMC':ORDER_MCMC.parseOutput,
                 'PARTITION_MCMC':PARTITION_MCMC.parseOutput,
                 'PC':PC.parseOutput,
-                'GENENET':GENENET.parseOutput
+                'GENENET':GENENET.parseOutput,
+                'GLASSO':GLASSO.parseOutput
             }
 
 
