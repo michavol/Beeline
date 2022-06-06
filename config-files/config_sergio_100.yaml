@@ -6,7 +6,7 @@ input_settings:
     input_dir : "inputs"
 
     # Subdirectory of inputs that datasets are placed in
-    dataset_dir: "DREAM4" #example
+    dataset_dir: "SERGIO" #example
     #dataset_dir: "example" 
 
     # Denotes a list of datasets, each with the following parameters:
@@ -20,105 +20,82 @@ input_settings:
     #   trueEdges: Name of the refrence network file in the
     #              edge list format. Needed for evaluation.
     datasets:
-        - name: "size10_multifactorial/net1"
-          exprData: "insilico_size10_1_multifactorial.tsv"  
+        - name: "De-noised_100G_9T_300cPerT_4_DS1/net0"
+          exprData: "simulated_noNoise_0.tsv"  
           cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_1_goldstandard.tsv"
-
-        - name: "size10_multifactorial/net2"
-          exprData: "insilico_size10_2_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_2_goldstandard.tsv"
-
-        - name: "size10_multifactorial/net3"
-          exprData: "insilico_size10_3_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_3_goldstandard.tsv"
-
-        - name: "size10_multifactorial/net4"
-          exprData: "insilico_size10_4_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_4_goldstandard.tsv"
-
-        - name: "size10_multifactorial/net5"
-          exprData: "insilico_size10_5_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_5_goldstandard.tsv"
-
-        # - name: "size100_multifactorial/net1"
-        #   exprData: "insilico_size100_1_multifactorial.tsv"  
+          trueEdges: "gt_GRN.tsv"
+          
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net1"
+        #   exprData: "simulated_noNoise_1.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_1_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size100_multifactorial/net2"
-        #   exprData: "insilico_size100_2_multifactorial.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net2"
+        #   exprData: "simulated_noNoise_2.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_2_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size100_multifactorial/net3"
-        #   exprData: "insilico_size100_3_multifactorial.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net3"
+        #   exprData: "simulated_noNoise_3.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_3_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
+          
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net4"
+        #   exprData: "simulated_noNoise_4.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "gt_GRN.tsv"
+          
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net5"
+        #   exprData: "simulated_noNoise_5.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size100_multifactorial/net4"
-        #   exprData: "insilico_size100_4_multifactorial.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net6"
+        #   exprData: "simulated_noNoise_6.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_4_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size100_multifactorial/net5"
-        #   exprData: "insilico_size100_5_multifactorial.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net7"
+        #   exprData: "simulated_noNoise_7.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_5_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net8"
+        #   exprData: "simulated_noNoise_8.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "gt_GRN.tsv"
+          
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net9"
+        #   exprData: "simulated_noNoise_9.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size10_wildtype/net1"
-        #   exprData: "insilico_size10_1_wildtype.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net10"
+        #   exprData: "simulated_noNoise_10.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size10_wildtype/net2"
-        #   exprData: "insilico_size10_2_wildtype.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net11"
+        #   exprData: "simulated_noNoise_11.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_2_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
+          
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net12"
+        #   exprData: "simulated_noNoise_12.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size10_wildtype/net3"
-        #   exprData: "insilico_size10_3_wildtype.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net13"
+        #   exprData: "simulated_noNoise_13.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_3_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size10_wildtype/net4"
-        #   exprData: "insilico_size10_4_wildtype.tsv"  
+        # - name: "De-noised_100G_9T_300cPerT_4_DS1/net14"
+        #   exprData: "simulated_noNoise_14.tsv"  
         #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_4_goldstandard.tsv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        # - name: "size10_wildtype/net5"
-        #   exprData: "insilico_size10_5_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size10_5_goldstandard.tsv"
 
-        # - name: "size100_wildtype/net1"
-        #   exprData: "insilico_size100_1_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_1_goldstandard.tsv"
-
-        # - name: "size100_wildtype/net2"
-        #   exprData: "insilico_size100_2_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_2_goldstandard.tsv"
-
-        # - name: "size100_wildtype/net3"
-        #   exprData: "insilico_size100_3_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_3_goldstandard.tsv"
-
-        # - name: "size100_wildtype/net4"
-        #   exprData: "insilico_size100_4_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_4_goldstandard.tsv"
-
-        # - name: "size100_wildtype/net5"
-        #   exprData: "insilico_size100_5_wildtype.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_5_goldstandard.tsv"
+        
 
 
     # Denotes a list of algorithms to run. Each has the following parameters:
@@ -173,7 +150,7 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [False]
+              should_run: [True]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
@@ -181,7 +158,7 @@ input_settings:
               rho2: [0.002]
 
               # nIter for bootstrapping
-              nIter: [1000]
+              nIter: [20]
 
               # sample_size (in percent) for bootstrapping
               sample_size: [0.7]
@@ -202,13 +179,13 @@ input_settings:
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [0.5]
+              pVal: [4.88440092439776e-07]
 
         - name: "GENENET"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of strongest edges that will be chosen
-              num_edges: [30]
+              num_edges: [300]
 
               # Directed or undirected
               directed: [0]
@@ -227,4 +204,4 @@ output_settings:
 
     # Base output directory
     output_dir: "outputs"
-    output_prefix: "DREAM4"
+    output_prefix: "SERGIO"

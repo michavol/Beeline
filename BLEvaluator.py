@@ -101,6 +101,9 @@ def main():
         print('Computing areas under ROC and PR curves (directed)...')
         print("==="*30)
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=True)
+        AUPRC['Mean AUPRC'] = AUPRC.mean(axis=1)
+        AUPRC['Mean AUROC'] = AUROC.mean(axis=1)
+
         AUPRC.to_csv(outDir+'AUPRC_directed.csv')
         AUROC.to_csv(outDir+'AUROC_directed.csv')
 
@@ -111,6 +114,9 @@ def main():
         print('Computing areas under ROC and PR curves (undirected)...')
         print("==="*30)
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=False)
+        AUPRC['Mean AUPRC'] = AUPRC.mean(axis=1)
+        AUPRC['Mean AUROC'] = AUROC.mean(axis=1)
+
         AUPRC.to_csv(outDir+'AUPRC_undirected.csv')
         AUROC.to_csv(outDir+'AUROC_undirected.csv')
     

@@ -23,17 +23,17 @@ USER=18881888
 # docker build -t $USER/pc:base .
 # echo "Docker container for PC is built and tagged as pc:base\n"
 
-cd $BASEDIR/Algorithms/GLASSO/
-docker build -t $USER/glasso:base .
-echo "Docker container for GLASSO is built and tagged as glasso:base\n"
+# cd $BASEDIR/Algorithms/GLASSO/
+# docker build -t $USER/glasso:base .
+# echo "Docker container for GLASSO is built and tagged as glasso:base\n"
 
 # cd $BASEDIR/Algorithms/PIDC/
 # docker build -t $USER/pidc:base .
 # echo "Docker container for PIDC is built and tagged as pidc:base\n"
 
-# cd $BASEDIR/Algorithms/PPCOR/
-# docker build -t $USER/ppcor:base .
-# echo "Docker container for PPCOR is built and tagged as ppcor:base\n"
+cd $BASEDIR/Algorithms/PPCOR/
+docker build -t $USER/ppcor:base .
+echo "Docker container for PPCOR is built and tagged as ppcor:base\n"
 
 # cd $BASEDIR/Algorithms/GENENET/
 # docker build -t $USER/genenet:base .
