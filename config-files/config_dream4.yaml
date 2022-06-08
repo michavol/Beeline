@@ -199,7 +199,7 @@ input_settings:
               
         - name: "PPCOR"
           params: 
-              should_run: [True]
+              should_run: [False]
               # p-value True
               # Used in parsing output
               pVal: [0.5]
@@ -215,6 +215,12 @@ input_settings:
 
               # Verbosity
               verbose: [0]
+
+        - name: "ARACNE"
+          params: 
+              should_run: [True]
+              # Epsilon - see documentation
+              eps: [0]
 
             
       # - name: "PIDC"

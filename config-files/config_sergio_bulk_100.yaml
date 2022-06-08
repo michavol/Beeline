@@ -25,74 +25,74 @@ input_settings:
           cellData: "PseudoTime.csv"
           trueEdges: "gt_GRN.tsv"
           
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net1"
-        #   exprData: "simulated_noNoise_bulk_1.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net1"
+          exprData: "simulated_noNoise_bulk_1.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net2"
-        #   exprData: "simulated_noNoise_bulk_2.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net2"
+          exprData: "simulated_noNoise_bulk_2.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net3"
-        #   exprData: "simulated_noNoise_bulk_3.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net3"
+          exprData: "simulated_noNoise_bulk_3.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
           
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net4"
-        #   exprData: "simulated_noNoise_bulk_4.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net4"
+          exprData: "simulated_noNoise_bulk_4.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
           
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net5"
-        #   exprData: "simulated_noNoise_bulk_5.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net5"
+          exprData: "simulated_noNoise_bulk_5.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net6"
-        #   exprData: "simulated_noNoise_bulk_6.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net6"
+          exprData: "simulated_noNoise_bulk_6.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net7"
-        #   exprData: "simulated_noNoise_bulk_7.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net8"
-        #   exprData: "simulated_noNoise_bulk_8.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net7"
+          exprData: "simulated_noNoise_bulk_7.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net8"
+          exprData: "simulated_noNoise_bulk_8.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
           
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net9"
-        #   exprData: "simulated_noNoise_bulk_9.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net9"
+          exprData: "simulated_noNoise_bulk_9.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net10"
-        #   exprData: "simulated_noNoise_bulk_10.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net10"
+          exprData: "simulated_noNoise_bulk_10.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net11"
-        #   exprData: "simulated_noNoise_bulk_11.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net11"
+          exprData: "simulated_noNoise_bulk_11.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
           
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net12"
-        #   exprData: "simulated_noNoise_bulk_12.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net12"
+          exprData: "simulated_noNoise_bulk_12.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net13"
-        #   exprData: "simulated_noNoise_bulk_13.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net13"
+          exprData: "simulated_noNoise_bulk_13.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
-        # - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net14"
-        #   exprData: "simulated_noNoise_bulk_14.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_100G_9T_300cPerT_4_DS1_bulk/net14"
+          exprData: "simulated_noNoise_bulk_14.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
 
 
         
@@ -113,7 +113,7 @@ input_settings:
           params: 
               should_run: [False]
               # Number of iterations for finding edge weights
-              nIter: [9]
+              nIter: [10]
 
               # Percentage of data for each iteration
               sample_size: [0.7]
@@ -133,7 +133,7 @@ input_settings:
           params: 
               should_run: [False]
               # Number of iterations for finding edge weights
-              nIter: [500]
+              nIter: [50]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
               partially_directed: [0]
@@ -150,7 +150,7 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [True]
+              should_run: [False]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
@@ -158,7 +158,7 @@ input_settings:
               rho2: [0.002]
 
               # nIter for bootstrapping
-              nIter: [20]
+              nIter: [50]
 
               # sample_size (in percent) for bootstrapping
               sample_size: [0.7]
@@ -166,12 +166,12 @@ input_settings:
 
         - name: "GENIE3"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "PPCOR"
@@ -179,7 +179,7 @@ input_settings:
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [4.88440092439776e-07]
+              pVal: [1.0e-04]
 
         - name: "GENENET"
           params: 
@@ -193,10 +193,16 @@ input_settings:
               # Verbosity
               verbose: [0]
 
+        - name: "ARACNE"
+          params: 
+              should_run: [True]
+              # Epsilon - see documentation
+              eps: [0]
             
       # - name: "PIDC"
       #   params: 
       #       should_run: [False]
+
 
 
 # Output Settings: initialize base output folder names
