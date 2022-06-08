@@ -8,6 +8,7 @@ import BLRun.pcRunner as PC
 import BLRun.genenetRunner as GENENET
 import BLRun.glassoRunner as GLASSO
 import BLRun.aracneRunner as ARACNE
+import BLRun.corrRunner as CORR
 
 from pathlib import Path
 
@@ -22,7 +23,8 @@ InputMapper = {
                 'PC':PC.generateInputs,
                 'GENENET':GENENET.generateInputs,
                 'GLASSO':GLASSO.generateInputs,
-                'ARACNE':ARACNE.generateInputs
+                'ARACNE':ARACNE.generateInputs,
+                'CORR':CORR.generateInputs
             }
 
 AlgorithmMapper = {  
@@ -35,7 +37,8 @@ AlgorithmMapper = {
                 'PC':PC.run,
                 'GENENET':GENENET.run,
                 'GLASSO':GLASSO.run,
-                'ARACNE':ARACNE.run
+                'ARACNE':ARACNE.run,
+                'CORR':CORR.run
             }
 
 OutputParser = {  
@@ -48,7 +51,8 @@ OutputParser = {
                 'PC':PC.parseOutput,
                 'GENENET':GENENET.parseOutput,
                 'GLASSO':GLASSO.parseOutput,
-                'ARACNE':ARACNE.parseOutput
+                'ARACNE':ARACNE.parseOutput,
+                'CORR':CORR.parseOutput
             }
 
 

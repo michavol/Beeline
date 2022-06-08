@@ -198,6 +198,13 @@ input_settings:
               should_run: [True]
               # Epsilon - see documentation
               eps: [0]
+
+        - name: "CORR"
+          params: 
+              should_run: [True]
+              # p-value True
+              # Used in parsing output
+              pVal: [1.0e-04]
             
       # - name: "PIDC"
       #   params: 

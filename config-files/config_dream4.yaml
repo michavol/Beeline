@@ -218,9 +218,16 @@ input_settings:
 
         - name: "ARACNE"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Epsilon - see documentation
               eps: [0]
+
+        - name: "CORR"
+          params: 
+              should_run: [True]
+              # p-value True
+              # Used in parsing output
+              pVal: [0.5]
 
             
       # - name: "PIDC"
