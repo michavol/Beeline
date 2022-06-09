@@ -14,6 +14,8 @@ find -name 'ORDER_MCMC' -exec rm -rf {} \;
 find -name 'PARTITION_MCMC' -exec rm -rf {} \;
 find -name 'TEST' -exec rm -rf {} \;
 find -name 'PIDC' -exec rm -rf {} \;
+find -name 'CORR' -exec rm -rf {} \;
+find -name 'ARACNE' -exec rm -rf {} \;
 
 cd ../..
 DATA_PATH=inputs/SERGIO 
@@ -28,3 +30,5 @@ find -name 'ORDER_MCMC' -exec rm -rf {} \;
 find -name 'PARTITION_MCMC' -exec rm -rf {} \;
 find -name 'TEST' -exec rm -rf {} \;
 find -name 'PIDC' -exec rm -rf {} \;
+find -name 'CORR' -exec rm -rf {} \;
+find -name 'ARACNE' -exec rm -rf {} \;
