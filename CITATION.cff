@@ -1,9 +1,11 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+title: Review of Gene Regulatory Network Inference Methods
+message: 'Please cite the following:'
+type: software
 authors:
-  - family-names: Vollenweider
-    given-names: Michael
-    orcid: https://orcid.org/0000-0001-8193-7986
-title: "Review of Gene Regulatory Network Inference Methods"
-version: 1.0.0
+  - given-names: Michael
+    family-names: Vollenweider
+    email: michael.s.vollenweider@gmail.com
+    affiliation: ETH Student
+    orcid: 'https://orcid.org/0000-0001-8193-7986'
 date-released: 2022-06-15
