@@ -166,7 +166,7 @@ input_settings:
 
         - name: "GENIE3"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
         - name: "GRNBOOST2"
