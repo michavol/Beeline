@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: benchmarking_GRN_inference
+message: 'Please cite the following:'
+type: software
+authors:
+  - given-names: Michael
+    family-names: Vollenweider
+    email: michael.s.vollenweider@gmail.com
+    affiliation: ETH Student
+    orcid: 'https://orcid.org/0000-0001-8193-7986'
+date-released: 2022-06-15
