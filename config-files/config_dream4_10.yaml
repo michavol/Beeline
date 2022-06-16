@@ -240,4 +240,4 @@ output_settings:
 
     # Base output directory
     output_dir: "outputs"
-    output_prefix: "DREAM4"
+    output_prefix: "DREAM4_10"

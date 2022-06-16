@@ -44,6 +44,16 @@ def get_parser() -> argparse.ArgumentParser:
       "for each algorithm for a given set of datasets generated "
       "from the same ground truth network.\n")
 
+    parser.add_argument('-n', '--jaccard_undirected', action="store_true", default=False,
+      help="Compute median Jaccard index of predicted top-k networks "
+      "for each algorithm for a given set of datasets generated "
+      "from the same ground truth network.\n")
+
+    parser.add_argument('-y', '--jaccard_methods_undirected', action="store_true", default=False,
+      help="Compute median Jaccard index of predicted top-k networks "
+      "for each algorithm for a given set of datasets generated "
+      "from the same ground truth network.\n")
+
     parser.add_argument('-r', '--spearman', action="store_true", default=False,
       help="Compute median Spearman Corr. of predicted edges "
       "for each algorithm  for a given set of datasets generated "
@@ -53,6 +63,9 @@ def get_parser() -> argparse.ArgumentParser:
       help="Analyze time taken by each algorithm for a.\n")
     
     parser.add_argument('-e', '--epr', action="store_true", default=False,
+      help="Compute median early precision.")
+
+    parser.add_argument('-x', '--epr_undirected', action="store_true", default=False,
       help="Compute median early precision.")
     
     parser.add_argument('-s','--sepr', action="store_true", default=False,
@@ -116,6 +129,8 @@ def main():
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=False)
         AUPRC['Mean AUPRC'] = AUPRC.mean(axis=1)
         AUPRC['Mean AUROC'] = AUROC.mean(axis=1)
+        AUPRC['Std AUPRC'] = AUPRC.std(axis=1)
+        AUPRC['Std AUROC'] = AUROC.std(axis=1)
 
         AUPRC.to_csv(outDir+'AUPRC_undirected.csv')
         AUROC.to_csv(outDir+'AUROC_undirected.csv')
@@ -127,8 +142,29 @@ def main():
         print('Computing Jaccard index...')
         print("==="*30)
 
-        jaccDict = evalSummarizer.computeJaccard()
-        jaccDict.to_csv(outDir + "Jaccard.csv")
+        jaccDict = evalSummarizer.computeJaccard(undirected=False, across_methods=False)
+        jaccDict.to_csv(outDir + "Jaccard_directed.csv")
+
+
+    # Compute Jaccard index    
+    if (opts.jaccard_undirected):
+        print("\n\n" + "==="*30)
+        print('Computing Jaccard index...')
+        print("==="*30)
+
+        jaccDict = evalSummarizer.computeJaccard(undirected=True)
+        jaccDict.to_csv(outDir + "Jaccard_undirected.csv")
+
+
+    # Compute Jaccard index    
+    if (opts.jaccard_methods_undirected):
+        print("\n\n" + "==="*30)
+        print('Computing Jaccard index...')
+        print("==="*30)
+
+        jaccDict = evalSummarizer.computeMethodsJaccard(undirected=True)
+        jaccDict.to_csv(outDir + "Jaccard_methods_undirected.csv")
+
         
     # Compute Spearman correlation scores
     if (opts.spearman):
@@ -146,15 +182,34 @@ def main():
         print("==="*30)
 
         TimeDict = evalSummarizer.parseTime()
-        pd.DataFrame(TimeDict).to_csv(outDir+'Times.csv')
+        timeDF = pd.DataFrame(TimeDict)
+        timeDF["Mean Time"] = timeDF.mean(axis=1)
+        timeDF["Std Time"] = timeDF.std(axis=1)
+        timeDF.to_csv(outDir+'Times.csv')
     
     # Compute early precision
     if (opts.epr):
         print("\n" + "==="*30)
         print('Computing early precision values...')
         print("==="*30)
-        ePRDF = evalSummarizer.computeEarlyPrec()
-        ePRDF.to_csv(outDir + "EPr.csv")
+        ePRDF = evalSummarizer.computeEarlyPrec(undirected=False)
+
+        ePRDF['Mean EP'] = ePRDF.mean(axis=1)
+        ePRDF['Std EP'] = ePRDF.std(axis=1)
+   
+        ePRDF.to_csv(outDir + "EPr_directed.csv")
+
+    # Compute early precision
+    if (opts.epr_undirected):
+        print("\n" + "==="*30)
+        print('Computing early precision values...')
+        print("==="*30)
+        ePRDF = evalSummarizer.computeEarlyPrec(undirected=True)
+
+        ePRDF['Mean EP'] = ePRDF.mean(axis=1)
+        ePRDF['Std EP'] = ePRDF.std(axis=1)
+   
+        ePRDF.to_csv(outDir + "EPr_undirected.csv")
                         
     # Compute early precision for activation and inhibitory edges
     if (opts.sepr):

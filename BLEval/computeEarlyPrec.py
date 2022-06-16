@@ -12,7 +12,7 @@ from itertools import product, permutations
 from multiprocessing import Pool, cpu_count
 from networkx.convert_matrix import from_pandas_adjacency
 
-def EarlyPrec(evalObject, algorithmName, TFEdges = False):
+def EarlyPrec(evalObject, algorithmName, TFEdges = False, undirected=False):
     '''
     Computes early precision for a given algorithm for each dataset.
     We define early precision as the fraction of true 
@@ -33,7 +33,9 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False):
 
     '''
     rankDict = {}
+
     for dataset in tqdm(evalObject.input_settings.datasets):
+    #for dataset in evalObject.input_settings.datasets:
         # trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
         #               dataset['name'] + '/' +\
         #               dataset['trueEdges'], sep = ',',
@@ -53,7 +55,6 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False):
         trueEdgesDF = trueEdgesDF.loc[(trueEdgesDF['Gene1'] != trueEdgesDF['Gene2'])]
         trueEdgesDF.drop_duplicates(keep = 'first', inplace=True)
         trueEdgesDF.reset_index(drop=True, inplace=True)
-
 
         outDir = str(evalObject.output_settings.base_dir) + \
                  str(evalObject.input_settings.datadir).split("inputs")[1] + \
@@ -102,9 +103,18 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False):
             predDF = predDF[predDF['Edges'].isin(TrueEdgeDict)]
 
         else:
+            #trueEdges = set(trueEdges.values) #BEELINE code
+
+            numEdges = len(trueEdgesDF)
+         
+            if (undirected == True):
+                trueEdgesDF_undirected = trueEdgesDF.copy()
+                trueEdgesDF_undirected["Gene1"] = trueEdgesDF["Gene2"]
+                trueEdgesDF_undirected["Gene2"] = trueEdgesDF["Gene1"]
+                trueEdgesDF = pd.concat([trueEdgesDF_undirected, trueEdgesDF])
+
             trueEdges = trueEdgesDF['Gene1'] + "|" + trueEdgesDF['Gene2']
-            trueEdges = set(trueEdges.values)
-            numEdges = len(trueEdges)
+            
         
         # check if ranked edges list is empty
         # if so, it is just set to an empty set
@@ -135,6 +145,7 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False):
     Eprec = {}
     Erec = {}
     for dataset in tqdm(evalObject.input_settings.datasets):
+    #for dataset in evalObject.input_settings.datasets:
         if len(rankDict[dataset["name"]]) != 0:
             intersectionSet = rankDict[dataset["name"]].intersection(trueEdges)
             Eprec[dataset["name"]] = len(intersectionSet)/len(rankDict[dataset["name"]])

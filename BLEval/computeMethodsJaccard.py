@@ -12,7 +12,7 @@ from collections import defaultdict
 from multiprocessing import Pool, cpu_count
 from networkx.convert_matrix import from_pandas_adjacency
 
-def Jaccard(evalObject, algorithmName, undirected=False):
+def MethodsJaccard(dataDict, inputSettings, undirected = False):
     """
     A function to compute median pairwirse Jaccard similarity index
     of predicted top-k edges for a given set of datasets (obtained from
@@ -24,8 +24,8 @@ def Jaccard(evalObject, algorithmName, undirected=False):
     :type evalObject: :obj:`BLEval`
       
       
-    :param algorithmName: Name of the algorithm for which the Spearman correlation is computed.
-    :type algorithmName: str
+    :param datasetName: Name of the dataset for which the across method Jaccard index is computed.
+    :type datasetName: str
       
       
     :returns:
@@ -33,8 +33,43 @@ def Jaccard(evalObject, algorithmName, undirected=False):
         - mad: Median Absolute Deviation of  the Spearman correlation values
     """
 
-    rankDict = {}
-    sim_names = []
+    ### Read file and get number of true edges
+    headerList = ['Gene1', 'Gene2', 'Type']
+    trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ dataDict['name'] +
+                                '/' +dataDict['trueEdges'],
+                                sep = '\t', 
+                                header = 0, index_col = None)
+    
+    trueEdgesDF.columns = headerList
+    trueEdgesDF = trueEdgesDF[trueEdgesDF["Type"] != 0]
+    numEdges = len(trueEdgesDF)
+
+    ### Initialize jaccard dictionary
+    JACCARD = {}
+
+    ### Set-up outDir that stores output directory name
+    outDir = "outputs/"+str(inputSettings.datadir).split("inputs/")[1]+ '/' +dataDict['name']
+    
+    if (undirected == False):
+        for algo1 in inputSettings.algorithms:
+
+            # check if the output rankedEdges file exists
+            if Path(outDir + '/' +algo1[0]+'/rankedEdges.csv').exists():
+                # Initialize Precsion
+
+                predDF1 = pd.read_csv(outDir + '/' +algo1[0]+'/rankedEdges.csv', \
+                                            sep = '\t', header =  0, index_col = None)
+
+            for algo2 in inputSettings.algorithms:
+                
+                # check if the output rankedEdges file exists
+                if Path(outDir + '/' +algo2[0]+'/rankedEdges.csv').exists():
+                    # Initialize Precsion
+
+                    predDF2 = pd.read_csv(outDir + '/' +algo2[0]+'/rankedEdges.csv', \
+                                                sep = '\t', header =  0, index_col = None)
+                
+
     for dataset in tqdm(evalObject.input_settings.datasets):
         # trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
         #               dataset['name'] + '/' +\

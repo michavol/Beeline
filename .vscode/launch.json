@@ -14,13 +14,12 @@
             "program": "${workspaceFolder}/BLEvaluator.py",
 
             "args": [
-                "--config", "${workspaceFolder}/config-files/config.yaml", 
-                "-a"
+                "--config", "${workspaceFolder}/config-files/config_dream4_10.yaml", 
+                "-e"
             ],
 
             "console": "integratedTerminal",
             "justMyCode": true
         },
-
     ]
 }

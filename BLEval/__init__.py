@@ -32,6 +32,7 @@ from BLEval.parseTime import getTime
 from BLEval.computeDGAUC import PRROC
 from BLEval.computeBorda import Borda
 from BLEval.computeJaccard import Jaccard
+from BLEval.computeMethodsJaccard import MethodsJaccard
 from BLEval.computeSpearman import Spearman
 from BLEval.computeNetMotifs import Motifs
 from BLEval.computeEarlyPrec import EarlyPrec
@@ -124,7 +125,7 @@ class BLEval(object):
         # for dataset in self.input_settings.datasets:
 
             AUPRC, AUROC = PRROC(dataset, self.input_settings, 
-                                    directed = directed, selfEdges = False, plotFlag = True)
+                                    directed = directed, selfEdges = False, plotFlag = False)
             AUPRCDict[dataset['name']] = AUPRC
             AUROCDict[dataset['name']] = AUROC
         AUPRC = pd.DataFrame(AUPRCDict)
@@ -151,7 +152,7 @@ class BLEval(object):
 
         return TimeDict
 
-    def computeJaccard(self):
+    def computeJaccard(self, undirected=False):
 
         '''
         Computes Jaccard Index between top-k edge predictions
@@ -162,17 +163,43 @@ class BLEval(object):
             deviation of the Jaccard Index values of each algorithm
             on the given set of datasets.
         '''
+ 
         JaccDF = {}
         JaccDF['Jaccard Median'] = {}
         JaccDF['Jaccard MAD'] = {}
         outDir = str(self.output_settings.base_dir) + \
                  str(self.input_settings.datadir).split("inputs")[1] + "/"
+
         for algo in tqdm(self.input_settings.algorithms, unit = " Algorithms"):
-        # for algo in self.input_settings.algorithms:
             if algo[1]['should_run'] == True:
-                JaccDF['Jaccard Median'][algo[0]], JaccDF['Jaccard MAD'][algo[0]] = Jaccard(self, algo[0])
-            
-        return pd.DataFrame(JaccDF)     
+                JaccDF['Jaccard Median'][algo[0]], JaccDF['Jaccard MAD'][algo[0]] = Jaccard(self, algo[0],undirected=undirected, across_methods=across_methods)
+        
+        return pd.DataFrame(JaccDF) 
+
+    def computeMethodsJaccard(self, undirected=False):
+
+        '''
+        Computes Jaccard Index between top-k edge predictions
+        across algorithms for the same network
+        
+        :returns:
+            A dataframe containing the median and median absolute
+            deviation of the Jaccard Index values across methods
+        '''
+
+        JaccardDict = {}
+
+        for dataset in tqdm(self.input_settings.datasets, 
+                            total = len(self.input_settings.datasets), unit = " Datasets"):
+        # for dataset in self.input_settings.datasets:
+
+            JACCARD = MethodsJaccard(dataset, self.input_settings, 
+                                    undirected = undirected)
+            JaccardDict[dataset['name']] = JACCARD
+        
+        MethodsJaccDF = pd.DataFrame(JaccardDict)
+
+        return MethodsJaccDF 
 
     
     def computeSpearman(self):
@@ -241,7 +268,7 @@ class BLEval(object):
             pathAnalysis(dataset, self.input_settings)
 
                  
-    def computeEarlyPrec(self):
+    def computeEarlyPrec(self, undirected=False):
 
         '''
         For each algorithm-dataset combination,
@@ -256,9 +283,10 @@ class BLEval(object):
         Eprec = {}
         outDir = str(self.output_settings.base_dir) + \
                  str(self.input_settings.datadir).split("inputs")[1] + "/"
-        for algo in tqdm(self.input_settings.algorithms, unit = " Algorithms"):
+        #for algo in tqdm(self.input_settings.algorithms, unit = " Algorithms"):
+        for algo in self.input_settings.algorithms:
             if algo[1]['should_run'] == True:
-                Eprec[algo[0]] = EarlyPrec(self, algo[0])
+                Eprec[algo[0]] = EarlyPrec(self, algo[0], undirected=undirected)
         return pd.DataFrame(Eprec).T
 
 
