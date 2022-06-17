@@ -189,9 +189,9 @@ class BLEval(object):
 
         JaccardDict = {}
 
-        for dataset in tqdm(self.input_settings.datasets, 
-                            total = len(self.input_settings.datasets), unit = " Datasets"):
-        # for dataset in self.input_settings.datasets:
+        #for dataset in tqdm(self.input_settings.datasets, 
+        #                    total = len(self.input_settings.datasets), unit = " Datasets"):
+        for dataset in self.input_settings.datasets:
 
             JACCARD = MethodsJaccard(dataset, self.input_settings, 
                                     undirected = undirected)

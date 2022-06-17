@@ -8,6 +8,8 @@ import itertools
 import numpy as np
 import pandas as pd
 import networkx as nx
+import seaborn as sns
+import matplotlib.pyplot as plt
 from tqdm import tqdm
 import multiprocessing
 from pathlib import Path
@@ -45,6 +47,11 @@ def get_parser() -> argparse.ArgumentParser:
       "from the same ground truth network.\n")
 
     parser.add_argument('-n', '--jaccard_undirected', action="store_true", default=False,
+      help="Compute median Jaccard index of predicted top-k networks "
+      "for each algorithm for a given set of datasets generated "
+      "from the same ground truth network.\n")
+
+    parser.add_argument('-z', '--jaccard_methods', action="store_true", default=False,
       help="Compute median Jaccard index of predicted top-k networks "
       "for each algorithm for a given set of datasets generated "
       "from the same ground truth network.\n")
@@ -116,6 +123,8 @@ def main():
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=True)
         AUPRC['Mean AUPRC'] = AUPRC.mean(axis=1)
         AUPRC['Mean AUROC'] = AUROC.mean(axis=1)
+        AUPRC['Std AUPRC'] = AUPRC.std(axis=1)
+        AUPRC['Std AUROC'] = AUROC.std(axis=1)
 
         AUPRC.to_csv(outDir+'AUPRC_directed.csv')
         AUROC.to_csv(outDir+'AUROC_directed.csv')
@@ -136,9 +145,9 @@ def main():
         AUROC.to_csv(outDir+'AUROC_undirected.csv')
     
     
-    # Compute Jaccard index    
+    # Compute directed Jaccard index across datasets  
     if (opts.jaccard):
-        print("\n\n" + "==="*30)
+        print("==="*30)
         print('Computing Jaccard index...')
         print("==="*30)
 
@@ -146,9 +155,9 @@ def main():
         jaccDict.to_csv(outDir + "Jaccard_directed.csv")
 
 
-    # Compute Jaccard index    
+    # Compute undirected Jaccard index across datasets
     if (opts.jaccard_undirected):
-        print("\n\n" + "==="*30)
+        print("==="*30)
         print('Computing Jaccard index...')
         print("==="*30)
 
@@ -156,14 +165,54 @@ def main():
         jaccDict.to_csv(outDir + "Jaccard_undirected.csv")
 
 
-    # Compute Jaccard index    
+    # Compute directed Jaccard index across methods 
+    if (opts.jaccard_methods):
+        print("==="*30)
+        print('Computing Jaccard index...')
+        print("==="*30)
+
+        jaccDict = evalSummarizer.computeMethodsJaccard(undirected=False)
+        jaccDict["Mean Methods Jaccard"] = jaccDict.mean(axis=1)
+        jaccDict["Std Methods Jaccard"] = jaccDict.std(axis=1)
+        jaccDict.to_csv(outDir + "Jaccard_methods_directed.csv")
+
+        #Generate mean jaccard matrix and plot heatmap
+        jaccDict['AlgoPairs'] = jaccDict.index
+        algoSplit = jaccDict["AlgoPairs"].str.split('-', expand = True)
+        jaccDictSplit = pd.concat([algoSplit, jaccDict["Mean Methods Jaccard"]], axis=1)
+        jaccDictSplit.columns = ["Algo1","Algo2","Jaccard"]
+
+        jaccMat = jaccDictSplit.pivot(index='Algo1', columns='Algo2', values='Jaccard')
+        triu = np.triu(np.ones_like(jaccMat), k=1)
+
+        fig, ax = plt.subplots(figsize=(12, 12))
+        sns.heatmap(jaccMat, annot=True, mask=triu, linewidths=.3)
+        fig.savefig(outDir + "Jaccard_methods_directed_heatmap.png")
+
+
+    # Compute undirected Jaccard index across methods 
     if (opts.jaccard_methods_undirected):
-        print("\n\n" + "==="*30)
+        print("==="*30)
         print('Computing Jaccard index...')
         print("==="*30)
 
         jaccDict = evalSummarizer.computeMethodsJaccard(undirected=True)
+        jaccDict["Mean Methods Jaccard"] = jaccDict.mean(axis=1)
+        jaccDict["Std Methods Jaccard"] = jaccDict.std(axis=1)
         jaccDict.to_csv(outDir + "Jaccard_methods_undirected.csv")
+
+        #Generate mean jaccard matrix and plot heatmap
+        jaccDict['AlgoPairs'] = jaccDict.index
+        algoSplit = jaccDict["AlgoPairs"].str.split('-', expand = True)
+        jaccDictSplit = pd.concat([algoSplit, jaccDict["Mean Methods Jaccard"]], axis=1)
+        jaccDictSplit.columns = ["Algo1","Algo2","Jaccard"]
+
+        jaccMat = jaccDictSplit.pivot(index='Algo1', columns='Algo2', values='Jaccard')
+        triu = np.triu(np.ones_like(jaccMat), k=-1)
+
+        fig, ax = plt.subplots(figsize=(12, 12))
+        sns.heatmap(jaccMat, annot=True, mask=triu, linewidths=.3)
+        fig.savefig(outDir + "Jaccard_methods_undirected_heatmap.png")
 
         
     # Compute Spearman correlation scores
