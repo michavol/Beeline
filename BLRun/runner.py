@@ -1,5 +1,6 @@
 import BLRun.pidcRunner as PIDC
 import BLRun.genie3Runner as GENIE3
+import BLRun.genie3_rRunner as GENIE3_R
 import BLRun.grnboost2Runner as GRNBOOST2
 import BLRun.ppcorRunner as PPCOR
 import BLRun.order_mcmcRunner as ORDER_MCMC
@@ -16,6 +17,7 @@ from pathlib import Path
 InputMapper = {  
                 'PIDC':PIDC.generateInputs,
                 'GENIE3':GENIE3.generateInputs,
+                'GENIE3_R':GENIE3_R.generateInputs,
                 'GRNBOOST2':GRNBOOST2.generateInputs,
                 'PPCOR':PPCOR.generateInputs,
                 'ORDER_MCMC':ORDER_MCMC.generateInputs,
@@ -30,6 +32,7 @@ InputMapper = {
 AlgorithmMapper = {  
                 'PIDC':PIDC.run,
                 'GENIE3':GENIE3.run,
+                'GENIE3_R':GENIE3_R.run,
                 'GRNBOOST2':GRNBOOST2.run,
                 'PPCOR':PPCOR.run,
                 'ORDER_MCMC':ORDER_MCMC.run,
@@ -44,6 +47,7 @@ AlgorithmMapper = {
 OutputParser = {  
                 'PIDC':PIDC.parseOutput,
                 'GENIE3':GENIE3.parseOutput,
+                'GENIE3_R':GENIE3_R.parseOutput,
                 'GRNBOOST2':GRNBOOST2.parseOutput,
                 'PPCOR':PPCOR.parseOutput,
                 'ORDER_MCMC':ORDER_MCMC.parseOutput,

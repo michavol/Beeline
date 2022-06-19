@@ -17,6 +17,8 @@ RUN R -e "install.packages('ggm')"
 RUN R -e "BiocManager::install('Rgraphviz')"
 RUN R -e "install.packages('BiDAG')"
 RUN R -e "install.packages('reshape2')"
+RUN R -e "install.packages('foreach')"
+RUN R -e "install.packages('doParallel')"
 
 COPY runORDER_MCMC.R /
 

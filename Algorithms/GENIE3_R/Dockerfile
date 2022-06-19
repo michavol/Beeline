@@ -1,4 +1,4 @@
-FROM r-base:4.0.0
+FROM r-base:4.2.0
 
 RUN apt-get update 
 RUN apt-get install -y git
@@ -11,13 +11,11 @@ USER root
 WORKDIR /
 
 RUN R -e "install.packages('BiocManager')"
-RUN R -e "BiocManager::install('igraph')"
-RUN R -e "BiocManager::install('pcalg')"
-RUN R -e "install.packages('reshape2')"
-RUN R -e "install.packages('foreach')"
+RUN R -e "BiocManager::install('GENIE3')"
+RUN R -e "install.packages('doRNG')"
 RUN R -e "install.packages('doParallel')"
 
-COPY runPC.R /
+COPY runGENIE3_R.R /
 
 RUN mkdir data/
 

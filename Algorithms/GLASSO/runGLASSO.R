@@ -1,6 +1,8 @@
 ### Load libraries
 suppressMessages(library(igraph))
 suppressMessages(library(glasso))
+suppressMessages(library(foreach))
+suppressMessages(library(doParallel))
 
 ### Parse Arguments
 args <- commandArgs(trailingOnly = T)
@@ -18,21 +20,24 @@ df <- read.csv(inFile, header = TRUE, sep = "\t")
 set.seed(2022)
 
 
-### Train graphical lasso (with bootstrapping for edge confidence)
-# https://cran.r-project.org/web/packages/glasso/glasso.pdf
-precision.matrix.boots <- matrix(0, nrow=ncol(df), ncol=ncol(df))
+## Parallelized
+#setup parallel backend to use many processors
+cores=detectCores()
+cl <- makeCluster(cores[1]-1) #not to overload your computer
+registerDoParallel(cl)
 
-for (i in 1:nIter) {
+
+precision.matrix.boots <- foreach(i=1:nIter, .combine='+') %dopar% {
   smp_size <- floor(sample_size * nrow(df))
   smp_ind <- sample(seq_len(nrow(df)), size = smp_size)
   smp <- df[smp_ind,]
   
   variance.matrix <- var(smp)
-  glasso.result <- glasso(variance.matrix, rho=rho1)
-  glasso.result.precond <- glasso(variance.matrix, rho=rho2, w.init=glasso.result$w, wi.init=glasso.result$wi, start='warm')
+  glasso.result <- glasso::glasso(variance.matrix, rho=rho1)
+  glasso.result.precond <- glasso::glasso(variance.matrix, rho=rho2, w.init=glasso.result$w, wi.init=glasso.result$wi, start='warm')
   precision.matrix <- glasso.result.precond$wi
  
-  precision.matrix.boots = precision.matrix.boots + precision.matrix
+  precision.matrix
 }
 
 # Normalize over bootstraps

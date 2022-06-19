@@ -1,6 +1,8 @@
 ### Load libraries
 library(reshape2)
 library(BiDAG)
+suppressMessages(library(foreach))
+suppressMessages(library(doParallel))
 
 ### Parse Arguments
 args <- commandArgs(trailingOnly = T)
@@ -21,26 +23,45 @@ if (nrows == 1)
 ### Load library and initialize parameters
 bge_score <- scoreparameters("bge", df)
 
-### Learn Bayesian network using MCMC and get edge weights by bootstrapping
 set.seed(2022)
-dags_adj <- matrix(0, nrow=ncol(df), ncol=ncol(df))
+
+### Not Parallelized
+### Learn Bayesian network using MCMC and get edge weights by bootstrapping
+# dags_adj <- matrix(0, nrow=ncol(df), ncol=ncol(df))
 #nIter = 10
 
-for (i in 1:nIter) {
-  if (nrows == 1)
-  {
-    bge_score <- scoreparameters("bge", df)
-  }
-  else
-  {
+# for (i in 1:nIter) {
+#   if (nrows == 1)
+#   {
+#     bge_score <- scoreparameters("bge", df)
+#   }
+#   else
+#   {
+#     smp_size <- floor(sample_size * nrow(df))
+#     smp <- sample(seq_len(nrow(df)), size = smp_size)
+ 
+#     bge_score <- scoreparameters("bge", df[smp,])
+#   }
+  
+#   orderMAPfit <- orderMCMC(bge_score)
+#   dags_adj = dags_adj + orderMAPfit$DAG
+# }
+
+### Parallelized
+#setup parallel backend to use many processors
+cores=detectCores()
+cl <- makeCluster(cores[1]-1) #not to overload your computer
+registerDoParallel(cl)
+
+
+dags_adj <- foreach(i=1:nIter, .combine='+') %dopar% {
     smp_size <- floor(sample_size * nrow(df))
     smp <- sample(seq_len(nrow(df)), size = smp_size)
  
-    bge_score <- scoreparameters("bge", df[smp,])
-  }
-  
-  orderMAPfit <- orderMCMC(bge_score)
-  dags_adj = dags_adj + orderMAPfit$DAG
+    bge_score <- BiDAG::scoreparameters("bge", df[smp,])
+    orderMAPfit <- BiDAG::orderMCMC(bge_score)
+
+    orderMAPfit$DAG
 }
 
 dags_adj = dags_adj/nIter

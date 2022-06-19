@@ -122,9 +122,9 @@ def main():
         print("==="*30)
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=True)
         AUPRC['Mean AUPRC'] = AUPRC.mean(axis=1)
-        AUPRC['Mean AUROC'] = AUROC.mean(axis=1)
+        AUROC['Mean AUROC'] = AUROC.mean(axis=1)
         AUPRC['Std AUPRC'] = AUPRC.std(axis=1)
-        AUPRC['Std AUROC'] = AUROC.std(axis=1)
+        AUROC['Std AUROC'] = AUROC.std(axis=1)
 
         AUPRC.to_csv(outDir+'AUPRC_directed.csv')
         AUROC.to_csv(outDir+'AUROC_directed.csv')
@@ -137,9 +137,9 @@ def main():
         print("==="*30)
         AUPRC, AUROC = evalSummarizer.computeAUC(directed=False)
         AUPRC['Mean AUPRC'] = AUPRC.mean(axis=1)
-        AUPRC['Mean AUROC'] = AUROC.mean(axis=1)
+        AUROC['Mean AUROC'] = AUROC.mean(axis=1)
         AUPRC['Std AUPRC'] = AUPRC.std(axis=1)
-        AUPRC['Std AUROC'] = AUROC.std(axis=1)
+        AUROC['Std AUROC'] = AUROC.std(axis=1)
 
         AUPRC.to_csv(outDir+'AUPRC_undirected.csv')
         AUROC.to_csv(outDir+'AUROC_undirected.csv')
@@ -151,7 +151,7 @@ def main():
         print('Computing Jaccard index...')
         print("==="*30)
 
-        jaccDict = evalSummarizer.computeJaccard(undirected=False, across_methods=False)
+        jaccDict = evalSummarizer.computeJaccard(undirected=False)
         jaccDict.to_csv(outDir + "Jaccard_directed.csv")
 
 

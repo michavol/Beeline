@@ -92,9 +92,27 @@ input_settings:
               sample_size: [0.7]
 
 
-        - name: "GENIE3"
+        # - name: "GENIE3"
+        #   params: 
+        #       should_run: [True]
+
+
+        - name: "GENIE3_R"
           params: 
-              should_run: [False]
+              should_run: [True]
+
+              # Number of trees in an ensemble for each target gene. Default: 1000.
+              nTrees: [1000]
+
+              	
+              # Number of cores to use for parallel computing. Default: 1.
+              nCores: [8]
+
+              # Tree-based method used. Must be either "RF" for Random Forests (default) or "ET" for Extra-Trees.
+              treeMethod: [RF]
+
+              # Number of candidate regulators randomly selected at each tree node
+              K: [sqrt]
               
               
         - name: "GRNBOOST2"

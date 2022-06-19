@@ -45,15 +45,15 @@ input_settings:
         #   cellData: "PseudoTime.csv"
         #   trueEdges: "insilico_size10_5_goldstandard.tsv"
 
-        # - name: "size100_multifactorial/net1"
-        #   exprData: "insilico_size100_1_multifactorial.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_1_goldstandard.tsv"
+        - name: "size100_multifactorial/net1"
+          exprData: "insilico_size100_1_multifactorial.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size100_multifactorial_1_goldstandard.tsv"
 
-        # - name: "size100_multifactorial/net2"
-        #   exprData: "insilico_size100_2_multifactorial.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "insilico_size100_multifactorial_2_goldstandard.tsv"
+        - name: "size100_multifactorial/net2"
+          exprData: "insilico_size100_2_multifactorial.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "insilico_size100_multifactorial_2_goldstandard.tsv"
 
         - name: "size100_multifactorial/net3"
           exprData: "insilico_size100_3_multifactorial.tsv"  
@@ -187,9 +187,26 @@ input_settings:
               sample_size: [0.7]
 
 
-        - name: "GENIE3"
+        # - name: "GENIE3"
+        #   params: 
+        #       should_run: [True]
+
+
+        - name: "GENIE3_R"
           params: 
-              should_run: [False]
+              should_run: [True]
+
+              # Number of trees in an ensemble for each target gene. Default: 1000.
+              nTrees: [1000]
+
+              # Number of cores to use for parallel computing. Default: 1.
+              nCores: [8]
+
+              # Tree-based method used. Must be either "RF" for Random Forests (default) or "ET" for Extra-Trees.
+              treeMethod: [RF]
+
+              # Number of candidate regulators randomly selected at each tree node
+              K: [sqrt]
               
               
         - name: "GRNBOOST2"

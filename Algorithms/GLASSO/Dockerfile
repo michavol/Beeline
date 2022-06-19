@@ -13,6 +13,8 @@ WORKDIR /
 RUN R -e "install.packages('BiocManager')"
 RUN R -e "BiocManager::install('igraph')"
 RUN R -e "install.packages('glasso')"
+RUN R -e "install.packages('foreach')"
+RUN R -e "install.packages('doParallel')"
 
 COPY runGLASSO.R /
 

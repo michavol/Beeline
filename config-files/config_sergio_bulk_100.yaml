@@ -111,7 +111,7 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
               nIter: [10]
 
@@ -131,7 +131,7 @@ input_settings:
 
         - name: "PC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
               nIter: [50]
 
@@ -150,7 +150,7 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [False]
+              should_run: [True]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
@@ -164,9 +164,26 @@ input_settings:
               sample_size: [0.7]
 
 
-        - name: "GENIE3"
+        # - name: "GENIE3"
+        #   params: 
+        #       should_run: [True]
+
+
+        - name: "GENIE3_R"
           params: 
               should_run: [True]
+
+              # Number of trees in an ensemble for each target gene. Default: 1000.
+              nTrees: [1000]
+
+              # Number of cores to use for parallel computing. Default: 1.
+              nCores: [8]
+
+              # Tree-based method used. Must be either "RF" for Random Forests (default) or "ET" for Extra-Trees.
+              treeMethod: [RF]
+
+              # Number of candidate regulators randomly selected at each tree node
+              K: [sqrt]
               
               
         - name: "GRNBOOST2"
@@ -217,4 +234,4 @@ output_settings:
 
     # Base output directory
     output_dir: "outputs"
-    output_prefix: "SERGIO"
+    output_prefix: "SERGIO_BULK_100"
