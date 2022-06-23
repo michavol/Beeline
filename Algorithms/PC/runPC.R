@@ -19,43 +19,8 @@ sample_size = as.numeric(args[7])
 ### Load data
 df <- read.csv(inFile, header = TRUE, sep = "\t")
 
-
 ### Set seed
 set.seed(10023)
-
-### Unparallelized
-### Perform PC algorithm
-#dags_adj <- matrix(0, nrow=ncol(df), ncol=ncol(df))
-# for (i in 1:nIter) {
-#   smp_size <- floor(sample_size * nrow(df))
-#   smp <- sample(seq_len(nrow(df)), size = smp_size)
-#   df_smp <- df[smp,]
-
-#   # Compute sufficient statistics
-#   suffStat <- list(C = cor(df_smp), n = nrow(df_smp))
-
-#   # Run pc algorithm
-#   pc.fit <- pc(suffStat=suffStat,
-#                indepTest = gaussCItest,
-#                alpha=alpha,
-#                labels=colnames(df_smp),
-#                verbose=verbose)
-#                #u2pd = "retry")
-  
-#   if(partially_directed){
-#     # Generate edge weights for partially directed graph
-#     dag <- t(as(pc.fit, "matrix"))
-#     dags_adj = dags_adj + dag
-    
-#   }else{
-#     # Generate edge weights for directed graph
-#     pdag <- udag2pdag(pc.fit)
-#     dag_nel <- pdag2dag(pdag@graph)
-#     dag <- graph_from_graphnel(dag_nel$graph)
-#     dags_adj = dags_adj + as_adj(dag)
-#   }
-  
-# }
 
 ### Parallelized
 #setup parallel backend to use many processors
@@ -64,8 +29,8 @@ cl <- makeCluster(cores[1]-1) #not to overload your computer
 registerDoParallel(cl)
 
 dags_adj <- foreach(i = 1:nIter, .combine='+') %dopar% {
-  smp_size <- floor(sample_size * nrow(df))
-  smp <- sample(seq_len(nrow(df)), size = smp_size)
+  smp_size <- nrow(df)
+  smp <- sample(seq_len(nrow(df)), size = smp_size, replace = TRUE)
   df_smp <- df[smp,]
 
   # Compute sufficient statistics
@@ -77,11 +42,11 @@ dags_adj <- foreach(i = 1:nIter, .combine='+') %dopar% {
                alpha=alpha,
                labels=colnames(df_smp),
                verbose=verbose)
-               #u2pd = "retry")
   
   if(partially_directed){
     # Generate edge weights for partially directed graph
-    dag <- t(as(pc.fit, "matrix"))
+    pdag <- pcalg::udag2pdag(pc.fit)
+    dag <- igraph::graph_from_graphnel(pdag@graph)
     igraph::as_adj(dag)
     
   }else{
@@ -91,7 +56,6 @@ dags_adj <- foreach(i = 1:nIter, .combine='+') %dopar% {
     dag <- igraph::graph_from_graphnel(dag_nel$graph)
     igraph::as_adj(dag)
   }
-
 }
 
 ### Retrieve edge weights

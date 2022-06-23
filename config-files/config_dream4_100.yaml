@@ -138,18 +138,12 @@ input_settings:
               # Number of iterations for finding edge weights
               nIter: [10]
 
-              # Percentage of data for each iteration
-              sample_size: [0.7]
-
 
         - name: "PARTITION_MCMC" #This algorithm is very slow for larger datasets (4h for 100x100 matrix of gene expression data)
           params: 
               should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [3]
-
-              # Percentage of data for each iteration
-              sample_size: [0.7]
 
 
         - name: "PC"
@@ -159,16 +153,13 @@ input_settings:
               nIter: [100]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
-              partially_directed: [0]
+              partially_directed: [1]
 
               # Conditional testing threshold
               alpha: [0.01]
 
               # Verbosity of pc.fit function
               verbose: [0]
-
-              # Percentage of data for each iteration
-              sample_size: [0.7]
 
 
         - name: "GLASSO"
@@ -180,11 +171,6 @@ input_settings:
               # rho value for final glasso
               rho2: [0.002]
 
-              # nIter for bootstrapping
-              nIter: [100]
-
-              # sample_size (in percent) for bootstrapping
-              sample_size: [0.7]
 
 
         # - name: "GENIE3"
@@ -219,7 +205,7 @@ input_settings:
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [0.5]
+              pVal: [0.05]
 
         - name: "GENENET"
           params: 
@@ -228,7 +214,7 @@ input_settings:
               num_edges: [300]
 
               # Directed or undirected
-              directed: [0]
+              directed: [1]
 
               # Verbosity
               verbose: [0]

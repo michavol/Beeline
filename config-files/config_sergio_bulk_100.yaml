@@ -111,12 +111,9 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [10]
-
-              # Percentage of data for each iteration
-              sample_size: [0.7]
 
 
         - name: "PARTITION_MCMC" #This algorithm is very slow for larger datasets (4h for 100x100 matrix of gene expression data)
@@ -125,27 +122,21 @@ input_settings:
               # Number of iterations for finding edge weights
               nIter: [3]
 
-              # Percentage of data for each iteration
-              sample_size: [0.7]
-
 
         - name: "PC"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [50]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
-              partially_directed: [0]
+              partially_directed: [1]
 
               # Conditional testing threshold
               alpha: [0.01]
 
               # Verbosity of pc.fit function
               verbose: [0]
-
-              # Percentage of data for each iteration
-              sample_size: [0.7]
 
 
         - name: "GLASSO"
@@ -157,12 +148,6 @@ input_settings:
               # rho value for final glasso
               rho2: [0.002]
 
-              # nIter for bootstrapping
-              nIter: [50]
-
-              # sample_size (in percent) for bootstrapping
-              sample_size: [0.7]
-
 
         # - name: "GENIE3"
         #   params: 
@@ -171,7 +156,7 @@ input_settings:
 
         - name: "GENIE3_R"
           params: 
-              should_run: [True]
+              should_run: [False]
 
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
@@ -188,31 +173,31 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
         - name: "PPCOR"
           params: 
-              should_run: [True]
+              should_run: [False]
               # p-value True
               # Used in parsing output
               pVal: [1.0e-04]
 
         - name: "GENENET"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of strongest edges that will be chosen
               num_edges: [300]
 
               # Directed or undirected
-              directed: [0]
+              directed: [1]
 
               # Verbosity
               verbose: [0]
 
         - name: "ARACNE"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Epsilon - see documentation
               eps: [0]
 

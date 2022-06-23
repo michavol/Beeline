@@ -15,55 +15,34 @@ sample_size <- as.numeric(args[4])
 df <- read.csv(inFile, header = TRUE, sep = "\t")
 nrows <- NROW(df)
 
-if (nrows == 1)
-{
-  df <- df[rep(seq_len(nrow(df)), each = 3), ]
-}
-
 ### Load library and initialize parameters
 bge_score <- scoreparameters("bge", df)
 
+### Set seed
 set.seed(2022)
 
-### Not Parallelized
-### Learn Bayesian network using MCMC and get edge weights by bootstrapping
-# dags_adj <- matrix(0, nrow=ncol(df), ncol=ncol(df))
-#nIter = 10
-
-# for (i in 1:nIter) {
-#   if (nrows == 1)
-#   {
-#     bge_score <- scoreparameters("bge", df)
-#   }
-#   else
-#   {
-#     smp_size <- floor(sample_size * nrow(df))
-#     smp <- sample(seq_len(nrow(df)), size = smp_size)
- 
-#     bge_score <- scoreparameters("bge", df[smp,])
-#   }
-  
-#   orderMAPfit <- orderMCMC(bge_score)
-#   dags_adj = dags_adj + orderMAPfit$DAG
-# }
-
-### Parallelized
+### Run orderMCMC in parallel
 #setup parallel backend to use many processors
 cores=detectCores()
 cl <- makeCluster(cores[1]-1) #not to overload your computer
 registerDoParallel(cl)
 
-
 dags_adj <- foreach(i=1:nIter, .combine='+') %dopar% {
-    smp_size <- floor(sample_size * nrow(df))
-    smp <- sample(seq_len(nrow(df)), size = smp_size)
+    # Get sample size
+    smp_size <- nrow(df)
+    
+    # Sample with replacement
+    smp <- sample(seq_len(nrow(df)), size = smp_size, replace = T)
  
+    # Retrieve DAG
     bge_score <- BiDAG::scoreparameters("bge", df[smp,])
-    orderMAPfit <- BiDAG::orderMCMC(bge_score)
+    orderMAPfit <- BiDAG::orderMCMC(bge_score, 
+                                    chainout = FALSE, 
+                                    cpdag = TRUE)
 
     orderMAPfit$DAG
 }
-
+# Average over DAG
 dags_adj = dags_adj/nIter
 
 

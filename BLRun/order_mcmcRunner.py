@@ -38,11 +38,10 @@ def run(RunnerObj):
     os.makedirs(outDir, exist_ok = True)
     
     nIter = RunnerObj.params['nIter']
-    sample_size = RunnerObj.params['sample_size']
 
     outPath = "data/" +  str(outDir) + 'outFile.txt'
     cmdToRun = ' '.join(['docker run --rm -v', str(Path.cwd())+':/data/ '+ USER + '/' + ALGORITHM_LOWER + ':base /bin/sh -c \"time -v -o', "data/" + str(outDir) + 'time.txt', 'Rscript run' + ALGORITHM_UPPER + '.R',
-                         inputPath, outPath, str(nIter), str(sample_size), '\"'])
+                         inputPath, outPath, str(nIter), '\"'])
     print(cmdToRun)
     os.system(cmdToRun)
 

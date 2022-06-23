@@ -11,13 +11,13 @@ USER=18881888
 # docker build -t $USER/arboreto:base .
 # echo "Docker container for ARBORETO is built and tagged as arboreto:base\n"
 
-# cd $BASEDIR/Algorithms/ORDER_MCMC/
-# docker build -t $USER/order_mcmc:base .
-# echo "Docker container for ORDER_MCMC is built and tagged as order_mcmc:base\n"
+cd $BASEDIR/Algorithms/ORDER_MCMC/
+docker build -t $USER/order_mcmc:base .
+echo "Docker container for ORDER_MCMC is built and tagged as order_mcmc:base\n"
 
-# cd $BASEDIR/Algorithms/PARTITION_MCMC/
-# docker build -t $USER/partition_mcmc:base .
-# echo "Docker container for PARTITION_MCMC is built and tagged as partition_mcmc:base\n"
+cd $BASEDIR/Algorithms/PARTITION_MCMC/
+docker build -t $USER/partition_mcmc:base .
+echo "Docker container for PARTITION_MCMC is built and tagged as partition_mcmc:base\n"
 
 cd $BASEDIR/Algorithms/PC/
 docker build -t $USER/pc:base .

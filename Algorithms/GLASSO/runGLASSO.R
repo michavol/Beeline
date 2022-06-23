@@ -10,8 +10,6 @@ inFile <- args[1]
 outFile <- args[2]
 rho1 <- as.numeric(args[3])
 rho2 <- as.numeric(args[4])
-nIter <- as.numeric(args[5])
-sample_size <- as.numeric(args[6])
 
 ### Load data
 df <- read.csv(inFile, header = TRUE, sep = "\t")
@@ -19,41 +17,25 @@ df <- read.csv(inFile, header = TRUE, sep = "\t")
 ### Set seed
 set.seed(2022)
 
+### Apply glasso
+variance.matrix <- var(df)
+glasso.result <- glasso::glasso(variance.matrix, 
+                                rho=rho1)
+glasso.result.precond <- glasso::glasso(variance.matrix, 
+                                        rho=rho2, 
+                                        w.init=glasso.result$w, 
+                                        wi.init=glasso.result$wi, start='warm')
+precision.matrix <- glasso.result.precond$wi
 
-## Parallelized
-#setup parallel backend to use many processors
-cores=detectCores()
-cl <- makeCluster(cores[1]-1) #not to overload your computer
-registerDoParallel(cl)
-
-
-precision.matrix.boots <- foreach(i=1:nIter, .combine='+') %dopar% {
-  smp_size <- floor(sample_size * nrow(df))
-  smp_ind <- sample(seq_len(nrow(df)), size = smp_size)
-  smp <- df[smp_ind,]
-  
-  variance.matrix <- var(smp)
-  glasso.result <- glasso::glasso(variance.matrix, rho=rho1)
-  glasso.result.precond <- glasso::glasso(variance.matrix, rho=rho2, w.init=glasso.result$w, wi.init=glasso.result$wi, start='warm')
-  precision.matrix <- glasso.result.precond$wi
- 
-  precision.matrix
-}
-
-# Normalize over bootstraps
-precision.matrix.boots = precision.matrix.boots/nIter
-
+### Create undirected graph
 # Remove self-cycles and represent undirected with only one edge per pair
-precision.matrix.boots[lower.tri(precision.matrix.boots, diag=TRUE)] <- 0
-  
-# Remove self-cycles and represent undirected with only one edge per pair
-precision.matrix.boots[lower.tri(precision.matrix.boots, diag=TRUE)] <- 0
+precision.matrix[lower.tri(precision.matrix, diag=TRUE)] <- 0
 
 # Update gene names
-rownames(precision.matrix.boots) <- colnames(precision.matrix.boots) <- colnames(df)
+rownames(precision.matrix) <- colnames(precision.matrix) <- colnames(df)
 
 # Extract edge list from results
-uag_edge_list <- graph.adjacency(precision.matrix.boots, weighted=TRUE)
+uag_edge_list <- graph.adjacency(precision.matrix, weighted=TRUE)
 uag_edge_list <- get.data.frame(uag_edge_list)
 colnames(uag_edge_list) <- c("Gene1", "Gene2", "EdgeWeight")
 
