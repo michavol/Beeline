@@ -113,7 +113,7 @@ input_settings:
           params: 
               should_run: [False]
               # Number of iterations for finding edge weights
-              nIter: [9]
+              nIter: [10]
 
 
         - name: "PARTITION_MCMC" #This algorithm is very slow for larger datasets (4h for 100x100 matrix of gene expression data)
