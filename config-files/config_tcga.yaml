@@ -69,7 +69,7 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [False]
+              should_run: [True]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
@@ -89,7 +89,6 @@ input_settings:
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
 
-              	
               # Number of cores to use for parallel computing. Default: 1.
               nCores: [8]
 

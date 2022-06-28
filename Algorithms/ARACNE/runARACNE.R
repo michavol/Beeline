@@ -32,5 +32,9 @@ uag_edge_list <- subset(uag_edge_list, Gene1 != Gene2)
 # Order by edge weight
 uag_edge_list <- uag_edge_list[order(-abs(uag_edge_list$EdgeWeight)), ]
 
+# Store as undirected graph
+Nth.delete<-function(dataframe, n)dataframe[-(seq(n,to=nrow(dataframe),by=n)),]
+uag_edge_list <- Nth.delete(uag_edge_list,2)
+
 # Save results
 write.table(uag_edge_list, file=outFile, sep = "\t", row.names = FALSE)
