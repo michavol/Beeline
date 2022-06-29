@@ -53,9 +53,9 @@ input_settings:
 
         - name: "PC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
-              nIter: [500]
+              nIter: [10]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
               partially_directed: [1]
@@ -101,19 +101,19 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "PPCOR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [0.5]
 
         - name: "GENENET"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of strongest edges that will be chosen
               num_edges: [50000]
 
