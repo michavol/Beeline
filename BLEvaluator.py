@@ -168,7 +168,7 @@ def main():
     # Compute directed Jaccard index across methods 
     if (opts.jaccard_methods):
         print("==="*30)
-        print('Computing Jaccard index...')
+        print('Computing directed Jaccard index across methods...')
         print("==="*30)
 
         jaccDict = evalSummarizer.computeMethodsJaccard(undirected=False)
@@ -193,7 +193,7 @@ def main():
     # Compute undirected Jaccard index across methods 
     if (opts.jaccard_methods_undirected):
         print("==="*30)
-        print('Computing Jaccard index...')
+        print('Computing undirected Jaccard index across methods...')
         print("==="*30)
 
         jaccDict = evalSummarizer.computeMethodsJaccard(undirected=True)
@@ -208,7 +208,7 @@ def main():
         jaccDictSplit.columns = ["Algo1","Algo2","Jaccard"]
 
         jaccMat = jaccDictSplit.pivot(index='Algo1', columns='Algo2', values='Jaccard')
-        triu = np.triu(np.ones_like(jaccMat), k=-1)
+        triu = np.triu(np.ones_like(jaccMat), k=1)
 
         fig, ax = plt.subplots(figsize=(12, 12))
         sns.heatmap(jaccMat, annot=True, mask=triu, linewidths=.3)

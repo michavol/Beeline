@@ -12,6 +12,9 @@ from itertools import product, permutations
 from multiprocessing import Pool, cpu_count
 from networkx.convert_matrix import from_pandas_adjacency
 
+from BLEval.convertData import make_directed
+from BLEval.convertData import make_undirected
+
 def EarlyPrec(evalObject, algorithmName, TFEdges = False, undirected=False):
     '''
     Computes early precision for a given algorithm for each dataset.
@@ -75,6 +78,12 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False, undirected=False):
         predDF = predDF.loc[(predDF['Gene1'] != predDF['Gene2'])]
         predDF.drop_duplicates(keep = 'first', inplace=True)
         predDF.reset_index(drop=True, inplace=True)
+
+        # Convert edgelist type if necessary
+        if (undirected == True):
+            predDF = make_undirected(predDF)
+        elif (algorithmName in ["GLASSO", "PPCOR", "GENENET", "ARACNE", "CORR"]):
+            predDF = make_directed(predDF)
         
         
         if TFEdges:

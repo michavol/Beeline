@@ -3,6 +3,8 @@ import pandas as pd
 from pathlib import Path
 import numpy as np
 
+from BLRun.convertData import make_undirected
+
 def generateInputs(RunnerObj):
     '''
     Function to generate desired inputs for CORR.

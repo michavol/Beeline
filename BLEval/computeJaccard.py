@@ -12,6 +12,9 @@ from collections import defaultdict
 from multiprocessing import Pool, cpu_count
 from networkx.convert_matrix import from_pandas_adjacency
 
+from BLEval.convertData import make_directed
+from BLEval.convertData import make_undirected
+
 def Jaccard(evalObject, algorithmName, undirected=False):
     """
     A function to compute median pairwirse Jaccard similarity index
@@ -99,7 +102,12 @@ def Jaccard(evalObject, algorithmName, undirected=False):
         # if so, it is just set to an empty set
 
         if not predDF.shape[0] == 0:
-
+             # Convert edgelist type if necessary
+            if (undirected == True):
+                predDF = make_undirected(predDF)
+            elif (algorithmName in ["GLASSO", "PPCOR", "GENENET", "ARACNE", "CORR"]):
+                predDF = make_directed(predDF)
+        
             # we want to ensure that we do not include
             # edges without any edge weight
             # so check if the non-zero minimum is

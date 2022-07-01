@@ -12,6 +12,10 @@ from collections import defaultdict
 from multiprocessing import Pool, cpu_count
 from networkx.convert_matrix import from_pandas_adjacency
 
+from BLEval.convertData import make_directed
+from BLEval.convertData import make_undirected
+from BLEval.convertData import swap
+
 def MethodsJaccard(dataDict, inputSettings, undirected = False):
     """
     A function to compute median pairwirse Jaccard similarity index
@@ -51,14 +55,6 @@ def MethodsJaccard(dataDict, inputSettings, undirected = False):
     ### Set-up outDir that stores output directory name
     outDir = "outputs/"+str(inputSettings.datadir).split("inputs/")[1]+ '/' +dataDict['name']
     
-    ### Define swap function for undirected jaccard index
-    def swap(genes):
-        if int(genes[0][1:]) < int(genes[1][1:]):
-            return [genes[0],genes[1]]
-        else:
-            return [genes[1],genes[0]]
-
-
     
     for algo1_index, algo1 in enumerate(inputSettings.algorithms):
      
@@ -68,13 +64,17 @@ def MethodsJaccard(dataDict, inputSettings, undirected = False):
             predDF1 = pd.read_csv(outDir + '/' +algo1[0]+'/rankedEdges.csv', \
                                         sep = '\t', header =  0, index_col = None)
             
+            # Convert edgelist type if necessary & order gene names for undirected jaccard
+            if (undirected == True):
+                predDF1 = make_undirected(predDF1)
+            elif (algo1[0] in ["GLASSO", "PPCOR", "GENENET", "ARACNE", "CORR"]):
+                predDF1 = make_directed(predDF1)
+
+
             # Extract first k-edges
-            if (len(predDF1 > numEdges)):
+            if (len(predDF1) > numEdges):
                 predDF1 = predDF1.iloc[:numEdges,:]
 
-            # Order gene names if undirected
-            if (undirected == True):
-                predDF1.loc[:,["Gene1","Gene2"]] = predDF1.loc[:,["Gene1","Gene2"]].apply(swap,1,result_type='broadcast')
 
             # Define set of edges
             if (len(predDF1) > 0):
@@ -95,13 +95,16 @@ def MethodsJaccard(dataDict, inputSettings, undirected = False):
                     predDF2 = pd.read_csv(outDir + '/' +algo2[0]+'/rankedEdges.csv', \
                                                 sep = '\t', header =  0, index_col = None)
 
-                    # Extract first k-edges
-                    if (len(predDF2 > numEdges)):
-                        predDF2 = predDF2.iloc[:numEdges,:]
-
-                    # Order gene names if undirected
+                
+                    # Convert edgelist type if necessary & order gene names for undirected jaccard
                     if (undirected == True):
-                        predDF2.loc[:,["Gene1","Gene2"]] = predDF2.loc[:,["Gene1","Gene2"]].apply(swap,1,result_type='broadcast')
+                        predDF2 = make_undirected(predDF2)
+                    elif (algo2[0] in ["GLASSO", "PPCOR", "GENENET", "ARACNE", "CORR"]):
+                        predDF2 = make_directed(predDF2)
+
+                    # Extract first k-edges
+                    if (len(predDF2) > numEdges):
+                        predDF2 = predDF2.iloc[:numEdges,:]
 
                     # Define set of edges
                     if (len(predDF2) > 0):

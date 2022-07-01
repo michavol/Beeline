@@ -134,13 +134,13 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
               nIter: [10]
 
         - name: "PARTITION_MCMC" #This algorithm is very slow for larger datasets (4h for 100x100 matrix of gene expression data)
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
               nIter: [3]
 
@@ -150,7 +150,7 @@ input_settings:
 
         - name: "PC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
               nIter: [100]
 
@@ -166,7 +166,7 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [False]
+              should_run: [True]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
@@ -182,7 +182,7 @@ input_settings:
 
         - name: "GENIE3_R"
           params: 
-              should_run: [False]
+              should_run: [True]
 
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
@@ -199,19 +199,19 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "PPCOR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [0.5]
 
         - name: "GENENET"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of strongest edges that will be chosen
               num_edges: [30]
 
@@ -229,7 +229,7 @@ input_settings:
 
         - name: "CORR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [0.5]

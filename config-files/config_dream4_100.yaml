@@ -205,7 +205,7 @@ input_settings:
               should_run: [False]
               # p-value True
               # Used in parsing output
-              pVal: [0.1]
+              pVal: [0.5]
 
         - name: "GENENET"
           params: 

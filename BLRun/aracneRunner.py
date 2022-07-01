@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from pathlib import Path
 
+from BLRun.convertData import make_undirected
 
 ALGORITHM_UPPER = "ARACNE"
 ALGORITHM_LOWER = "aracne"
@@ -61,6 +62,8 @@ def parseOutput(RunnerObj):
         
     # Read output
     OutDF = pd.read_csv(outDir+'outFile.txt', sep = '\t')
+
+    OutDF = make_undirected(OutDF)
 
     # Store as it is in the right format already
     OutDF.to_csv(outDir + 'rankedEdges.csv', sep = '\t', index=False)

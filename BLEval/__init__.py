@@ -426,3 +426,4 @@ class ConfigParser(object):
 
         return OutputSettings(output_dir,
                              output_prefix)
+
