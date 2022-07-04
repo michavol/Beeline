@@ -1,4 +1,5 @@
 #!/bin/bash
+#./initialize.sh
 cd ..
 
 echo "Running config_tcga"
@@ -14,20 +15,21 @@ echo "Running config_tcga"
 #python BLEvaluator.py --config config-files/config_dream4_100.yaml -a -u #-j -n -z -y -t -e -x
 
 # echo "Running config_sergio_bulk_100\n"
-python BLRunner.py --config config-files/config_sergio_bulk_100.yaml
+# python BLRunner.py --config config-files/config_sergio_bulk_100.yaml
 
 
 # echo "Running config_sergio_400\n"
 # python BLRunner.py --config config-files/config_sergio_400.yaml
-
-# echo "Running config_sergio_100\n"
-# python BLRunner.py --config config-files/config_sergio_100.yaml
+python BLEvaluator.py --config config-files/config_dream4_100.yaml -a -u -j -n -z -y -t -e -x
 
 # echo "Running config_sergio_bulk_400\n"
-# python BLRunner.py --config config-files/config_sergio_bulk_400.yaml
+python BLRunner.py --config config-files/config_sergio_bulk_400.yaml
 
 #echo "Running config_sergio_1200\n"
 # python BLRunner.py --config config-files/config_sergio_1200.yaml
 
-#echo "Running config_sergio_bulk_1200\n"
-# python BLRunner.py --config config-files/config_sergio_bulk_1200.yaml
+# echo "Running config_sergio_bulk_1200\n"
+python BLRunner.py --config config-files/config_sergio_bulk_1200.yaml
+
+# echo "Running config_sergio_100\n"
+# python BLRunner.py --config config-files/config_sergio_100.yaml

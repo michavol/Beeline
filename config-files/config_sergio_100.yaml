@@ -142,7 +142,7 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [False]
+              should_run: [True]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
@@ -179,14 +179,14 @@ input_settings:
               
         - name: "PPCOR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [1.0e-04]
 
         - name: "GENENET"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of strongest edges that will be chosen
               num_edges: [300]
 

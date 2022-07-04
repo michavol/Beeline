@@ -120,7 +120,13 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
         plt.ylim(0,1)
         plt.xlabel('Recall')
         plt.ylabel('Precision')
-        plt.legend(legendList) 
+        
+        if(directed == 1):
+            plt.title('Directed PR Curve')
+        else:
+            plt.title('Undirected PR Curve')
+
+        plt.legend(legendList, fontsize=8) 
         plt.savefig(outDir+PRName+'.pdf')
         plt.savefig(outDir+PRName+'.png')
         plt.clf()
@@ -137,7 +143,13 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
         plt.ylim(0,1)
         plt.xlabel('FPR')
         plt.ylabel('TPR')
-        plt.legend(legendList) 
+        
+        if(directed == 1):
+            plt.title('Directed ROC Curve')
+        else:
+            plt.title('Undirected ROC Curve')
+        
+        plt.legend(legendList, fontsize=8) 
         plt.savefig(outDir+ROCName+'.pdf')
         plt.savefig(outDir+ROCName+'.png')
         plt.clf()

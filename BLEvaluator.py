@@ -185,8 +185,11 @@ def main():
         jaccMat = jaccDictSplit.pivot(index='Algo1', columns='Algo2', values='Jaccard')
         triu = np.triu(np.ones_like(jaccMat), k=1)
 
-        fig, ax = plt.subplots(figsize=(12, 12))
-        sns.heatmap(jaccMat, annot=True, mask=triu, linewidths=.3)
+        fig, ax = plt.subplots(figsize=(12,12))
+        sns.heatmap(jaccMat, ax=ax, annot=True, mask=triu, linewidths=.3, cbar = False)
+        ax.set_xticklabels(ax.get_xticklabels(), rotation=40, horizontalalignment='right')
+        ax.set_ylabel('')    
+        ax.set_xlabel('')
         fig.savefig(outDir + "Jaccard_methods_directed_heatmap.png")
 
 
@@ -210,8 +213,11 @@ def main():
         jaccMat = jaccDictSplit.pivot(index='Algo1', columns='Algo2', values='Jaccard')
         triu = np.triu(np.ones_like(jaccMat), k=1)
 
-        fig, ax = plt.subplots(figsize=(12, 12))
-        sns.heatmap(jaccMat, annot=True, mask=triu, linewidths=.3)
+        fig, ax = plt.subplots(figsize=(12,12))
+        sns.heatmap(jaccMat, ax=ax, annot=True, mask=triu, linewidths=.3, cbar = False)
+        ax.set_xticklabels(ax.get_xticklabels(), rotation=40, horizontalalignment='right')
+        ax.set_ylabel('')    
+        ax.set_xlabel('')
         fig.savefig(outDir + "Jaccard_methods_undirected_heatmap.png")
 
         

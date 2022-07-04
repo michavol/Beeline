@@ -111,29 +111,29 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
-              nIter: [10]
+              nIter: [50]
 
 
-        - name: "PARTITION_MCMC" #This algorithm is very slow for larger datasets (4h for 100x100 matrix of gene expression data)
-          params: 
-              should_run: [False]
-              # Number of iterations for finding edge weights
-              nIter: [3]
+        # - name: "PARTITION_MCMC" #This algorithm is very slow for larger datasets (4h for 100x100 matrix of gene expression data)
+        #   params: 
+        #       should_run: [False]
+        #       # Number of iterations for finding edge weights
+        #       nIter: [3]
 
 
         - name: "PC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
-              nIter: [500]
+              nIter: [50]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
               partially_directed: [1]
 
               # Conditional testing threshold
-              alpha: [0.01]
+              alpha: [0.05]
 
               # Verbosity of pc.fit function
               verbose: [0]
@@ -173,12 +173,12 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "PPCOR"
           params: 
-              should_run: [True]
+              should_run: [False]
               # p-value True
               # Used in parsing output
               pVal: [4.88440092439776e-07]
@@ -206,7 +206,7 @@ input_settings:
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [1.0e-04]
+              pVal: [0.15]
             
       # - name: "PIDC"
       #   params: 
