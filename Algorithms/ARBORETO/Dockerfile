@@ -1,4 +1,3 @@
-
 FROM continuumio/anaconda3:2018.12
 
 LABEL Maintainer="Aditya Pratapa <adyprat@vt.edu>"

@@ -25,7 +25,7 @@ def make_undirected(dataset):
         return dataset
     
     # Sum edge scores for duplicates
-    duplicate_sums = duplicates.groupby(np.arange(len(duplicates))//2).sum()
+    duplicate_sums = duplicates.groupby(np.arange(len(duplicates))//2).mean()
     result = duplicates.iloc[1::2,:].copy().reset_index(drop=True)
 
     # Create final table
@@ -53,6 +53,6 @@ def make_directed(dataset):
     temp = swap_columns(dataset, "Gene1", "Gene2")
     temp.columns = ["Gene1","Gene2","EdgeWeight"]
     result = pd.concat([dataset, temp], ignore_index=True).sort_values(by="EdgeWeight", ascending=False)
-    result.loc[:,["EdgeWeight"]] /= 2
+    #result.loc[:,["EdgeWeight"]] /= 2
 
     return result.reset_index(drop=True)

@@ -111,7 +111,7 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [100]
 
@@ -127,7 +127,7 @@ input_settings:
           params: 
               should_run: [True]
               # Number of iterations for finding edge weights
-              nIter: [100]
+              nIter: [50]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
               partially_directed: [1]

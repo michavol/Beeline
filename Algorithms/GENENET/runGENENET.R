@@ -6,27 +6,31 @@ suppressMessages(library(graph))
 args <- commandArgs(trailingOnly = T)
 inFile <- args[1]
 outFile <- args[2]
-num_edges = as.numeric(args[3])
-directed = as.numeric(args[4])
-verbose = as.numeric(args[5])
+num_edges <- as.numeric(args[3])
+directed <- as.numeric(args[4])
+verbose <- as.numeric(args[5])
 
 # Load data
 df <- read.csv(inFile, header = TRUE, sep = "\t")
 
 # Infer Model
-pcor.dyn = ggm.estimate.pcor(as.matrix(df), method = "dynamic", verbose = verbose)
-arth.edges = network.test.edges(pcor.dyn,direct=directed, verbose = verbose)
-#dim(arth.edges)
+pcor.dyn <- ggm.estimate.pcor(as.matrix(df), method = "dynamic", verbose = verbose)
+arth.edges <- network.test.edges(pcor.dyn,direct=directed, verbose = verbose)
+
+# Select for all edges if num_edges is set to zero
+if (num_edges == 0){
+  num_edges <- dim(arth.edges)[1]
+}
 
 # We use the strongest edges:
-arth.net = extract.network(arth.edges, method.ggm="number", cutoff.ggm=num_edges, verbose=verbose)
+arth.net <- extract.network(arth.edges, method.ggm="number", cutoff.ggm=num_edges, verbose=verbose)
 
 # Construct Graph
-node.labels = colnames(df)
-gr = network.make.graph(arth.net, node.labels, drop.singles=TRUE) 
+node.labels <- colnames(df)
+gr <- network.make.graph(arth.net, node.labels, drop.singles=TRUE) 
 
 # Set edge attributes:
-edi = edge.info(gr) # edge directions and correlations
+edi <- edge.info(gr) # edge directions and correlations
 edge_weights <- as.matrix(edi$weight)
 
 

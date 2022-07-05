@@ -67,7 +67,7 @@ def parseOutput(RunnerObj):
     outFile.write('Gene1'+'\t'+'Gene2'+'\t'+'EdgeWeight'+'\n')
 
     for idx, row in part1.sort_values('absCorVal', ascending = False).iterrows():
-        outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(row['corVal'])])+'\n')
+        outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(abs(row['corVal']))])+'\n')
     
     for idx, row in part2.iterrows():
         outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(0)])+'\n')

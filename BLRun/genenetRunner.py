@@ -64,5 +64,8 @@ def parseOutput(RunnerObj):
     # Read output
     OutDF = pd.read_csv(outDir+'outFile.txt', sep = '\t')
 
+    # Make edgeweights positive
+    OutDF["EdgeWeight"] = OutDF["EdgeWeight"].abs()
+
     # Store as it is in the right format already
     OutDF.to_csv(outDir + 'rankedEdges.csv', sep = '\t', index=False)
