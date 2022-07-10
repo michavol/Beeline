@@ -134,7 +134,7 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
               nIter: [50]
 
@@ -146,7 +146,7 @@ input_settings:
 
         - name: "PC"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of iterations for finding edge weights
               nIter: [50]
 
@@ -178,13 +178,13 @@ input_settings:
 
         - name: "GENIE3_R"
           params: 
-              should_run: [False]
+              should_run: [True]
 
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
 
               # Number of cores to use for parallel computing. Default: 1.
-              nCores: [8]
+              nCores: [14]
 
               # Tree-based method used. Must be either "RF" for Random Forests (default) or "ET" for Extra-Trees.
               treeMethod: [RF]
@@ -195,19 +195,19 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "PPCOR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [1]
 
         - name: "GENENET"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of strongest edges that will be chosen
               num_edges: [0]
 
@@ -219,13 +219,13 @@ input_settings:
 
         - name: "ARACNE"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Epsilon - see documentation
               eps: [0.2]
 
         - name: "CORR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [1]

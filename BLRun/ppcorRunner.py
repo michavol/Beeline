@@ -57,19 +57,36 @@ def parseOutput(RunnerObj):
         
     # Read output
     OutDF = pd.read_csv(outDir+'outFile.txt', sep = '\t', header = 0)
-    # edges with significant p-value
-    part1 = OutDF.loc[OutDF['pValue'] <= float(RunnerObj.params['pVal'])]
-    part1 = part1.assign(absCorVal = part1['corVal'].abs())
-    # edges without significant p-value
-    part2 = OutDF.loc[OutDF['pValue'] > float(RunnerObj.params['pVal'])]
-    
-    outFile = open(outDir + 'rankedEdges.csv','w')
-    outFile.write('Gene1'+'\t'+'Gene2'+'\t'+'EdgeWeight'+'\n')
 
-    for idx, row in part1.sort_values('absCorVal', ascending = False).iterrows():
-        outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(abs(row['corVal']))])+'\n')
-    
-    for idx, row in part2.iterrows():
-        outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(0)])+'\n')
-    outFile.close()
+    if (RunnerObj.params['pVal'] != 1):
+    # edges with significant p-value
+        part1 = OutDF.loc[OutDF['pValue'] <= float(RunnerObj.params['pVal'])]
+        part1 = part1.assign(absCorVal = part1['corVal'].abs())
+        # edges without significant p-value
+        
+        
+        part2 = OutDF.loc[OutDF['pValue'] > float(RunnerObj.params['pVal'])]
+        
+        outFile = open(outDir + 'rankedEdges.csv','w')
+        outFile.write('Gene1'+'\t'+'Gene2'+'\t'+'EdgeWeight'+'\n')
+
+        for idx, row in part1.sort_values('absCorVal', ascending = False).iterrows():
+            outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(abs(row['corVal']))])+'\n')
+        
+        for idx, row in part2.iterrows():
+            outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(0)])+'\n')
+        outFile.close()
+
+    else:
+        part1 = OutDF
+        part1 = part1.assign(absCorVal = part1['corVal'].abs())
+        
+        
+        outFile = open(outDir + 'rankedEdges.csv','w')
+        outFile.write('Gene1'+'\t'+'Gene2'+'\t'+'EdgeWeight'+'\n')
+
+        for idx, row in part1.sort_values('absCorVal', ascending = False).iterrows():
+            outFile.write('\t'.join([str(row['Gene1']),str(row['Gene2']),str(abs(row['corVal']))])+'\n')
+        
+        outFile.close()
     

@@ -14,7 +14,7 @@ verbose <- as.numeric(args[5])
 df <- read.csv(inFile, header = TRUE, sep = "\t")
 
 # Infer Model
-pcor.dyn <- ggm.estimate.pcor(as.matrix(df), method = "dynamic", verbose = verbose)
+pcor.dyn <- ggm.estimate.pcor(as.matrix(df), method = "static", verbose = verbose)
 arth.edges <- network.test.edges(pcor.dyn,direct=directed, verbose = verbose)
 
 # Select for all edges if num_edges is set to zero
