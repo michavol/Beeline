@@ -147,7 +147,45 @@ class BLEval(object):
         #                     total = len(self.input_settings.datasets), unit = " Datasets"):
         for dataset in self.input_settings.datasets:
                 
-            timevals  = getTime(self, dataset)
+            timevals  = getTime(self, dataset, measurement="User")
+            TimeDict[dataset["name"]] = timevals
+
+        return TimeDict
+
+    def parseTimeElapsed(self):
+        """
+        Parse time output for each
+        algorithm-dataset combination.
+        
+        :returns:
+            A dictionary of times for all dataset-algorithm combinations
+        """
+        TimeDict = dict()
+
+        # for dataset in tqdm(self.input_settings.datasets, 
+        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
+        for dataset in self.input_settings.datasets:
+                
+            timevals  = getTime(self, dataset, measurement="Elapsed")
+            TimeDict[dataset["name"]] = timevals
+
+        return TimeDict
+
+    def parseTimeCpuPercentage(self):
+        """
+        Parse time output for each
+        algorithm-dataset combination.
+        
+        :returns:
+            A dictionary of times for all dataset-algorithm combinations
+        """
+        TimeDict = dict()
+
+        # for dataset in tqdm(self.input_settings.datasets, 
+        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
+        for dataset in self.input_settings.datasets:
+                
+            timevals  = getTime(self, dataset, measurement="CpuPercentage")
             TimeDict[dataset["name"]] = timevals
 
         return TimeDict

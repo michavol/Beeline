@@ -12,7 +12,7 @@ from collections import defaultdict
 from multiprocessing import Pool, cpu_count
 from networkx.convert_matrix import from_pandas_adjacency
 
-def getTime(evalObject, dataset):
+def getTime(evalObject, dataset, measurement):
     """
     Return time taken for each of the algorithms
     in the evalObject on the dataset specified.
@@ -56,8 +56,9 @@ def getTime(evalObject, dataset):
             # If so, parse the time.txt file
             # to obtain CPU time taken to run the
             # GRN algorithm on the given dataset
-            time = parse_time_files(path)
-        #else:
+            time = parse_time_files(path, measurement)
+        else:
+            time = -1
             # If the algorithm was run on each
             # trajectory in the dataset separately, there
             # will be multiple time files, namely, 
@@ -109,7 +110,16 @@ def getTime(evalObject, dataset):
 
     return algo_dict
 
-def parse_time_files(path):
+def get_sec(time_str):
+    """Get seconds from time."""
+    if (len(time_str.split(':')) == 3):
+        h, m, s = time_str.split(':')
+        return float(h) * 3600 + float(m) * 60 + float(s)
+    else:
+        m, s = time_str.split(':')
+        return float(m) * 60 + float(s)
+
+def parse_time_files(path, measurement):
     """
     Return time taken for each of the algorithms
     in the evalObject on the dataset specified.
@@ -126,8 +136,18 @@ def parse_time_files(path):
     try:
         with open(path, "r") as f:
             lines = f.readlines()
-            line = lines[1]
-            time_val = float(line.split()[-1])
+
+            if (measurement=="User"):
+                line = lines[1]
+                time_val = float(line.split()[-1])
+
+            elif (measurement=="Elapsed"):
+                line = lines[4]
+                time_val = get_sec(line.split()[-1])
+
+            elif (measurement=="CpuPercentage"):
+                line = lines[3]
+                time_val = float(line.split()[-1][:-1])
             
     # If file is not found, return -1.
     except FileNotFoundError:
