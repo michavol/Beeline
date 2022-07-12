@@ -78,6 +78,10 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
                 if (algo[0] in ["GLASSO", "PPCOR", "GENENET", "ARACNE", "CORR"]):
                     predDF = make_directed(predDF)
 
+                # Make list of predicted edges shorter for large predicted edge lists (otherwise it takes too long)
+                if (len(predDF) > 5000):
+                    predDF = predDF.iloc[:5000,:]
+              
                 precisionDict[algo[0]], recallDict[algo[0]], FPRDict[algo[0]], TPRDict[algo[0]], AUPRC[algo[0]], AUROC[algo[0]] = computeScores(trueEdgesDF, predDF, directed = True, selfEdges = selfEdges)
 
             else:
@@ -101,7 +105,10 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
                 # Convert edge list to undirected edge list if directed == False
                 predDF = make_undirected(predDF)
 
-
+                # Make list of predicted edges shorter for large predicted edge lists (otherwise it takes too long)
+                if (len(predDF) > 5000):
+                    predDF = predDF.iloc[:5000,:]
+                    
                 precisionDict[algo[0]], recallDict[algo[0]], FPRDict[algo[0]], TPRDict[algo[0]], AUPRC[algo[0]], AUROC[algo[0]] = computeScores(trueEdgesDF, predDF, directed = False, selfEdges = selfEdges)
 
             else:

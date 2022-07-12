@@ -67,7 +67,13 @@ def get_parser() -> argparse.ArgumentParser:
       " from the same ground truth network.\n")
 
     parser.add_argument('-t', '--time', action="store_true", default=False,
-      help="Analyze time taken by each algorithm for a.\n")
+      help="Analyze user time taken by each algorithm for a.\n")
+
+    parser.add_argument('-d', '--time_elapsed', action="store_true", default=False,
+      help="Analyze elapsed time taken by each algorithm for a.\n")
+
+    parser.add_argument('-f', '--time_cpu_percentage', action="store_true", default=False,
+      help="Analyze elapsed time taken by each algorithm for a.\n")
     
     parser.add_argument('-e', '--epr', action="store_true", default=False,
       help="Compute median early precision.")
@@ -230,17 +236,41 @@ def main():
         corrDict.to_csv(outDir + "Spearman.csv")
       
         
-    # Compute median time taken
+    # Compute median user time taken
     if (opts.time):
         print("\n\n" + "==="*30)
-        print('Computing time taken...')
+        print('Computing user time taken...')
         print("==="*30)
 
         TimeDict = evalSummarizer.parseTime()
         timeDF = pd.DataFrame(TimeDict)
-        timeDF["Mean Time"] = timeDF.mean(axis=1)
+        timeDF["Median Time"] = timeDF.median(axis=1)
         timeDF["Std Time"] = timeDF.std(axis=1)
         timeDF.to_csv(outDir+'Times.csv')
+
+    # Compute median elapsed time taken
+    if (opts.time_elapsed):
+        print("\n\n" + "==="*30)
+        print('Computing time taken...')
+        print("==="*30)
+
+        TimeDict = evalSummarizer.parseTimeElapsed()
+        timeDF = pd.DataFrame(TimeDict)
+        timeDF["Median Time"] = timeDF.median(axis=1)
+        timeDF["Std Time"] = timeDF.std(axis=1)
+        timeDF.to_csv(outDir+'Times_elapsed.csv')
+
+    # Compute median cpu percentage
+    if (opts.time_cpu_percentage):
+        print("\n\n" + "==="*30)
+        print('Computing time taken...')
+        print("==="*30)
+
+        TimeDict = evalSummarizer.parseTimeCpuPercentage()
+        timeDF = pd.DataFrame(TimeDict)
+        timeDF["Median Time"] = timeDF.median(axis=1)
+        timeDF["Std Time"] = timeDF.std(axis=1)
+        timeDF.to_csv(outDir+'Times_cpu_percentage.csv')
     
     # Compute early precision
     if (opts.epr):

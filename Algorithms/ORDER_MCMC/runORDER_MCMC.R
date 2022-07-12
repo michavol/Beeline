@@ -23,8 +23,11 @@ set.seed(2022)
 
 ### Run orderMCMC in parallel
 #setup parallel backend to use many processors
+#https://towardsdatascience.com/parallelization-caveats-in-r-1-the-basics-multiprocessing-and-multithreading-performance-eb584b7e850e
 cores=detectCores()
-cl <- makeCluster(cores[1]-1) #not to overload your computer
+cl <- makeCluster(cores[1]-1,
+                  methods = FALSE) #not to overload your computer
+setDefaultCluster(cl)
 registerDoParallel(cl)
 
 dags_adj <- foreach(i=1:nIter, .combine='+') %dopar% {
@@ -37,11 +40,13 @@ dags_adj <- foreach(i=1:nIter, .combine='+') %dopar% {
     # Retrieve DAG
     bge_score <- BiDAG::scoreparameters("bge", df[smp,])
     orderMAPfit <- BiDAG::orderMCMC(bge_score, 
-                                    chainout = FALSE, 
-                                    cpdag = TRUE)
+                             chainout = FALSE, 
+                             cpdag = TRUE)
 
     orderMAPfit$DAG
 }
+
+stopCluster(cl)
 # Average over DAG
 dags_adj = dags_adj/nIter
 

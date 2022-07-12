@@ -22,13 +22,14 @@ df <- read.csv(inFile, header = TRUE, sep = "\t")
 ### Set seed
 set.seed(10023)
 
-### Run PC in parallel
+### Parallelized
+#setup parallel backend to use many processors
 cores=detectCores()
-num_cores = cores[1]-1
-dags_adj <- matrix(0, nrow=ncol(df), ncol=ncol(df))
+#print(cores[1])
+cl <- makeCluster(cores[1]-1) #not to overload your computer
+registerDoParallel(cl)
 
-for (i in 1:nIter) {
-
+dags_adj <- foreach(i = 1:nIter, .combine='+') %dopar% {
   smp_size <- nrow(df)
   smp <- sample(seq_len(nrow(df)), size = smp_size, replace = TRUE)
   df_smp <- df[smp,]
@@ -41,28 +42,25 @@ for (i in 1:nIter) {
                indepTest = pcalg::gaussCItest,
                alpha=alpha,
                labels=colnames(df_smp),
-               verbose=verbose,
-               numCores=num_cores,
-               skel.method="stable.fast")
+               verbose=verbose)
   
   if(partially_directed){
     # Generate edge weights for partially directed graph
     pdag <- pcalg::udag2pdag(pc.fit)
     dag <- igraph::graph_from_graphnel(pdag@graph)
-    dags_adj <- dags_adj + igraph::as_adj(dag)
+    igraph::as_adj(dag)
     
   }else{
     # Generate edge weights for directed graph
     pdag <- pcalg::udag2pdag(pc.fit)
     dag_nel <- pcalg::pdag2dag(pdag@graph)
     dag <- igraph::graph_from_graphnel(dag_nel$graph)
-    dags_adj <- dags_adj + igraph::as_adj(dag)
+    igraph::as_adj(dag)
   }
 }
-# Average over DAG
-dags_adj = dags_adj/nIter
 
-#warnings()
+### Retrieve edge weights
+dags_adj = dags_adj/nIter
 
 
 ### Convert to format that is expected by BEELINE framework

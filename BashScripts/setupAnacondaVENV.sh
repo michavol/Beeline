@@ -3,8 +3,8 @@ cd ..
 # Set-up Anaconda virtual environment
 echo "Setting up Anaconda Python virtual environment..."
 
-conda create -y --name BEELINE python=3.7.1 r=3.5.0 --file requirements.txt
-conda activate BEELINE
+conda create -y --name grn_inference python=3.7.1 r=3.5.0 --file requirements.txt
+conda activate grn_inference
 
 # Install the PRROC package for computing area under PR curve
 # TODO: Write the PRROC AUC function and make it BEELINE package without using rpy2

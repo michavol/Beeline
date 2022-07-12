@@ -128,13 +128,13 @@ input_settings:
           params: 
               should_run: [False]
               # Number of iterations for finding edge weights
-              nIter: [50]
+              nIter: [10]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
               partially_directed: [1]
 
               # Conditional testing threshold
-              alpha: [0.01]
+              alpha: [0.5]
 
               # Verbosity of pc.fit function
               verbose: [0]
@@ -157,7 +157,7 @@ input_settings:
 
         - name: "GENIE3_R"
           params: 
-              should_run: [False]
+              should_run: [True]
 
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
@@ -174,7 +174,7 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [False]
+              should_run: [True]
               
               
         - name: "PPCOR"
@@ -182,13 +182,13 @@ input_settings:
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [1.0e-04]
+              pVal: [1]
 
         - name: "GENENET"
           params: 
               should_run: [True]
               # Number of strongest edges that will be chosen
-              num_edges: [300]
+              num_edges: [0]
 
               # Directed or undirected
               directed: [1]
@@ -200,14 +200,14 @@ input_settings:
           params: 
               should_run: [True]
               # Epsilon - see documentation
-              eps: [0]
+              eps: [0.2]
 
         - name: "CORR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [1.0e-04]
+              pVal: [1]
             
       # - name: "PIDC"
       #   params: 

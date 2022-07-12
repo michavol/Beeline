@@ -125,7 +125,7 @@ class BLEval(object):
         # for dataset in self.input_settings.datasets:
 
             AUPRC, AUROC = PRROC(dataset, self.input_settings, 
-                                    directed = directed, selfEdges = False, plotFlag = True)
+                                    directed = directed, selfEdges = False, plotFlag = False)
             AUPRCDict[dataset['name']] = AUPRC
             AUROCDict[dataset['name']] = AUROC
         AUPRC = pd.DataFrame(AUPRCDict)
@@ -147,7 +147,45 @@ class BLEval(object):
         #                     total = len(self.input_settings.datasets), unit = " Datasets"):
         for dataset in self.input_settings.datasets:
                 
-            timevals  = getTime(self, dataset)
+            timevals  = getTime(self, dataset, measurement="User")
+            TimeDict[dataset["name"]] = timevals
+
+        return TimeDict
+
+    def parseTimeElapsed(self):
+        """
+        Parse time output for each
+        algorithm-dataset combination.
+        
+        :returns:
+            A dictionary of times for all dataset-algorithm combinations
+        """
+        TimeDict = dict()
+
+        # for dataset in tqdm(self.input_settings.datasets, 
+        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
+        for dataset in self.input_settings.datasets:
+                
+            timevals  = getTime(self, dataset, measurement="Elapsed")
+            TimeDict[dataset["name"]] = timevals
+
+        return TimeDict
+
+    def parseTimeCpuPercentage(self):
+        """
+        Parse time output for each
+        algorithm-dataset combination.
+        
+        :returns:
+            A dictionary of times for all dataset-algorithm combinations
+        """
+        TimeDict = dict()
+
+        # for dataset in tqdm(self.input_settings.datasets, 
+        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
+        for dataset in self.input_settings.datasets:
+                
+            timevals  = getTime(self, dataset, measurement="CpuPercentage")
             TimeDict[dataset["name"]] = timevals
 
         return TimeDict

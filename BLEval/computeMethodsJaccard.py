@@ -18,9 +18,9 @@ from BLEval.convertData import swap
 
 def MethodsJaccard(dataDict, inputSettings, undirected = False):
     """
-    A function to compute median pairwirse Jaccard similarity index
-    of predicted top-k edges for a given set of datasets (obtained from
-    the same reference network). Here k is the number of edges in the
+    A function to compute pairwirse Jaccard similarity index
+    of predicted top-k edges for a given set of method predictions for the same dataset.
+    Here k is the number of edges in the
     reference network (excluding self loops). 
     
     

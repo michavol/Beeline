@@ -1,6 +1,7 @@
-inputs/
 __pycache__/
+inputs/
 outputs/
+outputs_old/
 src/.*
 *.ipynb_checkpoints*
 .DS_Store

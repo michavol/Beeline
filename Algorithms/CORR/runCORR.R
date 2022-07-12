@@ -12,11 +12,11 @@ geneNames <- colnames(inputExpr)
 
 ### Compute correlation and p-value matrix
 corr <- cor(inputExpr, method = 'pearson')
-p.matrix <- corr.test(inputExpr, adjust = 'holm')$p
+#p.matrix <- corr.test(inputExpr, adjust = 'holm')$p
 
 ### Create output as for ppcor
 DF = data.frame(Gene1 = geneNames[c(row(corr))], Gene2 = geneNames[c(col(corr))]
-                , corVal = c(corr), pValue = c(p.matrix))
+                , corVal = c(corr), pValue = c(corr)) #Fill pValue with correlations when not needed
 outDF <- DF[order(DF$corVal, decreasing=TRUE), ]
 outDF <- outDF[outDF$Gene1 != outDF$Gene2, ]
 

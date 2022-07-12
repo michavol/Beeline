@@ -53,7 +53,7 @@ input_settings:
 
         - name: "PC"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [10]
 
@@ -67,14 +67,6 @@ input_settings:
               verbose: [0]
 
 
-        - name: "GLASSO"
-          params: 
-              should_run: [True]
-              # rho value for preconditioning w, wi
-              rho1: [0.001]
-
-              # rho value for final glasso
-              rho2: [0.002]
 
 
         # - name: "GENIE3"
@@ -84,7 +76,7 @@ input_settings:
 
         - name: "GENIE3_R"
           params: 
-              should_run: [True]
+              should_run: [False]
 
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
@@ -101,7 +93,7 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
         - name: "PPCOR"
@@ -109,13 +101,13 @@ input_settings:
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [0.5]
+              pVal: [1]
 
         - name: "GENENET"
           params: 
               should_run: [True]
               # Number of strongest edges that will be chosen
-              num_edges: [50000]
+              num_edges: [0]
 
               # Directed or undirected
               directed: [1]
@@ -127,15 +119,24 @@ input_settings:
           params: 
               should_run: [True]
               # Epsilon - see documentation
-              eps: [0]
+              eps: [0.2]
 
         - name: "CORR"
           params: 
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [1.0e-04]
+              pVal: [1]
             
+        - name: "GLASSO"
+          params: 
+              should_run: [True]
+              # rho value for preconditioning w, wi
+              rho1: [0.001]
+
+              # rho value for final glasso
+              rho2: [0.002]
+              
       # - name: "PIDC"
       #   params: 
       #       should_run: [False]

@@ -136,27 +136,25 @@ input_settings:
           params: 
               should_run: [True]
               # Number of iterations for finding edge weights
-              nIter: [100]
-
+              nIter: [50]
 
         # - name: "PARTITION_MCMC" #This algorithm is very slow for larger datasets (4h for 100x100 matrix of gene expression data)
         #   params: 
-        #       should_run: [False]
+        #       should_run: [True]
         #       # Number of iterations for finding edge weights
-        #       nIter: [3]
-
+        #       nIter: [100]
 
         - name: "PC"
           params: 
               should_run: [True]
               # Number of iterations for finding edge weights
-              nIter: [100]
+              nIter: [50]
 
               # If 1, it will return a markov equivalence group represented as pdag, otherwise a dag
               partially_directed: [1]
 
               # Conditional testing threshold
-              alpha: [0.05]
+              alpha: [0.5]
 
               # Verbosity of pc.fit function
               verbose: [0]
@@ -175,7 +173,7 @@ input_settings:
 
         # - name: "GENIE3"
         #   params: 
-        #       should_run: [True]
+        #       should_run: [False]
 
 
         - name: "GENIE3_R"
@@ -186,7 +184,7 @@ input_settings:
               nTrees: [1000]
 
               # Number of cores to use for parallel computing. Default: 1.
-              nCores: [8]
+              nCores: [14]
 
               # Tree-based method used. Must be either "RF" for Random Forests (default) or "ET" for Extra-Trees.
               treeMethod: [RF]
@@ -205,13 +203,13 @@ input_settings:
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [0.5]
+              pVal: [1]
 
         - name: "GENENET"
           params: 
               should_run: [True]
               # Number of strongest edges that will be chosen
-              num_edges: [1000]
+              num_edges: [0]
 
               # Directed or undirected
               directed: [1]
@@ -223,14 +221,14 @@ input_settings:
           params: 
               should_run: [True]
               # Epsilon - see documentation
-              eps: [0]
+              eps: [0.2]
 
         - name: "CORR"
           params: 
               should_run: [True]
               # p-value True
               # Used in parsing output
-              pVal: [0.2]
+              pVal: [1]
 
             
       # - name: "PIDC"
