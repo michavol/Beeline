@@ -79,8 +79,8 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
                     predDF = make_directed(predDF)
 
                 # Make list of predicted edges shorter for large predicted edge lists (otherwise it takes too long)
-                if (len(predDF) > 5000):
-                    predDF = predDF.iloc[:5000,:]
+                if (len(predDF) > 10000):
+                    predDF = predDF.iloc[:10000,:]
               
                 precisionDict[algo[0]], recallDict[algo[0]], FPRDict[algo[0]], TPRDict[algo[0]], AUPRC[algo[0]], AUROC[algo[0]] = computeScores(trueEdgesDF, predDF, directed = True, selfEdges = selfEdges)
 
@@ -106,8 +106,8 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
                 predDF = make_undirected(predDF)
 
                 # Make list of predicted edges shorter for large predicted edge lists (otherwise it takes too long)
-                if (len(predDF) > 5000):
-                    predDF = predDF.iloc[:5000,:]
+                if (len(predDF) > 10000):
+                    predDF = predDF.iloc[:10000,:]
                     
                 precisionDict[algo[0]], recallDict[algo[0]], FPRDict[algo[0]], TPRDict[algo[0]], AUPRC[algo[0]], AUROC[algo[0]] = computeScores(trueEdgesDF, predDF, directed = False, selfEdges = selfEdges)
 
@@ -133,7 +133,7 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
         else:
             plt.title('Undirected PR Curve')
 
-        plt.legend(legendList, fontsize=8) 
+        plt.legend(legendList, fontsize=9) 
         plt.savefig(outDir+PRName+'.pdf')
         plt.savefig(outDir+PRName+'.png')
         plt.clf()
@@ -156,7 +156,7 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
         else:
             plt.title('Undirected ROC Curve')
         
-        plt.legend(legendList, fontsize=8) 
+        plt.legend(legendList, fontsize=9) 
         plt.savefig(outDir+ROCName+'.pdf')
         plt.savefig(outDir+ROCName+'.png')
         plt.clf()

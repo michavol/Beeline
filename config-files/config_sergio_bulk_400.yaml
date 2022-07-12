@@ -25,15 +25,15 @@ input_settings:
           cellData: "PseudoTime.csv"
           trueEdges: "gt_GRN.tsv"
           
-        - name: "De-noised_400G_9T_300cPerT_5_DS2_bulk/net1"
-          exprData: "simulated_noNoise_bulk_1.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "gt_GRN.tsv"
+        # - name: "De-noised_400G_9T_300cPerT_5_DS2_bulk/net1"
+        #   exprData: "simulated_noNoise_bulk_1.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "gt_GRN.tsv"
 
-        - name: "De-noised_400G_9T_300cPerT_5_DS2_bulk/net2"
-          exprData: "simulated_noNoise_bulk_2.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "gt_GRN.tsv"
+        # - name: "De-noised_400G_9T_300cPerT_5_DS2_bulk/net2"
+        #   exprData: "simulated_noNoise_bulk_2.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "gt_GRN.tsv"
 
         # - name: "De-noised_400G_9T_300cPerT_5_DS2_bulk/net3"
         #   exprData: "simulated_noNoise_bulk_3.tsv"  
@@ -184,7 +184,7 @@ input_settings:
 
         - name: "GENENET"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Number of strongest edges that will be chosen
               num_edges: [0]
 
