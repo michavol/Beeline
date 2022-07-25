@@ -14,7 +14,7 @@ Quick setup:
 
 - Clone repository:
 ```
-git clone 
+git clone git@github.com:michavol/benchmarking_GRN_inference.git
 ```
 
 - [Install R](https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/#:~:text=Ubuntu%20Install%20R%201%20Install%20the%20dependencies%20necessary,by%20printing%20the%20R%20version%3AR%20--versionR...%20See%20More.) if necessary.
