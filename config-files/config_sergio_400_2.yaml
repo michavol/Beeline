@@ -20,10 +20,10 @@ input_settings:
     #   trueEdges: Name of the refrence network file in the
     #              edge list format. Needed for evaluation.
     datasets:
-        # - name: "De-noised_400G_9T_300cPerT_5_DS2/net0"
-        #   exprData: "simulated_noNoise_0.tsv"  
-        #   cellData: "PseudoTime.csv"
-        #   trueEdges: "gt_GRN.tsv"
+        - name: "De-noised_400G_9T_300cPerT_5_DS2/net0"
+          exprData: "simulated_noNoise_0.tsv"  
+          cellData: "PseudoTime.csv"
+          trueEdges: "gt_GRN.tsv"
           
         - name: "De-noised_400G_9T_300cPerT_5_DS2/net1"
           exprData: "simulated_noNoise_1.tsv"  
@@ -145,17 +145,12 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [False]
+              should_run: [True]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
               # rho value for final glasso
               rho2: [0.002]
-
-
-        - name: "GENIE3"
-          params: 
-              should_run: [False]
               
               
         # - name: "GENIE3"
@@ -165,7 +160,7 @@ input_settings:
 
         - name: "GENIE3_R"
           params: 
-              should_run: [False]
+              should_run: [True]
 
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
@@ -182,7 +177,7 @@ input_settings:
               
         - name: "PPCOR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [1]
@@ -201,13 +196,13 @@ input_settings:
 
         - name: "ARACNE"
           params: 
-              should_run: [False]
+              should_run: [True]
               # Epsilon - see documentation
               eps: [0.2]
             
         - name: "CORR"
           params: 
-              should_run: [False]
+              should_run: [True]
               # p-value True
               # Used in parsing output
               pVal: [1]

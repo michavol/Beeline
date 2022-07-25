@@ -43,9 +43,10 @@ cd ..
 # ORDER_MCMC - more than a day
 # PC - more than 8 hours
 
-echo "Running config_sergio_400\n"
-python BLRunner.py --config config-files/config_sergio_400.yaml
-# python BLEvaluator.py --config config-files/config_sergio_400.yaml -a -u -j -n -z -y -e -x -f -d -t
+# echo "Running config_sergio_400\n"
+# DONE python BLRunner.py --config config-files/config_sergio_400.yaml
+# DONE python BLEvaluator.py --config config-files/config_sergio_400_2.yaml -a -u -j -n -z -y -e -x -f -d -t
+# Evaluation was run only for 3 datasets and only with top 5000 genes - otherwise it would have taken too long
 
 # echo "Running config_sergio_1200\n"
 # python BLRunner.py --config config-files/config_sergio_1200.yaml
@@ -54,5 +55,5 @@ python BLRunner.py --config config-files/config_sergio_400.yaml
 #--------------------------------------------------------------------#
 
 ### TCGA
-# echo "Running config_tcga"
-# python BLRunner.py --config config-files/config_tcga.yaml
+echo "Running config_tcga"
+python BLRunner.py --config config-files/config_tcga.yaml
