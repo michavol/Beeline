@@ -1,5 +1,9 @@
 __pycache__/
-inputs/
+inputs/*
+!inputs/DREAM4
+inputs/DREAM4/*
+!inputs/DREAM4/size10_multifactorial
+
 outputs/
 outputs_old/
 src/.*
