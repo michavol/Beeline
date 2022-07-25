@@ -6,9 +6,9 @@ Their [documentation](https://murali-group.github.io/Beeline/) nicely outlines t
 
 
 Quick setup:
-- Setup Docker: We recommend using [Docker Desktop](https://docs.docker.com/desktop/install/linux-install/) for Linux: 
+- Setup Docker - We recommend using [Docker Desktop](https://docs.docker.com/desktop/install/linux-install/) for Linux: 
 
-- Setup environment: We recommend using [Anaconda](https://www.anaconda.com/) for Python. 
+- Setup environment - We recommend using [Anaconda](https://www.anaconda.com/) for Python. 
 ```
 cd BashScripts
 ./setupAnacondaVENV.sh
@@ -16,20 +16,20 @@ conda activate grn_inference
 cd ..
 ```
 
-- Build Docker images - may take quite some time:
+- Build Docker images (may take quite some time):
 ```
 cd BashScripts
 ./initialize
 cd ..
 ```
 
-- Run and evaluate algorithms according to config files: (see ```BLEvaluator.py``` for meaning of arguments)
+- Run and evaluate algorithms according to config files (see ```BLEvaluator.py``` for meaning of arguments):
 ```
 python BLRunner.py --config config-files/config_dream4_10.yaml
 python BLEvaluator.py --config config-files/config_dream4_10.yaml -a -u -j -n -z -y -t -d -f -e -x
 ```
 
-- The results can then be found in ```outputs```
+- The results can then be found in ```outputs```.
 
 
 
