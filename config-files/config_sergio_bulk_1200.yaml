@@ -6,8 +6,7 @@ input_settings:
     input_dir : "inputs"
 
     # Subdirectory of inputs that datasets are placed in
-    dataset_dir: "SERGIO" #example
-    #dataset_dir: "example" 
+    dataset_dir: "SERGIO"
 
     # Denotes a list of datasets, each with the following parameters:
     #   name: Name of the dataset. May be used in logging or other
@@ -112,7 +111,7 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [False]
+              should_run: [False] # Takes at least one day on my machine
               # Number of iterations for finding edge weights
               nIter: [50]
 
@@ -146,12 +145,6 @@ input_settings:
 
               # rho value for final glasso
               rho2: [0.002]
-
-
-
-        # - name: "GENIE3"
-        #   params: 
-        #       should_run: [False]
 
 
         - name: "GENIE3_R"

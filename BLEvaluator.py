@@ -36,28 +36,28 @@ def get_parser() -> argparse.ArgumentParser:
               "algorithms and output specifications.\n")
     
     parser.add_argument('-a', '--auc', action="store_true", default=False,
-        help="Compute median of areas under Precision-Recall and ROC curves. Plot curves.\n")
+        help="Compute median of areas under Precision-Recall and ROC curves for directed evaluation. Plot curves.\n")
 
     parser.add_argument('-u', '--auc_undirected', action="store_true", default=False,
-        help="Compute median of areas under Precision-Recall and ROC curves for undirected inference. Plot curves\n")
+        help="Compute median of areas under Precision-Recall and ROC curves for undirected evaluation. Plot curves\n")
     
     parser.add_argument('-j', '--jaccard', action="store_true", default=False,
-      help="Compute median Jaccard index of predicted top-k networks "
+      help="Compute median Jaccard index of predicted top-k networks for directed evaluation."
       "for each algorithm for a given set of datasets generated "
       "from the same ground truth network.\n")
 
     parser.add_argument('-n', '--jaccard_undirected', action="store_true", default=False,
-      help="Compute median Jaccard index of predicted top-k networks "
+      help="Compute median Jaccard index of predicted top-k networks for undirected evaluation."
       "for each algorithm for a given set of datasets generated "
       "from the same ground truth network.\n")
 
     parser.add_argument('-z', '--jaccard_methods', action="store_true", default=False,
-      help="Compute median Jaccard index of predicted top-k networks "
+      help="Compute median Jaccard index of predicted top-k networks for directed evaluation."
       "for each algorithm for a given set of datasets generated "
       "from the same ground truth network.\n")
 
     parser.add_argument('-y', '--jaccard_methods_undirected', action="store_true", default=False,
-      help="Compute median Jaccard index of predicted top-k networks "
+      help="Compute median Jaccard index of predicted top-k networks for directed evaluation."
       "for each algorithm for a given set of datasets generated "
       "from the same ground truth network.\n")
 
@@ -73,13 +73,13 @@ def get_parser() -> argparse.ArgumentParser:
       help="Analyze elapsed time taken by each algorithm for a.\n")
 
     parser.add_argument('-f', '--time_cpu_percentage', action="store_true", default=False,
-      help="Analyze elapsed time taken by each algorithm for a.\n")
+      help="Analyze cpu percentage used by each algorithm for a.\n")
     
     parser.add_argument('-e', '--epr', action="store_true", default=False,
-      help="Compute median early precision.")
+      help="Compute median early precision for directed evaluation.")
 
     parser.add_argument('-x', '--epr_undirected', action="store_true", default=False,
-      help="Compute median early precision.")
+      help="Compute median early precision for undirected evaluation.")
     
     parser.add_argument('-s','--sepr', action="store_true", default=False,
       help="Analyze median (signed) early precision for activation and inhibitory edges.")
@@ -154,7 +154,7 @@ def main():
     # Compute directed Jaccard index across datasets  
     if (opts.jaccard):
         print("==="*30)
-        print('Computing Jaccard index...')
+        print('Computing directed Jaccard index across datasets...')
         print("==="*30)
 
         jaccDict = evalSummarizer.computeJaccard(undirected=False)
@@ -164,7 +164,7 @@ def main():
     # Compute undirected Jaccard index across datasets
     if (opts.jaccard_undirected):
         print("==="*30)
-        print('Computing Jaccard index...')
+        print('Computing indirected Jaccard index across datasets...')
         print("==="*30)
 
         jaccDict = evalSummarizer.computeJaccard(undirected=True)
@@ -239,7 +239,7 @@ def main():
     # Compute median user time taken
     if (opts.time):
         print("\n\n" + "==="*30)
-        print('Computing user time taken...')
+        print('Parsing user time...')
         print("==="*30)
 
         TimeDict = evalSummarizer.parseTime()
@@ -251,7 +251,7 @@ def main():
     # Compute median elapsed time taken
     if (opts.time_elapsed):
         print("\n\n" + "==="*30)
-        print('Computing time taken...')
+        print('Parsing elapsed time...')
         print("==="*30)
 
         TimeDict = evalSummarizer.parseTimeElapsed()
@@ -263,7 +263,7 @@ def main():
     # Compute median cpu percentage
     if (opts.time_cpu_percentage):
         print("\n\n" + "==="*30)
-        print('Computing time taken...')
+        print('Parsing cpu percentage...')
         print("==="*30)
 
         TimeDict = evalSummarizer.parseTimeCpuPercentage()
@@ -275,7 +275,7 @@ def main():
     # Compute early precision
     if (opts.epr):
         print("\n" + "==="*30)
-        print('Computing early precision values...')
+        print('Computing directed early precision values...')
         print("==="*30)
         ePRDF = evalSummarizer.computeEarlyPrec(undirected=False)
 
@@ -287,7 +287,7 @@ def main():
     # Compute early precision
     if (opts.epr_undirected):
         print("\n" + "==="*30)
-        print('Computing early precision values...')
+        print('Computing undirected early precision values...')
         print("==="*30)
         ePRDF = evalSummarizer.computeEarlyPrec(undirected=True)
 

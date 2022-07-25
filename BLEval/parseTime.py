@@ -59,53 +59,7 @@ def getTime(evalObject, dataset, measurement):
             time = parse_time_files(path, measurement)
         else:
             time = -1
-            # If the algorithm was run on each
-            # trajectory in the dataset separately, there
-            # will be multiple time files, namely, 
-            # time0.txt, time1.txt, and so on. 
-
-            # In order to report the total time taken,
-            # we sum up the time taken for running the alorithm
-            # on each trajectory.
-            
-            # First, obtain the number of trajectories
-            # by reading the 'cellData' file for the given
-            # dataset.
-            
-        #     # path to pseduotime file (or 'cellData' file)
-        #     PTFile = str(evalObject.input_settings.datadir.joinpath(dataset['name']+'/'+dataset['cellData']))
-         
-        #     # Read in the PTFile to obtain the number of trajectories
-        #     # Which is equal to the number of columns.           
-
-        #     PTData = pd.read_csv(PTFile, header = 0, index_col = 0)
-            
-        #     # TODO: Check if column names only correspond to PseudoTime for 
-        #     # each trajectory!
-        #     colNames = PTData.columns
-            
-        #     # Read each time_.txt file individually
-        #     # and report the total time taken.
-        #     timeTemp = 0
-        #     for idx in range(len(colNames)):
-        #         path = outDir+algo[0]+"/time"+str(idx)+".txt"
-        #         timeTemp += parse_time_files(path)
-
-        #     # If for some reason a time file is missing,
-        #     # the parse_time_files function returns a -1.
-        #     # We will ignore those algorithms with missing
-        #     # time values for now, as shown below.
-        #     if timeTemp >= 0:
-        #         time =  timeTemp
-        #     else:
-        #         time = -1
-                
-        # # If time files do not exist, skip reporting that algorithm
-        # if time == -1:
-        #     print("Skipping time computation for ", algo[0], "on dataset", dataset["name"], "\n")
-        #     continue
-
-        # If time files do exist, add it to the dictionary
+        
         algo_dict[algo[0]] = time
 
     return algo_dict

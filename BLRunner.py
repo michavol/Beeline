@@ -56,7 +56,7 @@ def main():
 
     with open(config_file, 'r') as conf:
         evaluation = br.ConfigParser.parse(conf)
-    #print(evaluation)
+    
     print('Inference started')
 
   
