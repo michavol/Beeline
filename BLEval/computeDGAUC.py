@@ -32,13 +32,6 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
             - AUPRC: A dictionary containing AUPRC values for each algorithm
             - AUROC: A dictionary containing AUROC values for each algorithm
     '''
-    
-    # Read file for trueEdges
-    # trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ dataDict['name'] +
-    #                             '/' +dataDict['trueEdges'],
-    #                             sep = ',', 
-    #                             header = 0)#, index_col = None)
-
     headerList = ['Gene1', 'Gene2', 'Type']
     
     trueEdgesDF = pd.read_csv(str(inputSettings.datadir)+'/'+ dataDict['name'] +
@@ -66,8 +59,6 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
         for algo in tqdm(inputSettings.algorithms, 
                         total = len(inputSettings.algorithms), unit = " Algorithms"):
 
-        # for algo in inputSettings.algorithms:
-
             # check if the output rankedEdges file exists
             if Path(outDir + '/' +algo[0]+'/rankedEdges.csv').exists():
                  # Initialize Precsion
@@ -89,12 +80,11 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
                       ' does not exist. Skipping...')
             PRName = '/PRplot'
             ROCName = '/ROCplot'
+
     else:
         for algo in tqdm(inputSettings.algorithms, 
                          total = len(inputSettings.algorithms), unit = " Algorithms"):
 
-        # for algo in inputSettings.algorithms:
-                       
             # check if the output rankedEdges file exists
             if Path(outDir + '/' +algo[0]+'/rankedEdges.csv').exists():
                  # Initialize Precision
@@ -117,6 +107,7 @@ def PRROC(dataDict, inputSettings, directed = True, selfEdges = False, plotFlag 
             
             PRName = '/uPRplot'
             ROCName = '/uROCplot'
+
     if (plotFlag):
          ## Make PR curves
         legendList = []
@@ -217,7 +208,6 @@ def computeScores(trueEdgesDF, predEdgeDF,
             if len(subDF)>0:
                 PredEdgeDict[key] = np.abs(subDF.EdgeWeight.values[0])
 
-    # if undirected
     else:
         
         # Initialize dictionaries with all 

@@ -39,10 +39,6 @@ def Jaccard(evalObject, algorithmName, undirected=False):
     rankDict = {}
     sim_names = []
     for dataset in tqdm(evalObject.input_settings.datasets):
-        # trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
-        #               dataset['name'] + '/' +\
-        #               dataset['trueEdges'], sep = ',',
-        #               header = 0, index_col = None)
 
         headerList = ['Gene1', 'Gene2', 'Type']
     
@@ -85,7 +81,6 @@ def Jaccard(evalObject, algorithmName, undirected=False):
                  str(evalObject.input_settings.datadir).split("inputs")[1] + \
                  "/" + dataset["name"] + "/" + algorithmName
 
-        #algos = evalObject.input_settings.algorithms
         rank_path = outDir + "/rankedEdges.csv"
         if not os.path.isdir(outDir):
             continue

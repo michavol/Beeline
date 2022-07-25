@@ -38,12 +38,6 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False, undirected=False):
     rankDict = {}
 
     for dataset in tqdm(evalObject.input_settings.datasets):
-    #for dataset in evalObject.input_settings.datasets:
-        # trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ \
-        #               dataset['name'] + '/' +\
-        #               dataset['trueEdges'], sep = ',',
-        #               header = 0, index_col = None)
-        #trueEdgesDF.columns = ["Gene1","Gene2","Type"]
         headerList = ['Gene1', 'Gene2', 'Type']
     
         trueEdgesDF = pd.read_csv(str(evalObject.input_settings.datadir)+'/'+ dataset['name'] +
@@ -63,7 +57,6 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False, undirected=False):
                  str(evalObject.input_settings.datadir).split("inputs")[1] + \
                  "/" + dataset["name"] + "/" + algorithmName
 
-        #algos = evalObject.input_settings.algorithms
         rank_path = outDir + "/rankedEdges.csv"
         if not os.path.isdir(outDir):
             rankDict[dataset["name"]] = set([])
@@ -154,7 +147,6 @@ def EarlyPrec(evalObject, algorithmName, TFEdges = False, undirected=False):
     Eprec = {}
     Erec = {}
     for dataset in tqdm(evalObject.input_settings.datasets):
-    #for dataset in evalObject.input_settings.datasets:
         if len(rankDict[dataset["name"]]) != 0:
             intersectionSet = rankDict[dataset["name"]].intersection(trueEdges)
             Eprec[dataset["name"]] = len(intersectionSet)/len(rankDict[dataset["name"]])

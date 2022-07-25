@@ -1,3 +1,5 @@
+# Helper script to push changes made to Docker images
+
 docker push 18881888/genie3_r:base
 docker push 18881888/corr:base
 docker push 18881888/aracne:base

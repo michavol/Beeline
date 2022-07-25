@@ -122,7 +122,6 @@ class BLEval(object):
 
         for dataset in tqdm(self.input_settings.datasets, 
                             total = len(self.input_settings.datasets), unit = " Datasets"):
-        # for dataset in self.input_settings.datasets:
 
             AUPRC, AUROC = PRROC(dataset, self.input_settings, 
                                     directed = directed, selfEdges = False, plotFlag = False)
@@ -135,17 +134,16 @@ class BLEval(object):
 
     def parseTime(self):
         """
-        Parse time output for each
+        Parse user time output for each
         algorithm-dataset combination.
         
         :returns:
-            A dictionary of times for all dataset-algorithm combinations
+            A dictionary of user times for all dataset-algorithm combinations
         """
         TimeDict = dict()
 
-        # for dataset in tqdm(self.input_settings.datasets, 
-        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
-        for dataset in self.input_settings.datasets:
+        for dataset in tqdm(self.input_settings.datasets, 
+                            total = len(self.input_settings.datasets), unit = " Datasets"):
                 
             timevals  = getTime(self, dataset, measurement="User")
             TimeDict[dataset["name"]] = timevals
@@ -154,11 +152,11 @@ class BLEval(object):
 
     def parseTimeElapsed(self):
         """
-        Parse time output for each
+        Parse elapsed time for each
         algorithm-dataset combination.
         
         :returns:
-            A dictionary of times for all dataset-algorithm combinations
+            A dictionary of elapsed times for all dataset-algorithm combinations
         """
         TimeDict = dict()
 
@@ -173,17 +171,16 @@ class BLEval(object):
 
     def parseTimeCpuPercentage(self):
         """
-        Parse time output for each
+        Parse cpu percentage for each
         algorithm-dataset combination.
         
         :returns:
-            A dictionary of times for all dataset-algorithm combinations
+            A dictionary of cpu percentages for all dataset-algorithm combinations
         """
         TimeDict = dict()
 
-        # for dataset in tqdm(self.input_settings.datasets, 
-        #                     total = len(self.input_settings.datasets), unit = " Datasets"):
-        for dataset in self.input_settings.datasets:
+        for dataset in tqdm(self.input_settings.datasets, 
+                            total = len(self.input_settings.datasets), unit = " Datasets"):
                 
             timevals  = getTime(self, dataset, measurement="CpuPercentage")
             TimeDict[dataset["name"]] = timevals
@@ -193,7 +190,7 @@ class BLEval(object):
     def computeJaccard(self, undirected=False):
 
         '''
-        Computes Jaccard Index between top-k edge predictions
+        Computes directed Jaccard Index between top-k edge predictions
         of the same algorithm.
         
         :returns:
@@ -217,7 +214,7 @@ class BLEval(object):
     def computeMethodsJaccard(self, undirected=False):
 
         '''
-        Computes Jaccard Index between top-k edge predictions
+        Computes directed Jaccard Index between top-k edge predictions
         across algorithms for the same network
         
         :returns:
@@ -227,9 +224,8 @@ class BLEval(object):
 
         JaccardDict = {}
 
-        #for dataset in tqdm(self.input_settings.datasets, 
-        #                    total = len(self.input_settings.datasets), unit = " Datasets"):
-        for dataset in self.input_settings.datasets:
+        for dataset in tqdm(self.input_settings.datasets, 
+                           total = len(self.input_settings.datasets), unit = " Datasets"):
 
             JACCARD = MethodsJaccard(dataset, self.input_settings, 
                                     undirected = undirected)
