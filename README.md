@@ -1,35 +1,35 @@
-# :honeybee: BEELINE: Benchmarking gEnE reguLatory network Inference from siNgle-cEll transcriptomic data :honeybee:
-![Overview of BEELINE](docs/figs/overview-graphic.png )
+# Benchmarking Framework for Gene Regulatory Network Inference (on Bulk Data)
 
-This is the main repository for BEELINE. The documentation is available at: [https://murali-group.github.io/Beeline/](https://murali-group.github.io/Beeline/).
+This is the main repository for the Bachelor's thesis "Benchmarking Framework for Gene Regulatory Network Inference Methods", written under the supervision of Magali Champion (Add link to final document!). The thesis outlines the problem of gene regulatory network (GRN) inference, explains what kinds of data and methods exist and demonstrates how the code in this repository can be used to compare different methods for GRN inference from bulk data. It adapts and extends existing work from Pratapa et al. (2022) who focused on benchmarking methods for single-cell data (Pratapa, A., Jalihal, A.P., Law, J.N., Bharadwaj, A., Murali, T. M. (2020) "Benchmarking algorithms for gene regulatory network inference from single-cell transcriptomic data." Nature Methods, 17, 147–154.)
+
+Their documentation (https://murali-group.github.io/Beeline/) nicely outlines the basic structure of the framework and how it can be used. For the benchmarking framework in this repository a few modifications have been made. Here, the folder ```BashScripts``` was added, which is where ```setupAnacondaVENV.sh``` is located now. Furthermore, ```BLRunner.py``` and ```BLEvaluator.py``` and all their dependencies were adjusted to accomodate the algorithms and evaluation methods discussed in the thesis. The user for Docker Desktop is now ```18881888``` and not ```BEELINE``` - this way you can use the Docker images I used and made available on Docker Hub. As the input data used in the thesis is considerably large, I only added a few example datasets. In case you would like to have access to the complete input data that was used for the benchmarking results, please contact me. 
+
 
 Quick setup:
-- To install docker on Ubuntu 18.04, follow the steps mentioned [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
-- Setup docker to run docker without sudo using ` sudo usermod -aG docker $USER`, if you haven't already. See more details [here](https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo)
-- We recommend using [Anaconda](https://www.anaconda.com/) for Python. Run the `. setupAnacondaVENV.sh` command to automatically create an Anaconda virtual environment named BEELINE from requirements.txt and install necessary libraries required to run BEELINE. Alternatively, you can create virtual environment for python using vnev from requirements.txt as detailed [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+- Install Docker Desktop for Linux: https://docs.docker.com/desktop/install/linux-install/
+
+- Setup environment: We recommend using [Anaconda](https://www.anaconda.com/) for Python. 
+```
+cd BashScripts
+./setupAnacondaVENV.sh
+conda activate grn_inference
+cd ..
+```
+
+- Build Docker images - may take quite some time:
+```
+cd BashScripts
+./initialize
+cd ..
+```
+
+- Run and evaluate algorithms according to config files: (see ```BLEvaluator.py``` for meaning of arguments)
+```
+python BLRunner.py --config config-files/config_dream4_10.yaml
+python BLEvaluator.py --config config-files/config_dream4_10.yaml -a -u -j -n -z -y -t -d -f -e -x
+```
+
+- The results can then be found in ```outputs```
 
 
-We provided an example dataset under inputs/example/GSD/ and a corresponding configuration file necessary for running GRN inference using 12 methods described in BEELINE. 
-- To compute proposed reconstructions on the example dataset, run `python BLRunner.py --config config-files/config.yaml`. Running this script for the first time can be slow as it involves downloading the contianers from Docker hub.
-- To compute areas under the ROC and PR curves for the proposed reconstructions, run `python BLEvaluator.py --config config-files/config.yaml --auc`. To display the complete list of evalutation options, run `python BLEvaluator.py --help`.
 
-If you use BEELINE in your research, please cite:
-
-Pratapa, A., Jalihal, A.P., Law, J.N., Bharadwaj, A., Murali, T. M. (2020) "Benchmarking algorithms for gene regulatory network inference from single-cell transcriptomic data." _Nature Methods_, 17, 147–154.
-
-Link to the pubication: [https://www.nature.com/articles/s41592-019-0690-6](https://www.nature.com/articles/s41592-019-0690-6)
-
-The preprint version of this article is available at: [https://doi.org/10.1101/642926](https://doi.org/10.1101/642926)
-
-The repository for BoolODE is located at: [https://github.com/Murali-group/BoolODE](https://github.com/Murali-group/BoolODE)
-
-The input datasets used in BEELINE are available at: [https://doi.org/10.5281/zenodo.3378975](https://doi.org/10.5281/zenodo.3378975)
-
-Twitter thread link: https://twitter.com/t_m_murali/status/1215302095601119234?s=20
-
-The Docker images of 12 algorithms tested in BEELINE are available at [https://hub.docker.com/u/grnbeeline](https://hub.docker.com/u/grnbeeline). Alternatievly, to build the docker containers from scratch (instead of using pre-built versions) for each of the algorithms run `. initialize.sh` (this step will take a while).
-
-
-Instructions for DREAM set-up:
-
-- Make sure that file input and output shapes are parsed correctly
