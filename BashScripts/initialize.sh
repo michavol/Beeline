@@ -35,13 +35,13 @@ USER=18881888
 # docker build -t $USER/genenet:base .
 # echo "Docker container for GENENET is built and tagged as genenet:base\n"
 
-# cd $BASEDIR/Algorithms/ARACNE/
-# docker build -t $USER/aracne:base .
-# echo "Docker container for ARACNE is built and tagged as aracne:base\n"
+cd $BASEDIR/Algorithms/ARACNE/
+docker build -t $USER/aracne:base .
+echo "Docker container for ARACNE is built and tagged as aracne:base\n"
 
-cd $BASEDIR/Algorithms/CORR/
-docker build -t $USER/corr:base .
-echo "Docker container for CORR is built and tagged as corr:base\n"
+# cd $BASEDIR/Algorithms/CORR/
+# docker build -t $USER/corr:base .
+# echo "Docker container for CORR is built and tagged as corr:base\n"
 
 # cd $BASEDIR/Algorithms/GENIE3_R/
 # docker build -t $USER/genie3_r:base .
