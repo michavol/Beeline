@@ -41,7 +41,7 @@ cd BashScripts
 cd ..
 ```
 
-- Run and evaluate algorithms according to config files (see ```BLEvaluator.py``` for meaning of arguments):
+- Run and evaluate algorithms according to config files (see ```BLEvaluator.py``` for meaning of arguments). Alternatively, you can also modify and run the ```run.sh```:
 ```
 python BLRunner.py --config config-files/config_dream4_10.yaml
 python BLEvaluator.py --config config-files/config_dream4_10.yaml -a -u -j -n -z -y -t -d -f -e -x
