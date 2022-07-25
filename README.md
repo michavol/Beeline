@@ -8,6 +8,11 @@ Their [documentation](https://murali-group.github.io/Beeline/) nicely outlines t
 Quick setup:
 - Setup Docker - We recommend using [Docker Desktop](https://docs.docker.com/desktop/install/linux-install/) for Linux: 
 
+- Clone repository:
+```
+git clone 
+```
+
 - Setup environment - We recommend using [Anaconda](https://www.anaconda.com/) for Python (you may need to install R as well). 
 ```
 cd BashScripts
