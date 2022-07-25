@@ -30,7 +30,7 @@ cd ..
 - Build Docker images (may take quite some time):
 ```
 cd BashScripts
-./initialize
+./initialize.sh
 cd ..
 ```
 
