@@ -6,7 +6,7 @@ This is the main repository for the Bachelor's thesis "Benchmarking Framework fo
 - Jaccard indices across different methods were introduced, representing similarity in method predictions.
 - Runtime benchmarking now differentiates between elapsed time, user time and CPU percentage. 
 
-Their [documentation](https://murali-group.github.io/Beeline/) nicely outlines the basic structure of the framework and how it can be used. For the benchmarking framework in this repository a few modifications have been made. Here, the folder ```BashScripts``` was added, which is where ```setupAnacondaVENV.sh``` is located now. Furthermore, ```BLRunner.py``` and ```BLEvaluator.py``` and all their dependencies were adjusted to accomodate the algorithms and evaluation methods discussed in the thesis. The user for Docker Desktop is now ```18881888``` and not ```BEELINE``` - this way you can use the Docker images I used and made available on Docker Hub. As the input data used in the thesis is considerably large, I only added a few example datasets. In case you would like to have access to the complete input data that was used for the benchmarking results, please contact me. 
+Their [documentation](https://murali-group.github.io/Beeline/) nicely outlines the basic structure of the framework and how it can be used. A few modifications have been made. Here, the folder ```BashScripts``` was added, which is where ```setupAnacondaVENV.sh``` is located now. Furthermore, ```BLRunner.py``` and ```BLEvaluator.py``` and all their dependencies were adjusted to accomodate the algorithms and evaluation methods discussed in the thesis. The user for Docker Desktop is now ```18881888``` and not ```BEELINE``` - this way you can use the Docker images I used and made available on Docker Hub. As the input data used in the thesis is considerably large, I only added a few example datasets. In case you would like to have access to the complete input data that was used for the benchmarking results, please contact me. 
 
 
 Quick setup:
@@ -17,7 +17,9 @@ Quick setup:
 git clone 
 ```
 
-- Setup environment - We recommend using [Anaconda](https://www.anaconda.com/) for Python (you may need to install R as well). 
+- [Install R](https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/#:~:text=Ubuntu%20Install%20R%201%20Install%20the%20dependencies%20necessary,by%20printing%20the%20R%20version%3AR%20--versionR...%20See%20More.) if necessary.
+
+- Setup environment - We recommend using [Anaconda](https://www.anaconda.com/) for Python. 
 ```
 cd BashScripts
 ./setupAnacondaVENV.sh
