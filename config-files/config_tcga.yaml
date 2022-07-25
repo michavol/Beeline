@@ -67,14 +67,6 @@ input_settings:
               verbose: [0]
 
 
-        - name: "GLASSO"
-          params: 
-              should_run: [True]
-              # rho value for preconditioning w, wi
-              rho1: [0.001]
-
-              # rho value for final glasso
-              rho2: [0.002]
 
 
         # - name: "GENIE3"
@@ -115,7 +107,7 @@ input_settings:
           params: 
               should_run: [False]
               # Number of strongest edges that will be chosen
-              num_edges: [50000]
+              num_edges: [0]
 
               # Directed or undirected
               directed: [1]
@@ -136,6 +128,15 @@ input_settings:
               # Used in parsing output
               pVal: [1]
             
+        - name: "GLASSO"
+          params: 
+              should_run: [True]
+              # rho value for preconditioning w, wi
+              rho1: [0.001]
+
+              # rho value for final glasso
+              rho2: [0.002]
+              
       # - name: "PIDC"
       #   params: 
       #       should_run: [False]

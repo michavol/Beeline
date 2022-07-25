@@ -125,7 +125,7 @@ class BLEval(object):
         # for dataset in self.input_settings.datasets:
 
             AUPRC, AUROC = PRROC(dataset, self.input_settings, 
-                                    directed = directed, selfEdges = False, plotFlag = False)
+                                    directed = directed, selfEdges = False, plotFlag = True)
             AUPRCDict[dataset['name']] = AUPRC
             AUROCDict[dataset['name']] = AUROC
         AUPRC = pd.DataFrame(AUPRCDict)

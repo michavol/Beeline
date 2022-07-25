@@ -20,25 +20,25 @@ input_settings:
     #   trueEdges: Name of the refrence network file in the
     #              edge list format. Needed for evaluation.
     datasets:
-        - name: "size10_multifactorial/net1"
-          exprData: "insilico_size10_1_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_1_goldstandard.tsv"
+        # - name: "size10_multifactorial/net1"
+        #   exprData: "insilico_size10_1_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_1_goldstandard.tsv"
 
-        - name: "size10_multifactorial/net2"
-          exprData: "insilico_size10_2_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_2_goldstandard.tsv"
+        # - name: "size10_multifactorial/net2"
+        #   exprData: "insilico_size10_2_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_2_goldstandard.tsv"
 
-        - name: "size10_multifactorial/net3"
-          exprData: "insilico_size10_3_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_3_goldstandard.tsv"
+        # - name: "size10_multifactorial/net3"
+        #   exprData: "insilico_size10_3_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_3_goldstandard.tsv"
 
-        - name: "size10_multifactorial/net4"
-          exprData: "insilico_size10_4_multifactorial.tsv"  
-          cellData: "PseudoTime.csv"
-          trueEdges: "insilico_size10_4_goldstandard.tsv"
+        # - name: "size10_multifactorial/net4"
+        #   exprData: "insilico_size10_4_multifactorial.tsv"  
+        #   cellData: "PseudoTime.csv"
+        #   trueEdges: "insilico_size10_4_goldstandard.tsv"
 
         - name: "size10_multifactorial/net5"
           exprData: "insilico_size10_5_multifactorial.tsv"  
@@ -134,7 +134,7 @@ input_settings:
 
         - name: "ORDER_MCMC"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [50]
 
@@ -146,7 +146,7 @@ input_settings:
 
         - name: "PC"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of iterations for finding edge weights
               nIter: [50]
 
@@ -162,7 +162,7 @@ input_settings:
 
         - name: "GLASSO"
           params: 
-              should_run: [True]
+              should_run: [False]
               # rho value for preconditioning w, wi
               rho1: [0.001]
 
@@ -178,7 +178,7 @@ input_settings:
 
         - name: "GENIE3_R"
           params: 
-              should_run: [True]
+              should_run: [False]
 
               # Number of trees in an ensemble for each target gene. Default: 1000.
               nTrees: [1000]
@@ -195,7 +195,7 @@ input_settings:
               
         - name: "GRNBOOST2"
           params: 
-              should_run: [True]
+              should_run: [False]
               
               
         - name: "PPCOR"
@@ -207,7 +207,7 @@ input_settings:
 
         - name: "GENENET"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Number of strongest edges that will be chosen
               num_edges: [0]
 
@@ -219,13 +219,13 @@ input_settings:
 
         - name: "ARACNE"
           params: 
-              should_run: [True]
+              should_run: [False]
               # Epsilon - see documentation
               eps: [0.2]
 
         - name: "CORR"
           params: 
-              should_run: [True]
+              should_run: [False]
               # p-value True
               # Used in parsing output
               pVal: [1]
