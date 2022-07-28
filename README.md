@@ -17,7 +17,7 @@ It adapts and extends existing work from Pratapa et al. (2022) who focused on be
 
 
 Quick setup:
-- Setup Docker - We recommend using [Docker Desktop](https://docs.docker.com/desktop/install/linux-install/) for Linux: 
+- Setup Docker - I recommend using [Docker Desktop](https://docs.docker.com/desktop/install/linux-install/) for Linux: 
 
 - Clone repository:
 ```
@@ -26,7 +26,7 @@ git clone git@github.com:michavol/benchmarking_GRN_inference.git
 
 - [Install R](https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/#:~:text=Ubuntu%20Install%20R%201%20Install%20the%20dependencies%20necessary,by%20printing%20the%20R%20version%3AR%20--versionR...%20See%20More.) if necessary.
 
-- Setup environment - We recommend using [Anaconda](https://www.anaconda.com/) for Python. 
+- Setup environment - I recommend using [Anaconda](https://www.anaconda.com/) for Python. 
 ```
 cd BashScripts
 ./setupAnacondaVENV.sh
